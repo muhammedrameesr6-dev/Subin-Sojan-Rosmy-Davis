@@ -226,8 +226,104 @@
   }
 
   // ==========================================================================
-  // 3. OPENING INVITATION TRANSITION
+  // 3. OPENING INVITATION TRANSITION & AUTO-SCROLL ENGINE
   // ==========================================================================
+  let autoScrollTimer = null;
+  let autoScrollRafId = null;
+  let isAutoScrolling = false;
+  let isProgrammaticScroll = false;
+  let autoScrollCurrentY = 0;
+  let lastAutoScrollTimestamp = null;
+  const AUTO_SCROLL_SPEED = 42; // pixels/sec (gentle, readable luxury pace)
+
+  const userInteractionEvents = [
+    'wheel',
+    'touchstart',
+    'touchmove',
+    'pointerdown',
+    'mousedown',
+    'keydown'
+  ];
+
+  function onUserScrollInteraction() {
+    stopAutoScroll();
+  }
+
+  function attachAutoScrollUserListeners() {
+    userInteractionEvents.forEach((evt) => {
+      window.addEventListener(evt, onUserScrollInteraction, { passive: true, capture: true });
+    });
+  }
+
+  function removeAutoScrollUserListeners() {
+    userInteractionEvents.forEach((evt) => {
+      window.removeEventListener(evt, onUserScrollInteraction, { capture: true });
+    });
+  }
+
+  function stopAutoScroll() {
+    if (autoScrollTimer) {
+      clearTimeout(autoScrollTimer);
+      autoScrollTimer = null;
+    }
+    if (autoScrollRafId) {
+      cancelAnimationFrame(autoScrollRafId);
+      autoScrollRafId = null;
+    }
+    isAutoScrolling = false;
+    isProgrammaticScroll = false;
+    removeAutoScrollUserListeners();
+  }
+
+  function autoScrollStep(timestamp) {
+    if (!isAutoScrolling) return;
+
+    if (!lastAutoScrollTimestamp) {
+      lastAutoScrollTimestamp = timestamp;
+    }
+
+    const delta = (timestamp - lastAutoScrollTimestamp) / 1000;
+    lastAutoScrollTimestamp = timestamp;
+
+    autoScrollCurrentY += AUTO_SCROLL_SPEED * delta;
+    isProgrammaticScroll = true;
+    window.scrollTo(0, autoScrollCurrentY);
+
+    const maxScroll = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight
+    ) - window.innerHeight;
+
+    if (autoScrollCurrentY >= maxScroll - 4) {
+      stopAutoScroll();
+      return;
+    }
+
+    autoScrollRafId = requestAnimationFrame(autoScrollStep);
+  }
+
+  function startAutoScroll() {
+    stopAutoScroll();
+    isAutoScrolling = true;
+    autoScrollCurrentY = window.scrollY || window.pageYOffset || 0;
+    lastAutoScrollTimestamp = null;
+    attachAutoScrollUserListeners();
+    autoScrollRafId = requestAnimationFrame(autoScrollStep);
+  }
+
+  function scheduleAutoScroll(delayMs = 2000) {
+    stopAutoScroll();
+
+    // Attach listeners after a short delay so the initial tap/click doesn't instantly cancel
+    setTimeout(() => {
+      attachAutoScrollUserListeners();
+    }, 300);
+
+    autoScrollTimer = setTimeout(() => {
+      startAutoScroll();
+    }, delayMs);
+  }
+
   if (btnOpenInvite && invitationCover) {
     btnOpenInvite.addEventListener('click', () => {
       // 1. Play "Aaro Nee" from 1:15
@@ -236,7 +332,10 @@
       // 2. Animate cover unveil
       invitationCover.classList.add('opened');
 
-      // 3. Remove cover from layout after animation completes
+      // 3. Start smooth, slow auto-scroll 2 seconds after opening
+      scheduleAutoScroll(2000);
+
+      // 4. Remove cover from layout after animation completes
       setTimeout(() => {
         invitationCover.style.display = 'none';
         triggerScrollReveals();
@@ -751,6 +850,14 @@
   }
 
   function handleScroll() {
+    if (isAutoScrolling) {
+      if (isProgrammaticScroll) {
+        isProgrammaticScroll = false;
+      } else {
+        stopAutoScroll();
+      }
+    }
+
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
@@ -774,6 +881,7 @@
 
   if (btnBackToTop) {
     btnBackToTop.addEventListener('click', () => {
+      stopAutoScroll();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
@@ -784,6 +892,11 @@
     initGallery();
     loadWishes();
     triggerScrollReveals();
+
+    // If invitation cover is already opened or dismissed, schedule auto-scroll after 2s
+    if (!invitationCover || invitationCover.style.display === 'none' || invitationCover.classList.contains('opened')) {
+      scheduleAutoScroll(2000);
+    }
   });
 
 })();
