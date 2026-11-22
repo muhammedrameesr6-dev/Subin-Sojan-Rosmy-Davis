@@ -2395,59 +2395,46 @@ footer {
   letter-spacing: 0.05em;
 }
 
-/* Couple Profile Row */
+/* Couple Profile Row (Clean Typographic Presentation) */
 .couple-profile-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 1.5rem;
+  gap: 2.2rem;
+  margin: 1.8rem 0 0.8rem;
+  text-align: center;
 }
 
 .couple-mini-card {
   text-align: center;
-}
-
-.mini-avatar-wrap {
-  width: 140px;
-  height: 180px;
-  border-radius: 70px 70px 14px 14px;
-  overflow: hidden;
-  border: 1.5px solid var(--gold-primary);
-  margin: 0 auto 0.8rem;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-}
-
-.mini-avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.mini-avatar-wrap:hover .mini-avatar-img {
-  transform: scale(1.08);
+  padding: 0.4rem 0.6rem;
 }
 
 .person-name {
   font-family: var(--font-serif);
-  font-size: 1.45rem;
+  font-size: clamp(1.6rem, 4.5vw, 2.3rem);
   font-weight: 600;
-  margin-bottom: 0.2rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.3rem;
+  line-height: 1.15;
 }
 
 .person-role {
   font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gold-champagne);
+  font-weight: 600;
+  display: block;
 }
 
 .couple-center-amp {
   font-family: var(--font-script);
-  font-size: 3.2rem;
+  font-size: 2.8rem;
   color: var(--gold-primary);
+  opacity: 0.9;
+  line-height: 1;
 }
 
 /* 3. Auspicious Date Callout & Calendar */
@@ -2650,19 +2637,20 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Countdown Blocks */
+/* Countdown Blocks (4-Column Grid Single Row on All Screen Sizes) */
 .countdown-blocks-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  margin: 1.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  max-width: 520px;
+  margin: 1.8rem auto;
+  width: 100%;
 }
 
 .countdown-digit-cell {
-  min-width: 95px;
-  padding: 1.4rem 0.8rem;
+  min-width: 0;
+  width: 100%;
+  padding: 1.2rem 0.3rem;
   background: rgba(6, 14, 32, 0.7);
   border: 1px solid rgba(223, 186, 115, 0.25);
   border-radius: 16px;
@@ -2672,7 +2660,7 @@ footer {
 
 .countdown-digit-cell .num {
   font-family: var(--font-serif);
-  font-size: 2.8rem;
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
   font-weight: 600;
   line-height: 1;
   display: block;
@@ -2680,11 +2668,30 @@ footer {
 
 .countdown-digit-cell .lbl {
   font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
+  font-size: clamp(0.55rem, 1.8vw, 0.7rem);
+  letter-spacing: 0.15em;
   color: var(--gold-champagne);
-  margin-top: 0.5rem;
+  margin-top: 0.45rem;
   display: block;
+}
+
+@media (max-width: 480px) {
+  .countdown-blocks-flex {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.45rem;
+    margin: 1.2rem auto;
+  }
+  .countdown-digit-cell {
+    padding: 0.85rem 0.15rem;
+    border-radius: 12px;
+  }
+  .countdown-digit-cell .num {
+    font-size: 1.55rem;
+  }
+  .countdown-digit-cell .lbl {
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+  }
 }
 
 /* Confirm Attendance Button */
@@ -2722,8 +2729,31 @@ footer {
 .standard-gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 240px;
   gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.gallery-item.featured-wide {
+  grid-column: 1 / -1;
+  height: 320px;
+}
+
+.gallery-item.pair-tall {
+  grid-column: span 1;
+  height: 380px;
+}
+
+@media (max-width: 600px) {
+  .standard-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .gallery-item.featured-wide {
+    height: 240px;
+  }
+  .gallery-item.pair-tall {
+    height: 340px;
+  }
 }
 
 /* AI Magic Wand Button */
