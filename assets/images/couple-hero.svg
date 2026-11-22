@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#14244D"/>
+      <stop offset="60%" stop-color="#09132B"/>
+      <stop offset="100%" stop-color="#040817"/>
+    </radialGradient>
+    <linearGradient id="goldArt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0D0"/>
+      <stop offset="35%" stop-color="#DFBA73"/>
+      <stop offset="70%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#EAC885"/>
+    </linearGradient>
+    <linearGradient id="softGold" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#DFBA73" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#FFF0D0" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bgGlow)"/>
+  
+  <!-- Subtle Cathedral Window / Floral Arch -->
+  <path d="M 120 950 L 120 450 C 120 220, 240 100, 400 100 C 560 100, 680 220, 680 450 L 680 950" fill="none" stroke="url(#goldArt)" stroke-width="2" opacity="0.4"/>
+  <path d="M 140 950 L 140 460 C 140 240, 250 120, 400 120 C 550 120, 660 240, 660 460 L 660 950" fill="none" stroke="url(#goldArt)" stroke-width="1" stroke-dasharray="6 4" opacity="0.3"/>
+  
+  <!-- Starlight / Bokeh in backdrop -->
+  <g fill="#FFF0D0" opacity="0.6">
+    <circle cx="250" cy="220" r="2"/>
+    <circle cx="550" cy="240" r="3"/>
+    <circle cx="380" cy="180" r="1.5"/>
+    <circle cx="480" cy="300" r="2.5"/>
+    <circle cx="180" cy="380" r="2"/>
+    <circle cx="620" cy="360" r="1.5"/>
+  </g>
+
+  <!-- Couple Silhouette & Line Art -->
+  <!-- Groom -->
+  <g stroke="url(#goldArt)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Groom Head / Profile -->
+    <path d="M 330 380 C 335 340, 365 330, 385 350 C 390 355, 395 370, 390 385 C 385 400, 370 410, 350 415" stroke-width="2.5"/>
+    <path d="M 335 345 C 350 320, 380 325, 395 345" stroke-width="3"/>
+    <!-- Groom Suit & Shoulders -->
+    <path d="M 345 420 L 290 470 L 260 700 L 360 750" stroke-width="2"/>
+    <path d="M 365 425 L 390 520 L 415 620" stroke-width="2"/>
+    <!-- Lapel -->
+    <polygon points="345,430 380,480 370,540 330,470" fill="url(#softGold)" stroke="url(#goldArt)" stroke-width="1.5"/>
+    <!-- Bowtie / Collar -->
+    <polygon points="350,425 365,432 350,440" fill="url(#goldArt)"/>
+    <polygon points="380,425 365,432 380,440" fill="url(#goldArt)"/>
+    <circle cx="365" cy="432" r="3" fill="#FFF0D0"/>
+  </g>
+
+  <!-- Bride -->
+  <g stroke="url(#goldArt)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Bride Head / Hair Updo & Veil -->
+    <path d="M 430 360 C 445 340, 475 345, 480 370 C 485 390, 470 405, 450 415" stroke-width="2.5"/>
+    <path d="M 460 340 C 490 345, 500 375, 490 400" stroke-width="3"/>
+    <!-- Veil flowing back -->
+    <path d="M 470 345 C 560 360, 640 450, 620 750 C 600 820, 520 860, 450 880" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"/>
+    <path d="M 480 360 C 580 400, 610 520, 590 700" stroke-width="1" opacity="0.4"/>
+    <!-- Gown neckline & Back -->
+    <path d="M 445 418 C 430 445, 420 500, 435 560 C 445 610, 470 660, 490 750 L 530 920" stroke-width="2.5"/>
+    <!-- Bridal arm resting on groom's chest / holding flowers -->
+    <path d="M 445 460 C 410 490, 395 530, 400 580" stroke-width="2"/>
+    <!-- Bouquet -->
+    <g transform="translate(390, 580)">
+      <circle cx="0" cy="0" r="14" fill="url(#softGold)" stroke="url(#goldArt)" stroke-width="1.5"/>
+      <circle cx="-10" cy="-6" r="10" fill="url(#softGold)" stroke="url(#goldArt)" stroke-width="1.5"/>
+      <circle cx="10" cy="-6" r="10" fill="url(#softGold)" stroke="url(#goldArt)" stroke-width="1.5"/>
+      <circle cx="0" cy="12" r="11" fill="url(#softGold)" stroke="url(#goldArt)" stroke-width="1.5"/>
+      <!-- Leaves -->
+      <path d="M 0 15 Q -10 30 -5 45 Q 5 30 0 15 Z" fill="url(#goldArt)" opacity="0.7"/>
+      <path d="M 8 12 Q 25 22 25 35 Q 12 25 8 12 Z" fill="url(#goldArt)" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- Bottom Arch & Gold Frame -->
+  <rect x="30" y="30" width="740" height="940" rx="20" fill="none" stroke="url(#goldArt)" stroke-width="1.5" opacity="0.6"/>
+  <rect x="42" y="42" width="716" height="916" rx="14" fill="none" stroke="url(#goldArt)" stroke-width="0.8" stroke-dasharray="8 5" opacity="0.4"/>
+  
+  <text x="400" y="930" font-family="'Cormorant Garamond', serif" font-size="28" letter-spacing="6" fill="url(#goldArt)" text-anchor="middle" font-weight="600">SUBIN &amp; ROSMY</text>
+</svg>

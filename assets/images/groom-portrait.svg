@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+  <defs>
+    <radialGradient id="groomBg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#182A54"/>
+      <stop offset="60%" stop-color="#0B1428"/>
+      <stop offset="100%" stop-color="#040814"/>
+    </radialGradient>
+    <linearGradient id="goldGroom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0D0"/>
+      <stop offset="40%" stop-color="#DFBA73"/>
+      <stop offset="80%" stop-color="#9C731A"/>
+      <stop offset="100%" stop-color="#F2D179"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="750" fill="url(#groomBg)"/>
+  
+  <!-- Outer Ornate Frame -->
+  <rect x="25" y="25" width="550" height="700" rx="16" fill="none" stroke="url(#goldGroom)" stroke-width="2"/>
+  <rect x="35" y="35" width="530" height="680" rx="12" fill="none" stroke="url(#goldGroom)" stroke-width="1" stroke-dasharray="5 3" opacity="0.6"/>
+
+  <!-- Halo / Backdrop Circle -->
+  <circle cx="300" cy="300" r="160" fill="none" stroke="url(#goldGroom)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
+  <circle cx="300" cy="300" r="140" fill="none" stroke="url(#goldGroom)" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Handsome Groom Silhouette / Linework -->
+  <g stroke="url(#goldGroom)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Hair & Head -->
+    <path d="M 270 200 C 275 160, 325 155, 345 190 C 355 210, 350 240, 335 260 C 320 280, 290 285, 275 270 C 265 255, 265 230, 270 200 Z" stroke-width="2" fill="#0E1A36"/>
+    <!-- Well groomed hair style -->
+    <path d="M 270 185 C 290 160, 340 165, 348 190" stroke-width="3"/>
+    <!-- Neck & Jawline -->
+    <path d="M 285 275 L 285 315 L 325 315 L 325 270" stroke-width="2"/>
+    <!-- Suit Shoulders & Body -->
+    <path d="M 285 315 L 180 375 L 150 630 L 450 630 L 420 375 L 325 315" stroke-width="2.5" fill="#081024"/>
+    <!-- Tuxedo / Blazer Lapels -->
+    <polygon points="285,315 250,420 300,530 300,340" fill="#132345" stroke="url(#goldGroom)" stroke-width="1.8"/>
+    <polygon points="325,315 355,420 305,530 305,340" fill="#132345" stroke="url(#goldGroom)" stroke-width="1.8"/>
+    <!-- Shirt & Bowtie -->
+    <polygon points="295,335 305,335 308,440 292,440" fill="#FFF0D0" opacity="0.9"/>
+    <path d="M 292 345 L 308 355 L 292 365 Z" fill="url(#goldGroom)"/>
+    <path d="M 308 345 L 292 355 L 308 365 Z" fill="url(#goldGroom)"/>
+    <circle cx="300" cy="355" r="2.5" fill="#132345"/>
+    <!-- Pocket square & Boutonniere -->
+    <rect x="215" y="420" width="30" height="5" rx="1" fill="url(#goldGroom)"/>
+    <path d="M 230 415 Q 225 400 232 390 Q 238 405 230 415 Z" fill="url(#goldGroom)"/>
+  </g>
+
+  <!-- Tag / Title -->
+  <text x="300" y="680" font-family="'Cormorant Garamond', serif" font-size="24" letter-spacing="4" fill="url(#goldGroom)" text-anchor="middle" font-weight="600">THE GROOM</text>
+</svg>

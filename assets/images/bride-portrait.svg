@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+  <defs>
+    <radialGradient id="brideBg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#182A54"/>
+      <stop offset="60%" stop-color="#0B1428"/>
+      <stop offset="100%" stop-color="#040814"/>
+    </radialGradient>
+    <linearGradient id="goldBride" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0D0"/>
+      <stop offset="40%" stop-color="#DFBA73"/>
+      <stop offset="80%" stop-color="#9C731A"/>
+      <stop offset="100%" stop-color="#F2D179"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="750" fill="url(#brideBg)"/>
+  
+  <!-- Outer Ornate Frame -->
+  <rect x="25" y="25" width="550" height="700" rx="16" fill="none" stroke="url(#goldBride)" stroke-width="2"/>
+  <rect x="35" y="35" width="530" height="680" rx="12" fill="none" stroke="url(#goldBride)" stroke-width="1" stroke-dasharray="5 3" opacity="0.6"/>
+
+  <!-- Halo / Backdrop Circle -->
+  <circle cx="300" cy="300" r="160" fill="none" stroke="url(#goldBride)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
+  <circle cx="300" cy="300" r="140" fill="none" stroke="url(#goldBride)" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Elegant Bride Silhouette / Linework -->
+  <g stroke="url(#goldBride)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Hair Updo & Tiara -->
+    <path d="M 270 210 C 270 160, 330 160, 335 210 C 345 235, 335 265, 320 280 C 300 290, 275 280, 270 250 Z" stroke-width="2" fill="#0E1A36"/>
+    <!-- Tiara / Crown -->
+    <path d="M 285 180 L 292 168 L 300 178 L 308 168 L 315 180" stroke-width="2" fill="url(#goldBride)"/>
+    <circle cx="300" cy="165" r="2.5" fill="#FFF0D0"/>
+    <!-- Flowing Veil -->
+    <path d="M 285 185 C 220 210, 180 320, 170 560" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+    <path d="M 315 185 C 380 210, 420 320, 430 560" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+    <!-- Neck & Jewelry / Necklace -->
+    <path d="M 288 280 C 295 320, 305 320, 312 280" stroke-width="1.8"/>
+    <!-- Delicate Gold Choker / Necklace -->
+    <path d="M 286 312 Q 300 326 314 312" stroke-width="2"/>
+    <circle cx="300" cy="324" r="3" fill="url(#goldBride)"/>
+    <!-- Bridal Gown / Bodice -->
+    <path d="M 280 330 C 250 350, 220 380, 200 450 L 170 630 L 430 630 L 400 450 C 380 380, 350 350, 320 330 Z" stroke-width="2.5" fill="#0B152B"/>
+    <!-- Sweetheart Neckline -->
+    <path d="M 270 345 Q 285 365 300 350 Q 315 365 330 345" stroke-width="2"/>
+    <!-- Intricate Floral Embroidery Pattern on Gown -->
+    <g opacity="0.5" stroke-width="1">
+      <circle cx="300" cy="420" r="15"/>
+      <circle cx="270" cy="460" r="12"/>
+      <circle cx="330" cy="460" r="12"/>
+      <circle cx="300" cy="510" r="16"/>
+      <path d="M 285 410 Q 300 395 315 410"/>
+      <path d="M 260 450 Q 270 435 280 450"/>
+      <path d="M 320 450 Q 330 435 340 450"/>
+    </g>
+    <!-- Bouquet -->
+    <g transform="translate(300, 560)">
+      <circle cx="0" cy="0" r="18" fill="#182A54" stroke="url(#goldBride)" stroke-width="1.5"/>
+      <circle cx="-12" cy="-8" r="12" fill="#182A54" stroke="url(#goldBride)" stroke-width="1.5"/>
+      <circle cx="12" cy="-8" r="12" fill="#182A54" stroke="url(#goldBride)" stroke-width="1.5"/>
+      <circle cx="0" cy="14" r="13" fill="#182A54" stroke="url(#goldBride)" stroke-width="1.5"/>
+      <circle cx="0" cy="0" r="6" fill="url(#goldBride)"/>
+    </g>
+  </g>
+
+  <!-- Tag / Title -->
+  <text x="300" y="680" font-family="'Cormorant Garamond', serif" font-size="24" letter-spacing="4" fill="url(#goldBride)" text-anchor="middle" font-weight="600">THE BRIDE</text>
+</svg>

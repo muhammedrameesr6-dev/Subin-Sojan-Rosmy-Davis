@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 24" width="200" height="24">
+  <defs>
+    <linearGradient id="divLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C5D3E8" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#C5D3E8" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#C5D3E8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#C5D3E8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <line x1="10" y1="12" x2="85" y2="12" stroke="url(#divLineGrad)" stroke-width="1"/>
+  <line x1="115" y1="12" x2="190" y2="12" stroke="url(#divLineGrad)" stroke-width="1"/>
+  <!-- Center Heart Knot -->
+  <g transform="translate(100, 12) scale(0.65)">
+    <path d="M 0 4 C -1 1, -5 -4, -10 -4 C -16 -4, -20 0, -20 6 C -20 12, -10 18, 0 26 C 10 18, 20 12, 20 6 C 20 0, 16 -4, 10 -4 C 5 -4, 1 1, 0 4 Z" fill="#FDE8BA" transform="translate(0, -10) scale(0.5)"/>
+    <circle cx="-16" cy="0" r="1.5" fill="#FDE8BA"/>
+    <circle cx="16" cy="0" r="1.5" fill="#FDE8BA"/>
+  </g>
+</svg>

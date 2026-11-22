@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Wedding Invitation | Subin Sojan &amp; Rosmy Davis</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Wedding Invitation | Subin Sojan &amp; Rosmy Davis">
+  <meta name="description" content="We cordially invite you to celebrate the Holy Matrimony of Subin Sojan and Rosmy Davis on Sunday, January 17, 2027 at St. Sebastian's Church, Rayarome, Kannur.">
+  <meta name="theme-color" content="#060d1e">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wedding Invitation | Subin Sojan &amp; Rosmy Davis">
+  <meta property="og:description" content="Join us in celebrating the holy covenant and wedding feast of Subin &amp; Rosmy on January 17, 2027.">
+  
+  <!-- Favicon / Monogram -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/monogram.svg">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Background Golden Stardust & Floating Jasmine Petals Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Top Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+
+  <!-- YouTube Music Player (Plays 'Aaro Nee' from 1:15) -->
+  <div id="youtube-player-container" style="position: fixed; width: 1px; height: 1px; left: -9999px; bottom: 0; opacity: 0; pointer-events: none;">
+    <div id="youtube-player"></div>
+  </div>
+
+  <!-- Audio Element Fallback -->
+  <audio id="wedding-audio" loop preload="auto">
+    <source src="assets/audio/wedding-melody.m4a" type="audio/mp4">
+    <source src="assets/audio/wedding-melody.wav" type="audio/wav">
+  </audio>
+
+  <!-- ==========================================================================
+       OPENING INVITATION SCREEN (COVER / ENVELOPE)
+       Matching Reference Model: Baroque Gold & Blue Roses, Heart Seal, and Luxury Card
+       ========================================================================== -->
+  <aside id="invitation-cover" aria-label="Wedding Invitation Envelope Cover">
+    <div class="cover-curtain-left"></div>
+    <div class="cover-curtain-right"></div>
+
+    <!-- Floating Jasmine Blossom above the Card -->
+    <div class="cover-top-jasmine" aria-hidden="true">
+      <img src="assets/images/jasmine-flower.svg" alt="" width="56" height="56">
+    </div>
+
+    <!-- Central Invitation Card -->
+    <div class="cover-card">
+      <!-- Baroque Gold & Navy Blue Rose Corner Flourishes -->
+      <img src="assets/images/baroque-blue-corner.svg" alt="" class="corner-baroque top-left" aria-hidden="true">
+      <img src="assets/images/baroque-blue-corner.svg" alt="" class="corner-baroque bottom-right" aria-hidden="true">
+
+      <!-- Luminous Top Halo with Maroon Heart -->
+      <div class="cover-heart-badge">
+        <svg class="heart-icon" viewBox="0 0 24 24" width="28" height="28" fill="#52131C">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+
+      <!-- Couple Names -->
+      <h1 class="cover-couple-names">
+        Subin
+        <span class="cover-ampersand">&amp;</span>
+        Rosmy
+      </h1>
+
+      <!-- Delicate Heart Divider -->
+      <div class="cover-heart-divider">
+        <img src="assets/images/heart-divider.svg" alt="" width="160" height="20" aria-hidden="true">
+      </div>
+
+      <!-- Wedding Date -->
+      <p class="cover-date">January 17, 2027</p>
+
+      <!-- Invitation Heading -->
+      <p class="cover-invitation-text">Cordially Invites</p>
+
+      <!-- Personalized Guest Name Frosted Plaque -->
+      <div class="cover-guest-name-card">
+        <h2 class="cover-guest-name">Evin Benny</h2>
+      </div>
+
+      <!-- Subtext -->
+      <p class="cover-subtext">to celebrate with our family</p>
+
+      <!-- Glowing Champagne Gold Open Button -->
+      <button class="btn-open-invitation" id="btn-open-invite" aria-label="Open wedding invitation and enter website">
+        <span>Open</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       STICKY NAVIGATION & AUDIO CONTROLLER
+       ========================================================================== -->
+  <header>
+    <nav id="main-nav" aria-label="Main Navigation">
+      <a href="#hero" class="nav-brand">
+        <img src="assets/images/monogram.svg" alt="SR" class="nav-brand-monogram">
+        <span class="nav-brand-text">Subin &amp; Rosmy</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero">Save The Date</a></li>
+        <li><a href="#ceremony-info">Ceremony</a></li>
+        <li><a href="#reception-info">Reception</a></li>
+        <li><a href="#countdown">Countdown</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#quote">Blessings</a></li>
+        <li><a href="#wishes">Guestbook</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Floating Music Player Control -->
+        <button class="audio-control-btn" id="audio-control-btn" title="Toggle Wedding Music (Aaro Nee - From 1:15)" aria-label="Toggle background music">
+          <svg class="audio-disc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+            <circle cx="12" cy="12" r="1"></circle>
+          </svg>
+          <div class="soundwave-bars" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="audio-text-label">Aaro Nee ♪</span>
+        </button>
+
+        <a href="#rsvp" class="btn-rsvp-nav trigger-rsvp-modal">RSVP</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER (Elevated Chungdoi Architecture)
+       ========================================================================== -->
+  <main class="main-page-wrapper">
+    <div class="standard-wedding-container">
+
+      <!-- ======================================================================
+           1. HERO / SAVE THE DATE SECTION
+           ====================================================================== -->
+      <section id="hero" class="chungdoi-hero-section">
+        <div class="save-the-date-banner reveal">
+          <span class="std-subtitle">Save The Date</span>
+          <div class="hero-floral-frame">
+            <img 
+              src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85" 
+              alt="Subin &amp; Rosmy" 
+              class="hero-portrait-img"
+              onerror="this.src='assets/images/couple-hero.svg'"
+            >
+            <div class="frame-ornament-badge">
+              <img src="assets/images/monogram.svg" alt="SR" width="55" height="55">
+            </div>
+          </div>
+
+          <h1 class="std-names-title gold-text">
+            Subin <span class="ampersand-script">&amp;</span> Rosmy
+          </h1>
+          <p class="std-date-line">Sunday, January 17, 2027</p>
+
+          <div class="ornate-divider">
+            <img src="assets/images/floral-divider.svg" alt="" aria-hidden="true">
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           2. CEREMONY INFO (PARENTS & COUPLE PRESENTATION)
+           ====================================================================== -->
+      <section id="ceremony-info" class="chungdoi-section">
+        <div class="section-card-box reveal">
+          <div class="header-flourish">
+            <span class="section-badge-tag">Holy Matrimony</span>
+            <h2 class="section-heading-caps gold-text">CEREMONY INFO</h2>
+          </div>
+
+          <!-- Parents Two-Column Layout with Vertical Divider -->
+          <div class="parents-two-col-grid">
+            <!-- Groom's Parents -->
+            <div class="parent-col-block">
+              <span class="parents-role-title">Groom's Parents</span>
+              <div class="parents-honorific">Mr. &amp; Mrs.</div>
+              <h3 class="parents-names">Sojan John &amp; Sophy Sojan</h3>
+              <p class="parents-estate">Mylakkattu House</p>
+              <p class="parents-location">Rayarome, Alakode, Kannur, Kerala</p>
+            </div>
+
+            <!-- Center Divider -->
+            <div class="parents-col-divider" aria-hidden="true">
+              <div class="vert-line"></div>
+              <div class="center-heart-knot">❦</div>
+              <div class="vert-line"></div>
+            </div>
+
+            <!-- Bride's Parents -->
+            <div class="parent-col-block">
+              <span class="parents-role-title">Bride's Parents</span>
+              <div class="parents-honorific">Mr. &amp; Mrs.</div>
+              <h3 class="parents-names">Davis P.V &amp; Sindhu Davis</h3>
+              <p class="parents-estate">Payyappilly House</p>
+              <p class="parents-location">Kallur, Annamanada, Thrissur, Kerala</p>
+            </div>
+          </div>
+
+          <!-- Announcement Callout -->
+          <div class="joyful-announcement-banner">
+            <p class="announcement-lead">WE JOYFULLY ANNOUNCE</p>
+            <p class="announcement-sub">THE WEDDING OF OUR CHILDREN</p>
+          </div>
+
+          <!-- The Couple Cards (Subin Sojan & Rosmy Davis) -->
+          <div class="couple-profile-row">
+            <!-- Groom -->
+            <div class="couple-mini-card">
+              <div class="mini-avatar-wrap">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=85" 
+                  alt="Subin Sojan" 
+                  class="mini-avatar-img"
+                  onerror="this.src='assets/images/groom-portrait.svg'"
+                >
+              </div>
+              <h3 class="person-name gold-text">Subin Sojan</h3>
+              <span class="person-role">Groom</span>
+            </div>
+
+            <div class="couple-center-amp">&amp;</div>
+
+            <!-- Bride -->
+            <div class="couple-mini-card">
+              <div class="mini-avatar-wrap">
+                <img 
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=85" 
+                  alt="Rosmy Davis" 
+                  class="mini-avatar-img"
+                  onerror="this.src='assets/images/bride-portrait.svg'"
+                >
+              </div>
+              <h3 class="person-name gold-text">Rosmy Davis</h3>
+              <span class="person-role">Bride</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           3. RECEPTION INFO & INTERACTIVE JANUARY 2027 CALENDAR
+           ====================================================================== -->
+      <section id="reception-info" class="chungdoi-section">
+        <div class="section-card-box reveal">
+          <div class="header-flourish">
+            <span class="section-badge-tag">Sacred Celebration</span>
+            <h2 class="section-heading-caps gold-text">RECEPTION INFO</h2>
+            <p class="section-sub-phrase">The celebration will take place at:</p>
+          </div>
+
+          <!-- Auspicious Date Callout -->
+          <div class="auspicious-date-block">
+            <div class="day-name">SUNDAY</div>
+            <div class="day-number gold-text">17</div>
+            <div class="month-year">JANUARY 2027</div>
+            <div class="time-callout">11:30 AM IST</div>
+          </div>
+
+          <!-- Interactive January 2027 Calendar Grid -->
+          <div class="calendar-widget-wrapper">
+            <div class="calendar-header-title">January 2027</div>
+            <div class="calendar-weekdays-row">
+              <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+            </div>
+            <div class="calendar-days-grid">
+              <!-- Empty slots for Friday start (Mo=0, Tu=0, We=0, Th=0) -->
+              <span class="empty-day"></span>
+              <span class="empty-day"></span>
+              <span class="empty-day"></span>
+              <span class="empty-day"></span>
+              <span>1</span><span>2</span><span>3</span>
+              <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+              <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
+              <!-- Highlighted Wedding Day -->
+              <span class="wedding-highlight-day" title="Wedding Day!">17 ♥</span>
+              <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
+              <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+            </div>
+          </div>
+
+          <!-- Venue & Reception Split Details -->
+          <div class="venue-cards-split-grid">
+            <!-- Holy Matrimony -->
+            <div class="venue-info-card">
+              <div class="venue-icon-circle">⛪</div>
+              <h3 class="venue-title gold-text">Holy Matrimony</h3>
+              <p class="venue-time-lead">Time: 11:30 AM</p>
+              <p class="venue-name-bold">St. Sebastian's Church</p>
+              <p class="venue-location-sub">Rayarome, Alakode, Kannur, Kerala</p>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&amp;query=St.+Sebastian%27s+Church+Rayarome+Kannur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-venue-action"
+              >
+                Get Church Directions
+              </a>
+            </div>
+
+            <!-- Wedding Reception -->
+            <div class="venue-info-card">
+              <div class="venue-icon-circle">🥂</div>
+              <h3 class="venue-title gold-text">Wedding Reception</h3>
+              <p class="venue-time-lead">Following Nuptial Blessing</p>
+              <p class="venue-name-bold">Church Parish Hall</p>
+              <p class="venue-location-sub">St. Sebastian's Parish Hall, Rayarome</p>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&amp;query=St.+Sebastian%27s+Parish+Hall+Rayarome+Kannur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-venue-action"
+              >
+                Get Hall Directions
+              </a>
+            </div>
+          </div>
+
+          <!-- Add to Calendar Buttons -->
+          <div class="calendar-action-buttons">
+            <a href="#" class="btn-cal-link" id="btn-google-calendar" role="button">
+              <span>📅 Add to Google Calendar</span>
+            </a>
+            <a href="#" class="btn-cal-link" id="btn-download-ics" role="button">
+              <span>📥 Download Apple / iCal (.ics)</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           4. LIVE COUNTDOWN SECTION
+           ====================================================================== -->
+      <section id="countdown" class="chungdoi-section">
+        <div class="section-card-box reveal">
+          <div class="header-flourish">
+            <span class="section-badge-tag">Save The Date</span>
+            <h2 class="section-heading-caps gold-text">COUNTDOWN TO FOREVER</h2>
+            <p class="section-sub-phrase">Counting every moment until we become one</p>
+          </div>
+
+          <div class="countdown-blocks-flex">
+            <div class="countdown-digit-cell">
+              <span class="num gold-text" id="count-days">--</span>
+              <span class="lbl">DAYS</span>
+            </div>
+            <div class="countdown-digit-cell">
+              <span class="num gold-text" id="count-hours">--</span>
+              <span class="lbl">HOURS</span>
+            </div>
+            <div class="countdown-digit-cell">
+              <span class="num gold-text" id="count-minutes">--</span>
+              <span class="lbl">MINUTES</span>
+            </div>
+            <div class="countdown-digit-cell">
+              <span class="num gold-text" id="count-seconds">--</span>
+              <span class="lbl">SECONDS</span>
+            </div>
+          </div>
+
+          <div style="text-align:center; margin-top: 2rem;">
+            <button class="btn-attendance-primary trigger-rsvp-modal">
+              CONFIRM ATTENDANCE
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           5. PHOTO GALLERY
+           ====================================================================== -->
+      <section id="gallery" class="chungdoi-section">
+        <div class="section-card-box reveal">
+          <div class="header-flourish">
+            <span class="section-badge-tag">Memories</span>
+            <h2 class="section-heading-caps gold-text">MOMENTS OF LOVE</h2>
+            <p class="section-sub-phrase">A glimpse into our laughter and happiness</p>
+          </div>
+
+          <div class="gallery-tabs-row">
+            <button class="gallery-tab-btn active" data-filter="all">All Moments</button>
+            <button class="gallery-tab-btn" data-filter="romance">Romance</button>
+            <button class="gallery-tab-btn" data-filter="portraits">Portraits</button>
+            <button class="gallery-tab-btn" data-filter="ceremony">Ceremony</button>
+          </div>
+
+          <div class="standard-gallery-grid">
+            <div class="gallery-item tall" data-category="romance">
+              <img 
+                src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" 
+                alt="Romantic Moment" 
+                class="gallery-img"
+                onerror="this.src='assets/images/couple-hero.svg'"
+              >
+              <div class="gallery-item-overlay">
+                <span class="gallery-caption-subtitle">Romance</span>
+                <h4 class="gallery-caption-title">Together as One</h4>
+              </div>
+            </div>
+
+            <div class="gallery-item" data-category="ceremony">
+              <img 
+                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=900&q=85" 
+                alt="Wedding Rings" 
+                class="gallery-img"
+                onerror="this.src='assets/images/couple-hero.svg'"
+              >
+              <div class="gallery-item-overlay">
+                <span class="gallery-caption-subtitle">Ceremony</span>
+                <h4 class="gallery-caption-title">The Sacred Vows</h4>
+              </div>
+            </div>
+
+            <div class="gallery-item" data-category="portraits">
+              <img 
+                src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=85" 
+                alt="Radiant Bride" 
+                class="gallery-img"
+                onerror="this.src='assets/images/bride-portrait.svg'"
+              >
+              <div class="gallery-item-overlay">
+                <span class="gallery-caption-subtitle">Portraits</span>
+                <h4 class="gallery-caption-title">Graceful Elegance</h4>
+              </div>
+            </div>
+
+            <div class="gallery-item wide" data-category="romance">
+              <img 
+                src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=85" 
+                alt="Golden Sunset Stroll" 
+                class="gallery-img"
+                onerror="this.src='assets/images/couple-hero.svg'"
+              >
+              <div class="gallery-item-overlay">
+                <span class="gallery-caption-subtitle">Romance</span>
+                <h4 class="gallery-caption-title">Sunset Golden Hour</h4>
+              </div>
+            </div>
+
+            <div class="gallery-item" data-category="ceremony">
+              <img 
+                src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85" 
+                alt="Church Floral Arch" 
+                class="gallery-img"
+                onerror="this.src='assets/images/church-illustration.svg'"
+              >
+              <div class="gallery-item-overlay">
+                <span class="gallery-caption-subtitle">Ceremony</span>
+                <h4 class="gallery-caption-title">Cathedral Blessings</h4>
+              </div>
+            </div>
+
+            <div class="gallery-item tall" data-category="portraits">
+              <img 
+                src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=900&q=85" 
+                alt="The Groom" 
+                class="gallery-img"
+                onerror="this.src='assets/images/groom-portrait.svg'"
+              >
+              <div class="gallery-item-overlay">
+                <span class="gallery-caption-subtitle">Portraits</span>
+                <h4 class="gallery-caption-title">The Handsome Groom</h4>
+              </div>
+            </div>
+
+            <div class="gallery-item" data-category="romance">
+              <img 
+                src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=85" 
+                alt="Candid Laughter" 
+                class="gallery-img"
+                onerror="this.src='assets/images/couple-hero.svg'"
+              >
+              <div class="gallery-item-overlay">
+                <span class="gallery-caption-subtitle">Romance</span>
+                <h4 class="gallery-caption-title">Joy &amp; Laughter</h4>
+              </div>
+            </div>
+
+            <div class="gallery-item" data-category="ceremony">
+              <img 
+                src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=85" 
+                alt="Evening Celebration" 
+                class="gallery-img"
+                onerror="this.src='assets/images/couple-hero.svg'"
+              >
+              <div class="gallery-item-overlay">
+                <span class="gallery-caption-subtitle">Ceremony</span>
+                <h4 class="gallery-caption-title">Starlit Reception</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIGHTBOX MODAL -->
+      <div id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
+        <button class="lightbox-btn-close" id="lightbox-close" aria-label="Close photo view">&times;</button>
+        <button class="lightbox-nav-btn prev" id="lightbox-prev" aria-label="Previous photo">&#10094;</button>
+        <button class="lightbox-nav-btn next" id="lightbox-next" aria-label="Next photo">&#10095;</button>
+
+        <div class="lightbox-content-box">
+          <img src="" alt="" id="lightbox-img" class="lightbox-main-img">
+          <div class="lightbox-caption-bar">
+            <h3 id="lightbox-title" class="lightbox-title"></h3>
+            <p id="lightbox-counter" class="lightbox-counter"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================================
+           6. SPECIAL SCRIPTURE QUOTE SECTION
+           ====================================================================== -->
+      <section id="quote" class="chungdoi-section">
+        <div class="section-card-box quote-card-theme reveal">
+          <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+          <blockquote class="scripture-verse-text">
+            &ldquo;A cord of three strands is not quickly broken.&rdquo;
+          </blockquote>
+          <cite class="scripture-reference">&mdash; Ecclesiastes 4:12</cite>
+
+          <div class="ornate-divider">
+            <img src="assets/images/floral-divider.svg" alt="" aria-hidden="true">
+          </div>
+
+          <div class="quote-dedication-block">
+            <span class="dedication-lead">With Love &amp; Warm Wishes,</span>
+            <div class="dedication-names gold-text">Mila Irene, Susmi &amp; Salas</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           7. GUESTBOOK & WISHES SECTION (With AI Magic Wand ✨)
+           ====================================================================== -->
+      <section id="wishes" class="chungdoi-section">
+        <div class="section-card-box reveal">
+          <div class="header-flourish">
+            <span class="section-badge-tag">Love Notes</span>
+            <h2 class="section-heading-caps gold-text">GUESTBOOK</h2>
+            <p class="section-sub-phrase">Dear Evin Benny, share your warm wishes with Subin &amp; Rosmy</p>
+          </div>
+
+          <!-- Wish Form with Magic Wand Button -->
+          <form id="wishes-form" class="standard-guestbook-form">
+            <div class="form-group">
+              <label for="wish-name">Enter your name*</label>
+              <input type="text" id="wish-name" class="form-control" value="Evin Benny" required>
+            </div>
+
+            <div class="form-group">
+              <label for="wish-relation">Relationship / Location</label>
+              <input type="text" id="wish-relation" class="form-control" placeholder="e.g. Friend, Kannur">
+            </div>
+
+            <div class="form-group" style="position:relative;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                <label for="wish-message">Enter your wishes*</label>
+                <button type="button" id="btn-magic-wish" class="btn-magic-wand" title="Click for an automatic wedding blessing!">
+                  <span>🪄 Auto-Generate Blessing</span>
+                </button>
+              </div>
+              <textarea id="wish-message" class="form-control" placeholder="Wishing Subin & Rosmy a lifetime of divine love, peace and endless happiness..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-send-wishes-primary">
+              SEND WISHES
+            </button>
+          </form>
+
+          <!-- Wishes Feed -->
+          <div class="guestbook-feed-container">
+            <h3 class="feed-section-title">Messages from Family &amp; Friends</h3>
+            <div class="wishes-feed-list" id="wishes-feed">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           8. FINAL CLOSING SENTIMENT & RSVP
+           ====================================================================== -->
+      <section id="rsvp" class="chungdoi-section">
+        <div class="section-card-box final-card-box reveal">
+          <img src="assets/images/monogram.svg" alt="SR" width="70" height="70" style="margin:0 auto 1.5rem;">
+          <h2 class="final-gratitude-title gold-text">
+            Your presence would be the greatest gift we could receive!
+          </h2>
+          <p class="final-gratitude-sub">
+            Subin &amp; Rosmy eagerly await celebrating with you at St. Sebastian's Church, Rayarome on January 17, 2027.
+          </p>
+
+          <div class="final-btn-group">
+            <button class="btn-attendance-primary trigger-rsvp-modal">
+              CONFIRM ATTENDANCE
+            </button>
+            <button class="btn-share-invite" id="btn-share-invite">
+              Share Invitation
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       RSVP MODAL
+       ========================================================================== -->
+  <div id="rsvp-modal" role="dialog" aria-modal="true" aria-label="RSVP Form Modal">
+    <div class="rsvp-modal-card">
+      <button class="rsvp-modal-close" id="rsvp-modal-close" aria-label="Close RSVP form">&times;</button>
+      
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <img src="assets/images/monogram.svg" alt="" style="width:50px; height:50px; margin:0 auto 0.5rem;" aria-hidden="true">
+        <h3 class="gold-text" style="font-size:1.8rem;">Confirm Attendance</h3>
+        <p style="font-size:0.85rem; color:var(--gold-champagne); letter-spacing:0.1em; text-transform:uppercase;">
+          Subin &amp; Rosmy's Wedding
+        </p>
+      </div>
+
+      <form id="rsvp-form">
+        <div class="form-group">
+          <label for="rsvp-name">Your Full Name</label>
+          <input type="text" id="rsvp-name" class="form-control" value="Evin Benny" required>
+        </div>
+
+        <div class="form-group">
+          <label style="margin-bottom:0.8rem;">Will you be attending?</label>
+          <div style="display:flex; gap:1.2rem;">
+            <label style="font-family:var(--font-sans); text-transform:none; font-size:0.9rem; color:var(--ivory); display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+              <input type="radio" name="attendance" value="attending" checked style="accent-color:var(--gold-primary);">
+              Joyfully Attending
+            </label>
+            <label style="font-family:var(--font-sans); text-transform:none; font-size:0.9rem; color:var(--ivory); display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+              <input type="radio" name="attendance" value="declined" style="accent-color:var(--gold-primary);">
+              Regretfully Unable
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rsvp-guests">Number of Guests</label>
+          <select id="rsvp-guests" class="form-control">
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4+">4 or More</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-send-wishes-primary" style="margin-top:1rem; width:100%;">
+          CONFIRM RSVP
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="container">
+      <img src="assets/images/monogram.svg" alt="" class="footer-monogram" aria-hidden="true">
+      <div class="footer-couple-names gold-text">Subin Sojan &amp; Rosmy Davis</div>
+      <p class="footer-tagline">Sunday, January 17, 2027 • St. Sebastian's Church, Rayarome</p>
+      <p style="font-size:0.75rem; color:var(--ivory-dark); margin-top:1rem; letter-spacing:0.05em;">
+        With Love, Faith &amp; Family &bull; All Rights Reserved
+      </p>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button class="btn-back-to-top" id="btn-back-to-top" title="Back to Top" aria-label="Scroll back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- Custom JavaScript -->
+  <script src="js/script.js"></script>
+</body>
+</html>

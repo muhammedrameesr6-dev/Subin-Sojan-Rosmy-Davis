@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="600" height="500">
+  <defs>
+    <radialGradient id="churchBg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#15264F"/>
+      <stop offset="100%" stop-color="#071022"/>
+    </radialGradient>
+    <linearGradient id="churchGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0D0"/>
+      <stop offset="50%" stop-color="#DFBA73"/>
+      <stop offset="100%" stop-color="#9C731A"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="500" rx="16" fill="url(#churchBg)" stroke="url(#churchGold)" stroke-width="1.5"/>
+
+  <!-- Church Architecture -->
+  <g stroke="url(#churchGold)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main Nave & Pediment -->
+    <polygon points="300,90 200,200 400,200" stroke-width="2.5" fill="#0D1830"/>
+    <rect x="210" y="200" width="180" height="230" stroke-width="2" fill="#091226"/>
+    
+    <!-- Spire / Belfry Tower Left -->
+    <polygon points="150,130 120,220 180,220" stroke-width="2"/>
+    <rect x="130" y="220" width="40" height="210" stroke-width="1.8"/>
+    <!-- Belfry Tower Right -->
+    <polygon points="450,130 420,220 480,220" stroke-width="2"/>
+    <rect x="430" y="220" width="40" height="210" stroke-width="1.8"/>
+
+    <!-- Crosses -->
+    <!-- Center Spire Cross -->
+    <g transform="translate(300, 65)">
+      <line x1="0" y1="-25" x2="0" y2="25" stroke-width="3"/>
+      <line x1="-15" y1="-10" x2="15" y2="-10" stroke-width="3"/>
+      <circle cx="0" cy="-25" r="2" fill="url(#churchGold)"/>
+    </g>
+    <!-- Left Spire Cross -->
+    <line x1="150" y1="110" x2="150" y2="130" stroke-width="2"/>
+    <line x1="142" y1="118" x2="158" y2="118" stroke-width="2"/>
+    <!-- Right Spire Cross -->
+    <line x1="450" y1="110" x2="450" y2="130" stroke-width="2"/>
+    <line x1="442" y1="118" x2="458" y2="118" stroke-width="2"/>
+
+    <!-- Rose Window / Ornamental Circle -->
+    <circle cx="300" cy="260" r="32" stroke-width="2" fill="#132345"/>
+    <circle cx="300" cy="260" r="22" stroke-width="1" stroke-dasharray="4 2"/>
+    <circle cx="300" cy="260" r="6" fill="url(#churchGold)"/>
+    <!-- Petals of rose window -->
+    <line x1="300" y1="238" x2="300" y2="282" stroke-width="1.2"/>
+    <line x1="278" y1="260" x2="322" y2="260" stroke-width="1.2"/>
+    <line x1="284" y1="244" x2="316" y2="276" stroke-width="1.2"/>
+    <line x1="284" y1="276" x2="316" y2="244" stroke-width="1.2"/>
+
+    <!-- Portal / Grand Entrance Arch -->
+    <path d="M 270 430 L 270 360 C 270 335, 330 335, 330 360 L 330 430 Z" stroke-width="2.5" fill="#040812"/>
+    <path d="M 278 430 L 278 365 C 278 348, 322 348, 322 365 L 322 430" stroke-width="1.2"/>
+
+    <!-- Steps -->
+    <line x1="180" y1="430" x2="420" y2="430" stroke-width="2"/>
+    <line x1="160" y1="440" x2="440" y2="440" stroke-width="2"/>
+    <line x1="140" y1="450" x2="460" y2="450" stroke-width="2.5"/>
+  </g>
+
+  <text x="300" y="480" font-family="'Cormorant Garamond', serif" font-size="20" letter-spacing="3" fill="url(#churchGold)" text-anchor="middle" font-weight="600">ST. SEBASTIAN'S CHURCH, RAYAROME</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 40" width="400" height="40">
+  <defs>
+    <linearGradient id="goldDivGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0" />
+      <stop offset="30%" stop-color="#D4AF37" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#FFF0D0" stop-opacity="1" />
+      <stop offset="70%" stop-color="#D4AF37" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <g stroke="url(#goldDivGrad)" fill="none" stroke-width="1.5">
+    <line x1="20" y1="20" x2="160" y2="20" />
+    <line x1="240" y1="20" x2="380" y2="20" />
+    <!-- Leaf flourish left -->
+    <path d="M 160 20 Q 175 12 188 18 Q 175 22 160 20 Z" fill="url(#goldDivGrad)"/>
+    <path d="M 165 20 Q 175 28 185 24 Q 175 20 165 20 Z" fill="url(#goldDivGrad)"/>
+    <!-- Leaf flourish right -->
+    <path d="M 240 20 Q 225 12 212 18 Q 225 22 240 20 Z" fill="url(#goldDivGrad)"/>
+    <path d="M 235 20 Q 225 28 215 24 Q 225 20 235 20 Z" fill="url(#goldDivGrad)"/>
+    <!-- Center Emblem / Diamond & Cross -->
+    <polygon points="200,8 207,20 200,32 193,20" fill="url(#goldDivGrad)"/>
+    <circle cx="200" cy="20" r="2.5" fill="#0A1128"/>
+    <circle cx="178" cy="20" r="2" fill="url(#goldDivGrad)"/>
+    <circle cx="222" cy="20" r="2" fill="url(#goldDivGrad)"/>
+  </g>
+</svg>

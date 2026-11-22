@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <defs>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <g transform="translate(40,40)" fill="#E1ECFB" opacity="0.85" filter="url(#softGlow)">
+    <!-- 8 Petals -->
+    <path d="M 0 0 C -4 -12, -3 -26, 0 -32 C 3 -26, 4 -12, 0 0 Z" />
+    <path d="M 0 0 C -4 -12, -3 -26, 0 -32 C 3 -26, 4 -12, 0 0 Z" transform="rotate(45)" />
+    <path d="M 0 0 C -4 -12, -3 -26, 0 -32 C 3 -26, 4 -12, 0 0 Z" transform="rotate(90)" />
+    <path d="M 0 0 C -4 -12, -3 -26, 0 -32 C 3 -26, 4 -12, 0 0 Z" transform="rotate(135)" />
+    <path d="M 0 0 C -4 -12, -3 -26, 0 -32 C 3 -26, 4 -12, 0 0 Z" transform="rotate(180)" />
+    <path d="M 0 0 C -4 -12, -3 -26, 0 -32 C 3 -26, 4 -12, 0 0 Z" transform="rotate(225)" />
+    <path d="M 0 0 C -4 -12, -3 -26, 0 -32 C 3 -26, 4 -12, 0 0 Z" transform="rotate(270)" />
+    <path d="M 0 0 C -4 -12, -3 -26, 0 -32 C 3 -26, 4 -12, 0 0 Z" transform="rotate(315)" />
+    <!-- Center stamen -->
+    <circle cx="0" cy="0" r="4.5" fill="#FFF2D6" />
+    <circle cx="0" cy="0" r="2" fill="#E5C17D" />
+  </g>
+</svg>
