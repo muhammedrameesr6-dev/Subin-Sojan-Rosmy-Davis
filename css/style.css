@@ -2120,7 +2120,40 @@ footer {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 6.5rem 1rem 4rem;
+  padding: 2.8rem 1rem 4rem;
+}
+
+/* Clean Floating Music Toggle Button (Top-Right Corner) */
+.floating-music-wrapper {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+}
+
+.floating-music-wrapper .audio-control-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.1rem;
+  background: rgba(8, 16, 38, 0.85);
+  border: 1px solid rgba(223, 186, 115, 0.45);
+  border-radius: 30px;
+  color: var(--gold-light);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(223, 186, 115, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: var(--transition-smooth);
+}
+
+.floating-music-wrapper .audio-control-btn:hover {
+  background: rgba(16, 32, 70, 0.95);
+  border-color: var(--gold-primary);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7), 0 0 20px rgba(223, 186, 115, 0.4);
 }
 
 .standard-wedding-container {
