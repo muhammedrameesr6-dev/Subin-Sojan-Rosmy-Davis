@@ -19,7 +19,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/images/jasmine-flower.svg">
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
@@ -424,29 +424,29 @@
           <!-- 3D Coverflow Gallery Carousel -->
           <div class="coverflow-gallery-container" id="coverflowGallery" aria-roledescription="carousel" aria-label="Moments of Love Photo Gallery">
             <div class="coverflow-track" id="coverflowTrack">
-              <!-- Slide 1 -->
-              <div class="coverflow-slide" data-index="0" data-src="images/gallery1.jpg" data-title="Cherished Smiles">
+              <!-- Slide 1 (Active Center) -->
+              <div class="coverflow-slide slide-active" data-index="0" data-src="images/gallery1.jpg" data-title="Cherished Smiles">
                 <div class="coverflow-card">
                   <img src="images/gallery1.jpg" alt="Subin &amp; Rosmy - Cherished Smiles" class="coverflow-img">
                   <div class="watercolor-vignette-overlay" aria-hidden="true"></div>
                 </div>
               </div>
-              <!-- Slide 2 -->
-              <div class="coverflow-slide" data-index="1" data-src="images/gallery2.jpg" data-title="Together in Love">
+              <!-- Slide 2 (Next Right) -->
+              <div class="coverflow-slide slide-next" data-index="1" data-src="images/gallery2.jpg" data-title="Together in Love">
                 <div class="coverflow-card">
                   <img src="images/gallery2.jpg" alt="Subin &amp; Rosmy - Together in Love" class="coverflow-img">
                   <div class="watercolor-vignette-overlay" aria-hidden="true"></div>
                 </div>
               </div>
-              <!-- Slide 3 -->
-              <div class="coverflow-slide" data-index="2" data-src="images/gallery3.jpg" data-title="Endless Grace">
+              <!-- Slide 3 (Hidden) -->
+              <div class="coverflow-slide slide-hidden" data-index="2" data-src="images/gallery3.jpg" data-title="Endless Grace">
                 <div class="coverflow-card">
                   <img src="images/gallery3.jpg" alt="Subin &amp; Rosmy - Endless Grace" class="coverflow-img">
                   <div class="watercolor-vignette-overlay" aria-hidden="true"></div>
                 </div>
               </div>
-              <!-- Slide 4 -->
-              <div class="coverflow-slide" data-index="3" data-src="images/gallery4.jpg" data-title="Everlasting Promise">
+              <!-- Slide 4 (Prev Left) -->
+              <div class="coverflow-slide slide-prev" data-index="3" data-src="images/gallery4.jpg" data-title="Everlasting Promise">
                 <div class="coverflow-card">
                   <img src="images/gallery4.jpg" alt="Subin &amp; Rosmy - Everlasting Promise" class="coverflow-img">
                   <div class="watercolor-vignette-overlay" aria-hidden="true"></div>
@@ -459,7 +459,12 @@
             <button class="coverflow-arrow next" id="coverflowNext" aria-label="Next photo">&#10095;</button>
 
             <!-- Pagination Dots (Matching Video: • — •) -->
-            <div class="coverflow-dots" id="coverflowDots" role="tablist" aria-label="Gallery slides pagination"></div>
+            <div class="coverflow-dots" id="coverflowDots" role="tablist" aria-label="Gallery slides pagination">
+              <button class="coverflow-dot active" aria-label="Slide 1"></button>
+              <button class="coverflow-dot" aria-label="Slide 2"></button>
+              <button class="coverflow-dot" aria-label="Slide 3"></button>
+              <button class="coverflow-dot" aria-label="Slide 4"></button>
+            </div>
           </div>
 
           <!-- Bottom Divider below gallery -->
@@ -663,6 +668,6 @@
   <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <!-- Custom JavaScript -->
-  <script src="js/script.js"></script>
+  <script src="js/script.js?v=3"></script>
 </body>
 </html>

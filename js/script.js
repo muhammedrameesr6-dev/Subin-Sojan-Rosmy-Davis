@@ -234,7 +234,8 @@
   let isProgrammaticScroll = false;
   let autoScrollCurrentY = 0;
   let lastAutoScrollTimestamp = null;
-  const AUTO_SCROLL_SPEED = 42; // pixels/sec (gentle, readable luxury pace)
+  let autoScrollStartTime = null;
+  const AUTO_SCROLL_SPEED = 78; // Increased from 42 to 78 px/sec for a smoother, elegant glide
 
   const userInteractionEvents = [
     'wheel',
@@ -272,6 +273,8 @@
     }
     isAutoScrolling = false;
     isProgrammaticScroll = false;
+    lastAutoScrollTimestamp = null;
+    autoScrollStartTime = null;
     removeAutoScrollUserListeners();
   }
 
@@ -280,14 +283,25 @@
 
     if (!lastAutoScrollTimestamp) {
       lastAutoScrollTimestamp = timestamp;
+      autoScrollStartTime = timestamp;
     }
 
-    const delta = (timestamp - lastAutoScrollTimestamp) / 1000;
+    const rawDelta = (timestamp - lastAutoScrollTimestamp) / 1000;
+    const delta = Math.min(Math.max(rawDelta, 0), 0.05); // Clamp to prevent delta spikes
     lastAutoScrollTimestamp = timestamp;
 
-    autoScrollCurrentY += AUTO_SCROLL_SPEED * delta;
+    // Smooth ease-in ramp over the first 0.9s
+    const elapsed = (timestamp - autoScrollStartTime) / 1000;
+    const ramp = elapsed < 0.9 ? 0.5 * (1 - Math.cos(Math.PI * (elapsed / 0.9))) : 1.0;
+
+    const distance = AUTO_SCROLL_SPEED * ramp * delta;
+    autoScrollCurrentY += distance;
     isProgrammaticScroll = true;
-    window.scrollTo(0, autoScrollCurrentY);
+
+    window.scrollTo({
+      top: autoScrollCurrentY,
+      behavior: 'auto'
+    });
 
     const maxScroll = Math.max(
       document.body.scrollHeight,
@@ -307,11 +321,12 @@
     isAutoScrolling = true;
     autoScrollCurrentY = window.scrollY || window.pageYOffset || 0;
     lastAutoScrollTimestamp = null;
+    autoScrollStartTime = null;
     attachAutoScrollUserListeners();
     autoScrollRafId = requestAnimationFrame(autoScrollStep);
   }
 
-  function scheduleAutoScroll(delayMs = 2000) {
+  function scheduleAutoScroll(delayMs = 1800) {
     stopAutoScroll();
 
     // Attach listeners after a short delay so the initial tap/click doesn't instantly cancel
@@ -649,6 +664,8 @@
       if (offset > total / 2) offset -= total;
       if (offset < -total / 2) offset += total;
 
+      slide.classList.remove('slide-active', 'slide-prev', 'slide-next', 'slide-hidden');
+
       if (offset === 0) {
         // Active center card
         slide.style.transform = 'translateX(0%) scale(1) translateZ(0)';
@@ -656,7 +673,7 @@
         slide.style.zIndex = '10';
         slide.style.filter = 'brightness(1)';
         slide.style.pointerEvents = 'auto';
-        slide.classList.add('active');
+        slide.classList.add('slide-active');
       } else if (offset === -1 || (coverflowIndex === 0 && idx === total - 1)) {
         // Left adjacent card
         slide.style.transform = 'translateX(-74%) scale(0.82) translateZ(-60px)';
@@ -664,7 +681,7 @@
         slide.style.zIndex = '5';
         slide.style.filter = 'brightness(0.85)';
         slide.style.pointerEvents = 'auto';
-        slide.classList.remove('active');
+        slide.classList.add('slide-prev');
       } else if (offset === 1 || (coverflowIndex === total - 1 && idx === 0)) {
         // Right adjacent card
         slide.style.transform = 'translateX(74%) scale(0.82) translateZ(-60px)';
@@ -672,7 +689,7 @@
         slide.style.zIndex = '5';
         slide.style.filter = 'brightness(0.85)';
         slide.style.pointerEvents = 'auto';
-        slide.classList.remove('active');
+        slide.classList.add('slide-next');
       } else {
         // Hidden outer cards
         const dir = offset > 0 ? 1 : -1;
@@ -680,7 +697,7 @@
         slide.style.opacity = '0';
         slide.style.zIndex = '1';
         slide.style.pointerEvents = 'none';
-        slide.classList.remove('active');
+        slide.classList.add('slide-hidden');
       }
     });
 
@@ -709,7 +726,7 @@
     stopCoverflowTimer();
     coverflowTimer = setInterval(() => {
       nextCoverflowSlide();
-    }, 2800);
+    }, 2400);
   }
 
   function stopCoverflowTimer() {
