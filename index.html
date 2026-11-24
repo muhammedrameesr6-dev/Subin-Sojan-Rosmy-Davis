@@ -127,26 +127,40 @@
 
       <!-- ======================================================================
            1. HERO / SAVE THE DATE SECTION
+           Mobile-Optimized Fullscreen (100dvh) Matching Reference Design
            ====================================================================== -->
-      <section id="hero" class="chungdoi-hero-section">
-        <div class="save-the-date-banner reveal">
-          <span class="std-subtitle">SAVE THE DATE</span>
-          <div class="hero-baroque-frame-container">
+      <section id="hero" class="hero-fullscreen-section reveal">
+        <!-- Top: SAVE THE DATE -->
+        <div class="hero-top-header">
+          <p class="hero-std-title">SAVE THE DATE</p>
+        </div>
+
+        <!-- Center: Ornate Baroque Floral Frame with User-Swappable Photo Slot -->
+        <div class="hero-frame-wrapper">
+          <!-- Dynamic Photo Container (User can easily change images/hero.jpg) -->
+          <div class="hero-photo-slot">
             <img 
-              src="assets/images/hero-baroque-frame-full.png" 
+              id="heroPortraitImg" 
+              src="images/hero.jpg" 
               alt="Subin &amp; Rosmy" 
-              class="hero-baroque-frame-img"
+              class="hero-photo-img"
             >
           </div>
 
-          <h1 class="std-names-title gold-text">
-            Subin <span class="ampersand-script">&amp;</span> Rosmy
-          </h1>
-          <p class="std-date-line">Sunday, January 17, 2027</p>
+          <!-- Exact Baroque Frame Overlay with Realistic Flowers, Gold Leaves & Berries -->
+          <img 
+            src="assets/images/baroque-frame-overlay.png" 
+            alt="Baroque Floral Frame" 
+            class="hero-frame-overlay" 
+            aria-hidden="true"
+          >
+        </div>
 
-          <div class="ornate-divider">
-            <img src="assets/images/baroque-gold-rose-divider.png" alt="" aria-hidden="true" class="baroque-divider-img">
-          </div>
+        <!-- Bottom: SUBIN & ROSMY with Script Ampersand Watermark -->
+        <div class="hero-names-wrapper">
+          <span class="hero-amp-watermark" aria-hidden="true">&amp;</span>
+          <h1 class="hero-groom-name">SUBIN</h1>
+          <h2 class="hero-bride-name">ROSMY</h2>
         </div>
       </section>
 
