@@ -447,11 +447,16 @@
     const now = new Date().getTime();
     const distance = WEDDING_DATE - now;
 
+    const cdDays = document.getElementById('cd-days');
+    const cdHours = document.getElementById('cd-hours');
+    const cdMin = document.getElementById('cd-min');
+    const cdSec = document.getElementById('cd-sec');
+
     if (distance <= 0) {
-      if (countDays) countDays.textContent = '00';
-      if (countHours) countHours.textContent = '00';
-      if (countMinutes) countMinutes.textContent = '00';
-      if (countSeconds) countSeconds.textContent = '00';
+      if (cdDays) cdDays.textContent = '0';
+      if (cdHours) cdHours.textContent = '0';
+      if (cdMin) cdMin.textContent = '0';
+      if (cdSec) cdSec.textContent = '0';
       return;
     }
 
@@ -460,36 +465,36 @@
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    if (countDays) countDays.textContent = String(days).padStart(2, '0');
-    if (countHours) countHours.textContent = String(hours).padStart(2, '0');
-    if (countMinutes) countMinutes.textContent = String(minutes).padStart(2, '0');
-    if (countSeconds) countSeconds.textContent = String(seconds).padStart(2, '0');
+    if (cdDays) cdDays.textContent = String(days);
+    if (cdHours) cdHours.textContent = String(hours);
+    if (cdMin) cdMin.textContent = String(minutes);
+    if (cdSec) cdSec.textContent = String(seconds);
   }
 
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
   // ==========================================================================
-  // 6. ADD TO CALENDAR (.ICS DOWNLOAD & GOOGLE CALENDAR)
+  // 6. ADD TO CALENDAR (.ICS & GOOGLE CALENDAR)
   // ==========================================================================
-  const btnDownloadIcs = document.getElementById('btn-download-ics');
-  const btnGoogleCalendar = document.getElementById('btn-google-calendar');
+  const btnAddCalendar = document.getElementById('btn-add-calendar');
 
-  if (btnDownloadIcs) {
-    btnDownloadIcs.addEventListener('click', (e) => {
+  if (btnAddCalendar) {
+    btnAddCalendar.addEventListener('click', (e) => {
       e.preventDefault();
       const icsData = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//Subin and Rosmy Wedding//EN',
+        'PRODID:-//Subin & Rosmy Wedding//EN',
         'CALSCALE:GREGORIAN',
         'METHOD:PUBLISH',
         'BEGIN:VEVENT',
-        'UID:subin-rosmy-wedding-2027@rayarome',
+        'UID:subin-rosmy-wedding-20270117@rayarome',
+        'DTSTAMP:20261124T000000Z',
         'DTSTART:20270117T060000Z',
         'DTEND:20270117T110000Z',
         'SUMMARY:Holy Matrimony of Subin Sojan & Rosmy Davis',
-        'DESCRIPTION:Holy Matrimony at St. Sebastian\'s Church Rayarome, followed by wedding reception at Church Parish Hall.',
+        'DESCRIPTION:Join us for the Holy Matrimony of Subin Sojan & Rosmy Davis at St. Sebastian Church Rayarome Kannur followed by Reception at Parish Hall.',
         'LOCATION:St. Sebastian\'s Church, Rayarome, Alakode, Kannur, Kerala',
         'STATUS:CONFIRMED',
         'END:VEVENT',
@@ -499,10 +504,11 @@
       const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
-      link.setAttribute('download', 'Subin-and-Rosmy-Wedding.ics');
+      link.setAttribute('download', 'Subin_and_Rosmy_Wedding.ics');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      showNotification('Wedding event saved to your calendar! 📅');
     });
   }
 
@@ -518,51 +524,111 @@
   }
 
   // ==========================================================================
-  // 7. PHOTO GALLERY & FULL-SCREEN LIGHTBOX
+  // 7. 3D COVERFLOW GALLERY & LIGHTBOX (Exactly matching Image 2)
   // ==========================================================================
-  function initGallery() {
-    galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
-    if (!galleryItems.length) return;
+  let coverflowCards = [];
+  let coverflowThumbs = [];
+  let currentCoverIndex = 0;
 
-    galleryItems.forEach((item, index) => {
-      item.addEventListener('click', () => openLightbox(index));
+  const galleryImagesData = [
+    { src: 'assets/images/gallery/couple-watercolor.jpg', title: 'Subin & Rosmy • Watercolor Masterpiece' },
+    { src: 'assets/images/gallery/couple-1.jpg', title: 'Cherished Smiles • Moments of Love' },
+    { src: 'assets/images/gallery/couple-2.jpg', title: 'Together in Love • Radiant Smiles' },
+    { src: 'assets/images/gallery/couple-3.jpg', title: 'Endless Grace • Traditional Elegance' }
+  ];
+
+  function updateCoverflow(index) {
+    if (!coverflowCards.length) return;
+    const total = coverflowCards.length;
+    currentCoverIndex = (index + total) % total;
+
+    coverflowCards.forEach((card, i) => {
+      card.classList.remove('active', 'prev', 'next');
+      if (i === currentCoverIndex) {
+        card.classList.add('active');
+      } else if (i === (currentCoverIndex - 1 + total) % total) {
+        card.classList.add('prev');
+      } else if (i === (currentCoverIndex + 1) % total) {
+        card.classList.add('next');
+      }
     });
 
-    const filterTabs = document.querySelectorAll('.gallery-tab-btn');
-    filterTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        filterTabs.forEach((t) => t.classList.remove('active'));
-        tab.classList.add('active');
+    coverflowThumbs.forEach((thumb, i) => {
+      thumb.classList.toggle('active', i === currentCoverIndex);
+    });
 
-        const filter = tab.getAttribute('data-filter');
-        galleryItems.forEach((item) => {
-          const category = item.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
+    // Update Scrubber Progress
+    const scrubberProgress = document.getElementById('gallery-scrubber-progress');
+    const scrubberThumb = document.getElementById('gallery-scrubber-thumb');
+    const pct = ((currentCoverIndex + 1) / total) * 100;
+    if (scrubberProgress) scrubberProgress.style.width = `${pct}%`;
+    if (scrubberThumb) scrubberThumb.style.left = `${pct}%`;
+  }
+
+  function initGallery() {
+    coverflowCards = Array.from(document.querySelectorAll('.coverflow-card'));
+    coverflowThumbs = Array.from(document.querySelectorAll('.thumb-btn'));
+
+    if (!coverflowCards.length) return;
+
+    coverflowCards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        if (card.classList.contains('active')) {
+          openLightbox(index);
+        } else if (card.classList.contains('prev')) {
+          updateCoverflow(currentCoverIndex - 1);
+        } else if (card.classList.contains('next')) {
+          updateCoverflow(currentCoverIndex + 1);
+        } else {
+          updateCoverflow(index);
+        }
       });
     });
+
+    coverflowThumbs.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        updateCoverflow(index);
+      });
+    });
+
+    // Touch gesture swipe support
+    const track = document.querySelector('.coverflow-track');
+    if (track) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const threshold = 40;
+        if (touchEndX < touchStartX - threshold) {
+          updateCoverflow(currentCoverIndex + 1);
+        } else if (touchEndX > touchStartX + threshold) {
+          updateCoverflow(currentCoverIndex - 1);
+        }
+      }, { passive: true });
+    }
+
+    updateCoverflow(0);
   }
 
   function openLightbox(index) {
-    if (!galleryItems[index]) return;
+    if (!galleryImagesData[index]) return;
     currentGalleryIndex = index;
-    const item = galleryItems[index];
-    const img = item.querySelector('.gallery-img');
-    const title = item.querySelector('.gallery-caption-title');
+    const data = galleryImagesData[index];
 
-    if (lightboxImg && img) {
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt || 'Wedding Moment';
+    if (lightboxImg) {
+      lightboxImg.src = data.src;
+      lightboxImg.alt = data.title;
     }
-    if (lightboxTitle && title) {
-      lightboxTitle.textContent = title.textContent;
+    if (lightboxTitle) {
+      lightboxTitle.textContent = data.title;
     }
     if (lightboxCounter) {
-      lightboxCounter.textContent = `${currentGalleryIndex + 1} of ${galleryItems.length}`;
+      lightboxCounter.textContent = `${currentGalleryIndex + 1} of ${galleryImagesData.length}`;
     }
 
     if (lightbox) {
@@ -579,13 +645,15 @@
   }
 
   function nextLightbox() {
-    currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+    currentGalleryIndex = (currentGalleryIndex + 1) % galleryImagesData.length;
     openLightbox(currentGalleryIndex);
+    updateCoverflow(currentGalleryIndex);
   }
 
   function prevLightbox() {
-    currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+    currentGalleryIndex = (currentGalleryIndex - 1 + galleryImagesData.length) % galleryImagesData.length;
     openLightbox(currentGalleryIndex);
+    updateCoverflow(currentGalleryIndex);
   }
 
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
