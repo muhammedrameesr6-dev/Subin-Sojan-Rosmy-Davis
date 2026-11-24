@@ -531,10 +531,10 @@
   let currentCoverIndex = 0;
 
   const galleryImagesData = [
-    { src: 'assets/images/gallery/couple-watercolor.jpg', title: 'Subin & Rosmy • Watercolor Masterpiece' },
-    { src: 'assets/images/gallery/couple-1.jpg', title: 'Cherished Smiles • Moments of Love' },
-    { src: 'assets/images/gallery/couple-2.jpg', title: 'Together in Love • Radiant Smiles' },
-    { src: 'assets/images/gallery/couple-3.jpg', title: 'Endless Grace • Traditional Elegance' }
+    { src: 'images/gallery1.jpg', title: 'Subin & Rosmy • Nuptial Grace' },
+    { src: 'images/gallery2.jpg', title: 'Cherished Smiles • Watercolor Masterpiece' },
+    { src: 'images/gallery3.jpg', title: 'Together in Love • Radiant Smiles' },
+    { src: 'images/gallery4.jpg', title: 'Endless Grace • Traditional Elegance' }
   ];
 
   function updateCoverflow(index) {
