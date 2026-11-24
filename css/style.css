@@ -1590,10 +1590,14 @@ section {
 }
 
 .dedication-lead {
-  font-family: var(--font-script);
-  font-size: 2.1rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
   color: var(--gold-primary);
   display: block;
+  margin-bottom: 0.35rem;
 }
 
 .dedication-names {
@@ -2235,12 +2239,16 @@ footer {
 
 .std-subtitle {
   font-family: var(--font-display);
-  font-size: 0.95rem;
-  letter-spacing: 0.32em;
+  font-size: 1.35rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold-champagne);
+  color: transparent;
+  background: linear-gradient(135deg, #fff4d8 0%, #e8d3a9 40%, #c5a059 75%, #f5e6c8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
   display: block;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(197, 160, 89, 0.25);
 }
 
 .hero-floral-frame {
@@ -2347,8 +2355,11 @@ footer {
 }
 
 .parents-location {
-  font-size: 0.85rem;
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
   color: var(--ivory-muted);
+  letter-spacing: 0.02em;
+  margin-top: 0.2rem;
 }
 
 .parents-col-divider {
@@ -2877,4 +2888,72 @@ footer {
   .standard-gallery-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Baroque Floral Ornaments & Frame Styling */
+.hero-baroque-frame-container {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0.5rem auto 1.5rem;
+}
+
+.hero-baroque-frame-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
+}
+
+.ceremony-card-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.rococo-corner-tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 58px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.95;
+  z-index: 2;
+}
+
+.rococo-corner-tr {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.95;
+  z-index: 2;
+}
+
+.auspicious-date-block.with-brackets {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1.5rem auto 1.8rem;
+}
+
+.rococo-bracket-left,
+.rococo-bracket-right {
+  width: 32px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.baroque-divider-img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto 1rem;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
 }
