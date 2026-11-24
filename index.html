@@ -1,562 +1,1546 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wedding Invitation | Subin Sojan &amp; Rosmy Davis</title>
-  
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="Wedding Invitation | Subin Sojan &amp; Rosmy Davis">
-  <meta name="description" content="We cordially invite you to celebrate the Holy Matrimony of Subin Sojan and Rosmy Davis on Sunday, January 17, 2027 at St. Sebastian's Church, Rayarome, Kannur.">
-  <meta name="theme-color" content="#060d1e">
 
-  <!-- Open Graph / Social Sharing -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Wedding Invitation | Subin Sojan &amp; Rosmy Davis">
-  <meta property="og:description" content="Join us in celebrating the holy covenant and wedding feast of Subin &amp; Rosmy on January 17, 2027.">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/jasmine-flower.svg">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts: Cinzel, Cormorant Garamond, Great Vibes, Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navyDeep: '#07152e',
+            navyMid: '#0a1c3d',
+            navyLight: '#0d2247',
+            goldChampagne: '#e8d3a9',
+            goldIvory: '#f5e6c8',
+            goldRich: '#c5a059',
+            goldBronze: '#8c6928',
+          },
+          fontFamily: {
+            cinzel: ['"Cinzel"', 'Georgia', 'serif'],
+            cormorant: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
+            montserrat: ['"Montserrat"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Deep Royal Navy-Blue Velvet Backdrop */
+    html {
+      scroll-behavior: smooth;
+      background-color: #07152e;
+      color: #f5e6c8;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 50% 8%, #122d5e 0%, #0a1c3d 38%, #07152e 100%);
+      overflow-x: hidden;
+    }
+
+    /* Subtle velvet grain & champagne sheen */
+    .velvet-surface {
+      background-image:
+        radial-gradient(circle at 50% 18%, rgba(232, 211, 169, 0.07) 0%, transparent 60%),
+        repeating-linear-gradient(
+          135deg,
+          rgba(232, 211, 169, 0.015) 0px,
+          rgba(232, 211, 169, 0.015) 1px,
+          transparent 1px,
+          transparent 14px
+        );
+    }
+
+    /* Metallic Champagne-Gold Text */
+    .gold-foil-text {
+      background: linear-gradient(135deg, #fff4d8 0%, #e8d3a9 42%, #c5a059 75%, #f5e6c8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Drifting Snowflake & Floral Particles */
+    @keyframes driftParticle {
+      0% {
+        transform: translateY(-8vh) translateX(0px) rotate(0deg) scale(0.75);
+        opacity: 0;
+      }
+      12% {
+        opacity: 0.72;
+      }
+      50% {
+        transform: translateY(48vh) translateX(18px) rotate(180deg) scale(1);
+        opacity: 0.85;
+      }
+      88% {
+        opacity: 0.65;
+      }
+      100% {
+        transform: translateY(106vh) translateX(-14px) rotate(360deg) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .drifting-particle {
+      position: fixed;
+      top: 0;
+      pointer-events: none;
+      z-index: 2;
+      animation: driftParticle linear infinite;
+      will-change: transform, opacity;
+    }
+
+    /* Audio Equalizer Bars */
+    @keyframes barPulse {
+      0%, 100% { height: 5px; }
+      50% { height: 17px; }
+    }
+
+    .eq-bar {
+      width: 3px;
+      border-radius: 9999px;
+      background-color: #07152e;
+      transition: height 0.2s ease;
+    }
+
+    .audio-active .eq-bar-1 { animation: barPulse 0.75s ease-in-out infinite; }
+    .audio-active .eq-bar-2 { animation: barPulse 0.55s ease-in-out 0.15s infinite; }
+    .audio-active .eq-bar-3 { animation: barPulse 0.85s ease-in-out 0.3s infinite; }
+    .audio-paused .eq-bar { height: 5px; animation: none; }
+
+    /* 3D Coverflow Gallery Card Transition */
+    .coverflow-card {
+      transition:
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.45s ease,
+        box-shadow 0.45s ease;
+      will-change: transform, opacity;
+    }
+
+    /* Soft Watercolor White Vignette Frame inside Gallery Cards */
+    .watercolor-vignette {
+      box-shadow:
+        inset 0 0 22px 14px rgba(255, 255, 255, 0.94),
+        inset 0 0 42px 24px rgba(255, 255, 255, 0.65);
+    }
+
+    /* Glassmorphic RSVP Card matching video */
+    .rsvp-glass-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(232, 211, 169, 0.28);
+      box-shadow: 0 18px 40px rgba(3, 10, 24, 0.45);
+    }
+
+    /* Subtle entrance animation */
+    @keyframes fadeUpIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal-up {
+      animation: fadeUpIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07152e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(197, 160, 89, 0.45);
+      border-radius: 9999px;
+    }
+  </style>
 </head>
-<body>
+<body class="velvet-surface selection:bg-goldChampagne selection:text-navyDeep">
+  <!-- Drifting Gold & White Snowflake / Floral Particles -->
+  <div id="particlesLayer" aria-hidden="true"></div>
 
-  <!-- Background Golden Stardust & Floating Jasmine Petals Canvas -->
-  <canvas id="particles-canvas"></canvas>
-
-  <!-- Top Scroll Progress Bar -->
-  <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
-
-  <!-- YouTube Music Player (Plays 'Aaro Nee' from 1:15) -->
-  <div id="youtube-player-container" style="position: fixed; width: 1px; height: 1px; left: -9999px; bottom: 0; opacity: 0; pointer-events: none;">
-    <div id="youtube-player"></div>
+  <!-- Non-blocking Toast Banner (replaces alert()) -->
+  <div
+    id="toastBanner"
+    role="status"
+    aria-live="polite"
+    class="fixed top-4 left-1/2 -translate-x-1/2 z-50 max-w-[92vw] px-5 py-2.5 rounded-full bg-navyMid/95 border border-goldChampagne/60 text-goldIvory text-xs sm:text-sm font-montserrat shadow-2xl backdrop-blur-md transition-all duration-300 opacity-0 -translate-y-4 pointer-events-none flex items-center gap-2"
+  >
+    <span class="w-2 h-2 rounded-full bg-goldChampagne"></span>
+    <span id="toastText">Saved</span>
   </div>
 
-  <!-- Audio Element Fallback -->
-  <audio id="wedding-audio" loop preload="auto">
-    <source src="assets/audio/wedding-melody.m4a" type="audio/mp4">
-    <source src="assets/audio/wedding-melody.wav" type="audio/wav">
-  </audio>
+  <!-- Main Mobile-First Centered Invitation Column -->
+  <main class="relative z-10 max-w-[460px] mx-auto px-4 sm:px-5 pb-24 overflow-hidden">
 
-  <!-- ==========================================================================
-       OPENING INVITATION SCREEN (COVER / ENVELOPE)
-       Matching Reference Model: Baroque Gold & Blue Roses, Heart Seal, and Luxury Card
-       ========================================================================== -->
-  <aside id="invitation-cover" aria-label="Wedding Invitation Envelope Cover">
-    <div class="cover-curtain-left"></div>
-    <div class="cover-curtain-right"></div>
+    <!-- =========================================================
+         1. HERO / SAVE THE DATE SECTION
+         ========================================================= -->
+    <section id="hero" class="pt-8 pb-6 text-center reveal-up">
+      <p class="font-cinzel text-base sm:text-lg md:text-xl font-medium tracking-[0.24em] uppercase gold-foil-text mb-6 drop-shadow-[0_2px_10px_rgba(197,160,89,0.25)]">
+        SAVE THE DATE
+      </p>
 
-    <!-- Floating Jasmine Blossom above the Card -->
-    <div class="cover-top-jasmine" aria-hidden="true">
-      <img src="assets/images/jasmine-flower.svg" alt="" width="56" height="56">
-    </div>
+      <!-- Ornate Baroque Champagne-Gold & Navy-Blue Floral Oval Frame -->
+      <div class="relative mx-auto w-[290px] sm:w-[325px] aspect-[3/3.85] flex items-center justify-center">
+        <!-- Rich Baroque SVG Filigree, Navy & Ivory Roses, and Gold Leaves -->
+        <svg
+          class="absolute -inset-6 w-[calc(100%+3rem)] h-[calc(100%+3rem)] pointer-events-none z-20"
+          viewBox="0 0 380 480"
+          fill="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="baroqueGold" x1="0" y1="0" x2="380" y2="480" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#fff4d8" />
+              <stop offset="35%" stop-color="#e8d3a9" />
+              <stop offset="70%" stop-color="#c5a059" />
+              <stop offset="100%" stop-color="#f5e6c8" />
+            </linearGradient>
+            <radialGradient id="navyRoseGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#193c7a" />
+              <stop offset="65%" stop-color="#0b224a" />
+              <stop offset="100%" stop-color="#051126" />
+            </radialGradient>
+            <radialGradient id="ivoryRoseGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#fffaf0" />
+              <stop offset="65%" stop-color="#f0dec0" />
+              <stop offset="100%" stop-color="#c5a059" />
+            </radialGradient>
+          </defs>
 
-    <!-- Central Invitation Card -->
-    <div class="cover-card">
-      <!-- Baroque Gold & Navy Blue Rose Corner Flourishes -->
-      <img src="assets/images/baroque-blue-corner.svg" alt="" class="corner-baroque top-left" aria-hidden="true">
-      <img src="assets/images/baroque-blue-corner.svg" alt="" class="corner-baroque bottom-right" aria-hidden="true">
+          <!-- Outer & Inner Baroque Oval Moldings -->
+          <ellipse cx="190" cy="238" rx="138" ry="184" stroke="url(#baroqueGold)" stroke-width="5.5" />
+          <ellipse cx="190" cy="238" rx="145" ry="192" stroke="url(#baroqueGold)" stroke-width="1.5" stroke-dasharray="6 4" />
+          <ellipse cx="190" cy="238" rx="131" ry="176" stroke="#8c6928" stroke-width="1.5" />
 
-      <!-- Luminous Top Halo with Maroon Heart -->
-      <div class="cover-heart-badge">
-        <svg class="heart-icon" viewBox="0 0 24 24" width="28" height="28" fill="#52131C">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          <!-- Top Baroque Rococo Crest -->
+          <path
+            d="M190 22 C180 36, 166 40, 154 34 C162 47, 176 50, 190 58 C204 50, 218 47, 226 34 C214 40, 200 36, 190 22 Z"
+            fill="url(#baroqueGold)"
+          />
+          <circle cx="190" cy="18" r="4" fill="#fff4d8" />
+          <path d="M140 56 Q165 44 190 54 Q215 44 240 56" stroke="url(#baroqueGold)" stroke-width="2.2" fill="none" />
+
+          <!-- Bottom Baroque Rococo Crest -->
+          <path
+            d="M190 454 C180 440, 166 436, 154 442 C162 429, 176 426, 190 418 C204 426, 218 429, 226 442 C214 436, 200 440, 190 454 Z"
+            fill="url(#baroqueGold)"
+          />
+          <circle cx="190" cy="458" r="4" fill="#fff4d8" />
+
+          <!-- Gold Leaf Sprays (Right & Left) -->
+          <g fill="url(#baroqueGold)" opacity="0.92">
+            <!-- Top-Right Leaves -->
+            <ellipse cx="328" cy="105" rx="16" ry="5.5" transform="rotate(-38 328 105)" />
+            <ellipse cx="342" cy="128" rx="15" ry="5" transform="rotate(-22 342 128)" />
+            <ellipse cx="315" cy="84" rx="14" ry="4.5" transform="rotate(-55 315 84)" />
+            <!-- Bottom-Right Leaves -->
+            <ellipse cx="325" cy="368" rx="17" ry="6" transform="rotate(35 325 368)" />
+            <ellipse cx="305" cy="392" rx="15" ry="5" transform="rotate(52 305 392)" />
+            <!-- Bottom-Left Leaves -->
+            <ellipse cx="52" cy="365" rx="17" ry="6" transform="rotate(-35 52 365)" />
+            <ellipse cx="38" cy="338" rx="15" ry="5" transform="rotate(-18 38 338)" />
+            <ellipse cx="74" cy="392" rx="15" ry="5" transform="rotate(-52 74 392)" />
+            <!-- Top-Left Leaves -->
+            <ellipse cx="54" cy="112" rx="15" ry="5" transform="rotate(38 54 112)" />
+          </g>
+
+          <!-- Bottom-Left Royal Navy Rose & Ivory Rose Cluster -->
+          <g transform="translate(56, 336)">
+            <circle cx="0" cy="0" r="24" fill="url(#navyRoseGrad)" stroke="#c5a059" stroke-width="1.3" />
+            <circle cx="0" cy="0" r="15" fill="none" stroke="#e8d3a9" stroke-width="1" stroke-dasharray="5 3" />
+            <circle cx="0" cy="0" r="7" fill="#1d448a" stroke="#e8d3a9" stroke-width="1" />
+            <!-- Ivory Rose -->
+            <circle cx="34" cy="26" r="19" fill="url(#ivoryRoseGrad)" stroke="#8c6928" stroke-width="1.2" />
+            <circle cx="34" cy="26" r="11" fill="none" stroke="#c5a059" stroke-width="1" />
+            <circle cx="34" cy="26" r="5" fill="#d9b675" />
+          </g>
+
+          <!-- Right Side Royal Navy & Ivory Rose Cluster -->
+          <g transform="translate(332, 232)">
+            <circle cx="0" cy="0" r="22" fill="url(#navyRoseGrad)" stroke="#c5a059" stroke-width="1.3" />
+            <circle cx="0" cy="0" r="13" fill="none" stroke="#e8d3a9" stroke-width="1" stroke-dasharray="4 3" />
+            <circle cx="0" cy="0" r="6" fill="#1d448a" />
+            <!-- Ivory Rose Above -->
+            <circle cx="-6" cy="-34" r="16" fill="url(#ivoryRoseGrad)" stroke="#8c6928" stroke-width="1.2" />
+            <circle cx="-6" cy="-34" r="8" fill="none" stroke="#c5a059" stroke-width="1" />
+          </g>
+        </svg>
+
+        <!-- Couple Portrait Oval Container -->
+        <div class="relative z-10 w-[73%] h-[77%] rounded-[50%] overflow-hidden bg-navyMid shadow-[0_0_45px_rgba(0,0,0,0.75)]">
+          <img
+            id="heroPortraitImg"
+            src="images/hero.jpg"
+            alt="Subin Sojan and Rosmy Davis"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=85';"
+            class="w-full h-full object-cover object-center"
+          />
+        </div>
+      </div>
+
+      <!-- Couple Monogram & Display Names -->
+      <div class="relative mt-6 pt-1">
+        <!-- Faint Intertwined '&' Watermark Behind Names -->
+        <span
+          aria-hidden="true"
+          class="pointer-events-none select-none absolute inset-0 flex items-center justify-center font-script text-[96px] sm:text-[110px] text-goldChampagne/15 leading-none"
+        >
+          &amp;
+        </span>
+
+        <h1 class="relative font-cinzel text-3xl sm:text-[38px] font-medium tracking-[0.16em] gold-foil-text leading-tight">
+          SUBIN
+        </h1>
+        <h2 class="relative font-cinzel text-3xl sm:text-[38px] font-medium tracking-[0.16em] gold-foil-text leading-tight mt-0.5">
+          ROSMY
+        </h2>
+      </div>
+
+      <!-- Horizontal Baroque Gold & Navy Floral Divider -->
+      <div class="mt-7 flex items-center justify-center" aria-hidden="true">
+        <svg class="w-72 sm:w-80 h-12" viewBox="0 0 340 50" fill="none">
+          <path d="M18 25 C75 24, 112 10, 148 25 C118 35, 80 28, 18 25 Z" fill="#e8d3a9" opacity="0.88" />
+          <path d="M322 25 C265 24, 228 10, 192 25 C222 35, 260 28, 322 25 Z" fill="#e8d3a9" opacity="0.88" />
+          <path d="M62 17 Q96 8 126 19" stroke="#c5a059" stroke-width="1.3" fill="none" />
+          <path d="M278 17 Q244 8 214 19" stroke="#c5a059" stroke-width="1.3" fill="none" />
+          <!-- Center Navy Rose with Gold Trim -->
+          <circle cx="170" cy="25" r="14" fill="#0b224a" stroke="#e8d3a9" stroke-width="1.6" />
+          <circle cx="170" cy="25" r="8" fill="none" stroke="#c5a059" stroke-width="1.2" stroke-dasharray="3 2" />
+          <circle cx="170" cy="25" r="3.5" fill="#e8d3a9" />
+          <!-- Flanking Ivory Blossoms -->
+          <circle cx="148" cy="25" r="5" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+          <circle cx="192" cy="25" r="5" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
         </svg>
       </div>
+    </section>
 
-      <!-- Couple Names -->
-      <h1 class="cover-couple-names">
-        Subin
-        <span class="cover-ampersand">&amp;</span>
-        Rosmy
-      </h1>
+    <!-- =========================================================
+         2. CEREMONY & PARENTS SECTION
+         ========================================================= -->
+    <section id="ceremony" class="py-5 text-center relative">
+      <h2 class="font-cinzel text-lg sm:text-xl font-semibold tracking-[0.22em] uppercase text-goldIvory mb-6">
+        CEREMONY
+      </h2>
 
-      <!-- Delicate Heart Divider -->
-      <div class="cover-heart-divider">
-        <img src="assets/images/heart-divider.svg" alt="" width="160" height="20" aria-hidden="true">
+      <!-- Two-Column Parents Layout with Vertical Gold Double-Arrow Ornament -->
+      <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 px-1">
+        <!-- Left: Groom's Parents -->
+        <div class="space-y-1">
+          <p class="font-cormorant text-sm italic text-goldChampagne/85">Mr. &amp; Mrs.</p>
+          <p class="font-cormorant font-bold text-lg sm:text-xl text-goldIvory leading-snug">Sojan John</p>
+          <p class="font-cormorant font-bold text-lg sm:text-xl text-goldIvory leading-snug">Sophy Sojan</p>
+          <p class="font-montserrat text-[11px] sm:text-xs text-goldChampagne/80 pt-1 tracking-wide">
+            Mylakkattu
+          </p>
+        </div>
+
+        <!-- Vertical Gold Double-Arrow Ornament -->
+        <div class="flex flex-col items-center justify-center text-goldChampagne px-1" aria-hidden="true">
+          <span class="text-xs leading-none">▲</span>
+          <span class="w-[1.5px] h-16 bg-gradient-to-b from-goldChampagne via-goldRich to-goldChampagne"></span>
+          <span class="text-xs leading-none">▼</span>
+        </div>
+
+        <!-- Right: Bride's Parents -->
+        <div class="space-y-1">
+          <p class="font-cormorant text-sm italic text-goldChampagne/85">Mr. &amp; Mrs.</p>
+          <p class="font-cormorant font-bold text-lg sm:text-xl text-goldIvory leading-snug">Davis P. V.</p>
+          <p class="font-cormorant font-bold text-lg sm:text-xl text-goldIvory leading-snug">Sindhu Davis</p>
+          <p class="font-montserrat text-[11px] sm:text-xs text-goldChampagne/80 pt-1 tracking-wide">
+            Payyappilly
+          </p>
+        </div>
       </div>
 
-      <!-- Wedding Date -->
-      <p class="cover-date">January 17, 2027</p>
+      <!-- Joyful Announcement Sub-Heading -->
+      <div class="mt-9 space-y-1.5">
+        <p class="font-cinzel text-xs sm:text-[13px] tracking-[0.2em] uppercase text-goldIvory/95">
+          WE JOYFULLY ANNOUNCE
+        </p>
+        <p class="font-cinzel text-xs sm:text-[13px] tracking-[0.2em] uppercase text-goldIvory/95">
+          THE WEDDING OF OUR CHILDREN
+        </p>
 
-      <!-- Invitation Heading -->
-      <p class="cover-invitation-text">Cordially Invites</p>
-
-      <!-- Personalized Guest Name Frosted Plaque -->
-      <div class="cover-guest-name-card">
-        <h2 class="cover-guest-name">Evin Benny</h2>
+        <!-- Small Gold Scroll Flourish -->
+        <div class="pt-1 flex justify-center text-goldChampagne/85" aria-hidden="true">
+          <svg class="w-28 h-4" viewBox="0 0 120 18" fill="none">
+            <path d="M8 9 H48 M72 9 H112" stroke="#e8d3a9" stroke-width="1" />
+            <circle cx="60" cy="9" r="3" fill="#e8d3a9" />
+            <circle cx="51" cy="9" r="1.5" fill="#c5a059" />
+            <circle cx="69" cy="9" r="1.5" fill="#c5a059" />
+          </svg>
+        </div>
       </div>
 
-      <!-- Subtext -->
-      <p class="cover-subtext">to celebrate with our family</p>
+      <!-- Groom & Bride Names with Side Baroque Floral Borders -->
+      <div class="relative mt-6 py-4 px-6">
+        <!-- Left Side Baroque Floral Edge -->
+        <svg
+          class="pointer-events-none absolute -left-5 top-1/2 -translate-y-1/2 w-16 h-56 opacity-90"
+          viewBox="0 0 70 240"
+          fill="none"
+          aria-hidden="true"
+        >
+          <ellipse cx="18" cy="60" rx="14" ry="5" transform="rotate(-35 18 60)" fill="#e8d3a9" />
+          <ellipse cx="22" cy="180" rx="14" ry="5" transform="rotate(35 22 180)" fill="#e8d3a9" />
+          <circle cx="14" cy="120" r="16" fill="#0b224a" stroke="#e8d3a9" stroke-width="1.4" />
+          <circle cx="14" cy="120" r="6" fill="#c5a059" />
+          <circle cx="24" cy="92" r="9" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+          <circle cx="24" cy="148" r="9" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+        </svg>
 
-      <!-- Glowing Champagne Gold Open Button -->
-      <button class="btn-open-invitation" id="btn-open-invite" aria-label="Open wedding invitation and enter website">
-        <span>Open</span>
-      </button>
-    </div>
-  </aside>
+        <!-- Right Side Baroque Floral Edge -->
+        <svg
+          class="pointer-events-none absolute -right-5 top-1/2 -translate-y-1/2 w-16 h-56 opacity-90 scale-x-[-1]"
+          viewBox="0 0 70 240"
+          fill="none"
+          aria-hidden="true"
+        >
+          <ellipse cx="18" cy="60" rx="14" ry="5" transform="rotate(-35 18 60)" fill="#e8d3a9" />
+          <ellipse cx="22" cy="180" rx="14" ry="5" transform="rotate(35 22 180)" fill="#e8d3a9" />
+          <circle cx="14" cy="120" r="16" fill="#0b224a" stroke="#e8d3a9" stroke-width="1.4" />
+          <circle cx="14" cy="120" r="6" fill="#c5a059" />
+          <circle cx="24" cy="92" r="9" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+          <circle cx="24" cy="148" r="9" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+        </svg>
 
-  <!-- ==========================================================================
-       CLEAN FLOATING MUSIC TOGGLE (Top-Right Corner)
-       Pure Wedding Invitation Experience
-       ========================================================================== -->
-  <aside class="floating-music-wrapper" aria-label="Audio Controls">
-    <button class="audio-control-btn" id="audio-control-btn" title="Toggle Wedding Music (Aaro Nee - From 1:15)" aria-label="Toggle background music">
-      <svg class="audio-disc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <circle cx="12" cy="12" r="3"></circle>
-        <circle cx="12" cy="12" r="1"></circle>
-      </svg>
-      <div class="soundwave-bars" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <span class="audio-text-label">Aaro Nee ♪</span>
-    </button>
-  </aside>
-
-  <!-- ==========================================================================
-       MAIN CONTENT CONTAINER (Elevated Chungdoi Architecture)
-       ========================================================================== -->
-  <main class="main-page-wrapper">
-    <div class="standard-wedding-container">
-
-      <!-- ======================================================================
-           1. HERO / SAVE THE DATE SECTION
-           ====================================================================== -->
-      <section id="hero" class="chungdoi-hero-section">
-        <div class="save-the-date-banner reveal">
-          <span class="std-subtitle">Save The Date</span>
-          <div class="hero-floral-frame">
-            <img 
-              src="assets/images/couple-portrait.jpg" 
-              alt="Subin &amp; Rosmy" 
-              class="hero-portrait-img"
-              onerror="this.src='assets/images/couple-hero.svg'"
-            >
+        <div class="space-y-3">
+          <div>
+            <p class="font-cormorant italic font-semibold text-3xl sm:text-4xl text-goldIvory tracking-wide">
+              Subin Sojan
+            </p>
+            <p class="font-cinzel text-[10px] tracking-[0.28em] uppercase text-goldChampagne/85 mt-1">
+              GROOM
+            </p>
           </div>
 
-          <h1 class="std-names-title gold-text">
-            Subin <span class="ampersand-script">&amp;</span> Rosmy
-          </h1>
-          <p class="std-date-line">Sunday, January 17, 2027</p>
+          <p class="font-script text-3xl sm:text-4xl text-goldChampagne/90 py-0.5">&amp;</p>
 
-          <div class="ornate-divider">
-            <img src="assets/images/floral-divider.svg" alt="" aria-hidden="true">
-          </div>
-        </div>
-      </section>
-
-      <!-- ======================================================================
-           2. CEREMONY INFO (PARENTS & COUPLE PRESENTATION)
-           ====================================================================== -->
-      <section id="ceremony-info" class="chungdoi-section">
-        <div class="section-card-box reveal">
-          <div class="header-flourish">
-            <span class="section-badge-tag">Holy Matrimony</span>
-            <h2 class="section-heading-caps gold-text">CEREMONY INFO</h2>
-          </div>
-
-          <!-- Parents Two-Column Layout with Vertical Divider -->
-          <div class="parents-two-col-grid">
-            <!-- Groom's Parents -->
-            <div class="parent-col-block">
-              <span class="parents-role-title">Groom's Parents</span>
-              <div class="parents-honorific">Mr. &amp; Mrs.</div>
-              <h3 class="parents-names">Sojan John &amp; Sophy Sojan</h3>
-              <p class="parents-estate">Mylakkattu House</p>
-              <p class="parents-location">Rayarome, Alakode, Kannur, Kerala</p>
-            </div>
-
-            <!-- Center Divider -->
-            <div class="parents-col-divider" aria-hidden="true">
-              <div class="vert-line"></div>
-              <div class="center-heart-knot">❦</div>
-              <div class="vert-line"></div>
-            </div>
-
-            <!-- Bride's Parents -->
-            <div class="parent-col-block">
-              <span class="parents-role-title">Bride's Parents</span>
-              <div class="parents-honorific">Mr. &amp; Mrs.</div>
-              <h3 class="parents-names">Davis P.V &amp; Sindhu Davis</h3>
-              <p class="parents-estate">Payyappilly House</p>
-              <p class="parents-location">Kallur, Annamanada, Thrissur, Kerala</p>
-            </div>
-          </div>
-
-          <!-- Announcement Callout -->
-          <div class="joyful-announcement-banner">
-            <p class="announcement-lead">WE JOYFULLY ANNOUNCE</p>
-            <p class="announcement-sub">THE WEDDING OF OUR CHILDREN</p>
-          </div>
-
-          <!-- The Couple Presentation (Subin Sojan & Rosmy Davis) -->
-          <div class="couple-profile-row">
-            <!-- Groom -->
-            <div class="couple-mini-card">
-              <h3 class="person-name gold-text">Subin Sojan</h3>
-              <span class="person-role">GROOM</span>
-            </div>
-
-            <div class="couple-center-amp">&amp;</div>
-
-            <!-- Bride -->
-            <div class="couple-mini-card">
-              <h3 class="person-name gold-text">Rosmy Davis</h3>
-              <span class="person-role">BRIDE</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======================================================================
-           3. RECEPTION INFO & INTERACTIVE JANUARY 2027 CALENDAR
-           ====================================================================== -->
-      <section id="reception-info" class="chungdoi-section">
-        <div class="section-card-box reveal">
-          <div class="header-flourish">
-            <span class="section-badge-tag">Sacred Celebration</span>
-            <h2 class="section-heading-caps gold-text">RECEPTION INFO</h2>
-            <p class="section-sub-phrase">The celebration will take place at:</p>
-          </div>
-
-          <!-- Auspicious Date Callout -->
-          <div class="auspicious-date-block">
-            <div class="day-name">SUNDAY</div>
-            <div class="day-number gold-text">17</div>
-            <div class="month-year">JANUARY 2027</div>
-            <div class="time-callout">11:30 AM IST</div>
-          </div>
-
-          <!-- Interactive January 2027 Calendar Grid -->
-          <div class="calendar-widget-wrapper">
-            <div class="calendar-header-title">January 2027</div>
-            <div class="calendar-weekdays-row">
-              <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
-            </div>
-            <div class="calendar-days-grid">
-              <!-- Empty slots for Friday start (Mo=0, Tu=0, We=0, Th=0) -->
-              <span class="empty-day"></span>
-              <span class="empty-day"></span>
-              <span class="empty-day"></span>
-              <span class="empty-day"></span>
-              <span>1</span><span>2</span><span>3</span>
-              <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-              <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
-              <!-- Highlighted Wedding Day -->
-              <span class="wedding-highlight-day" title="Wedding Day!">17 ♥</span>
-              <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
-              <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
-            </div>
-          </div>
-
-          <!-- Venue & Reception Split Details -->
-          <div class="venue-cards-split-grid">
-            <!-- Holy Matrimony -->
-            <div class="venue-info-card">
-              <div class="venue-icon-circle">⛪</div>
-              <h3 class="venue-title gold-text">Holy Matrimony</h3>
-              <p class="venue-time-lead">Time: 11:30 AM</p>
-              <p class="venue-name-bold">St. Sebastian's Church</p>
-              <p class="venue-location-sub">Rayarome, Alakode, Kannur, Kerala</p>
-              <a 
-                href="https://www.google.com/maps/search/?api=1&amp;query=St.+Sebastian%27s+Church+Rayarome+Kannur" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="btn-venue-action"
-              >
-                Get Church Directions
-              </a>
-            </div>
-
-            <!-- Wedding Reception -->
-            <div class="venue-info-card">
-              <div class="venue-icon-circle">🥂</div>
-              <h3 class="venue-title gold-text">Wedding Reception</h3>
-              <p class="venue-time-lead">Following Nuptial Blessing</p>
-              <p class="venue-name-bold">Church Parish Hall</p>
-              <p class="venue-location-sub">St. Sebastian's Parish Hall, Rayarome</p>
-              <a 
-                href="https://www.google.com/maps/search/?api=1&amp;query=St.+Sebastian%27s+Parish+Hall+Rayarome+Kannur" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="btn-venue-action"
-              >
-                Get Hall Directions
-              </a>
-            </div>
-          </div>
-
-          <!-- Add to Calendar Buttons -->
-          <div class="calendar-action-buttons">
-            <a href="#" class="btn-cal-link" id="btn-google-calendar" role="button">
-              <span>📅 Add to Google Calendar</span>
-            </a>
-            <a href="#" class="btn-cal-link" id="btn-download-ics" role="button">
-              <span>📥 Download Apple / iCal (.ics)</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======================================================================
-           4. LIVE COUNTDOWN SECTION
-           ====================================================================== -->
-      <section id="countdown" class="chungdoi-section">
-        <div class="section-card-box reveal">
-          <div class="header-flourish">
-            <span class="section-badge-tag">Save The Date</span>
-            <h2 class="section-heading-caps gold-text">COUNTDOWN TO FOREVER</h2>
-            <p class="section-sub-phrase">Counting every moment until we become one</p>
-          </div>
-
-          <div class="countdown-blocks-flex">
-            <div class="countdown-digit-cell">
-              <span class="num gold-text" id="count-days">--</span>
-              <span class="lbl">DAYS</span>
-            </div>
-            <div class="countdown-digit-cell">
-              <span class="num gold-text" id="count-hours">--</span>
-              <span class="lbl">HOURS</span>
-            </div>
-            <div class="countdown-digit-cell">
-              <span class="num gold-text" id="count-minutes">--</span>
-              <span class="lbl">MINUTES</span>
-            </div>
-            <div class="countdown-digit-cell">
-              <span class="num gold-text" id="count-seconds">--</span>
-              <span class="lbl">SECONDS</span>
-            </div>
-          </div>
-
-          <div style="text-align:center; margin-top: 2rem;">
-            <button class="btn-attendance-primary trigger-rsvp-modal">
-              CONFIRM ATTENDANCE
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======================================================================
-           5. PHOTO GALLERY
-           ====================================================================== -->
-      <section id="gallery" class="chungdoi-section">
-        <div class="section-card-box reveal">
-          <div class="header-flourish">
-            <span class="section-badge-tag">Memories</span>
-            <h2 class="section-heading-caps gold-text">MOMENTS OF LOVE</h2>
-            <p class="section-sub-phrase">A glimpse into our laughter and happiness</p>
-          </div>
-
-          <div class="standard-gallery-grid">
-            <!-- Photo 1 (Featured Romantic Moments) -->
-            <div class="gallery-item featured-wide">
-              <img 
-                src="assets/images/gallery/couple-1.jpg" 
-                alt="Subin &amp; Rosmy" 
-                class="gallery-img"
-              >
-              <div class="gallery-item-overlay">
-                <span class="gallery-caption-subtitle">Subin &amp; Rosmy</span>
-                <h4 class="gallery-caption-title">Cherished Smiles</h4>
-              </div>
-            </div>
-
-            <!-- Photo 2 (Tall Portrait) -->
-            <div class="gallery-item pair-tall">
-              <img 
-                src="assets/images/gallery/couple-2.jpg" 
-                alt="Subin &amp; Rosmy Portrait" 
-                class="gallery-img"
-              >
-              <div class="gallery-item-overlay">
-                <span class="gallery-caption-subtitle">Subin &amp; Rosmy</span>
-                <h4 class="gallery-caption-title">Together in Love</h4>
-              </div>
-            </div>
-
-            <!-- Photo 3 (Tall Portrait) -->
-            <div class="gallery-item pair-tall">
-              <img 
-                src="assets/images/gallery/couple-3.jpg" 
-                alt="Subin &amp; Rosmy" 
-                class="gallery-img"
-              >
-              <div class="gallery-item-overlay">
-                <span class="gallery-caption-subtitle">Subin &amp; Rosmy</span>
-                <h4 class="gallery-caption-title">Endless Grace</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- LIGHTBOX MODAL -->
-      <div id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
-        <button class="lightbox-btn-close" id="lightbox-close" aria-label="Close photo view">&times;</button>
-        <button class="lightbox-nav-btn prev" id="lightbox-prev" aria-label="Previous photo">&#10094;</button>
-        <button class="lightbox-nav-btn next" id="lightbox-next" aria-label="Next photo">&#10095;</button>
-
-        <div class="lightbox-content-box">
-          <img src="" alt="" id="lightbox-img" class="lightbox-main-img">
-          <div class="lightbox-caption-bar">
-            <h3 id="lightbox-title" class="lightbox-title"></h3>
-            <p id="lightbox-counter" class="lightbox-counter"></p>
+          <div>
+            <p class="font-cormorant italic font-semibold text-3xl sm:text-4xl text-goldIvory tracking-wide">
+              Rosmy Davis
+            </p>
+            <p class="font-cinzel text-[10px] tracking-[0.28em] uppercase text-goldChampagne/85 mt-1">
+              BRIDE
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- ======================================================================
-           6. SPECIAL SCRIPTURE QUOTE SECTION
-           ====================================================================== -->
-      <section id="quote" class="chungdoi-section">
-        <div class="section-card-box quote-card-theme reveal">
-          <div class="quote-mark" aria-hidden="true">&ldquo;</div>
-          <blockquote class="scripture-verse-text">
-            &ldquo;A cord of three strands is not quickly broken.&rdquo;
-          </blockquote>
-          <cite class="scripture-reference">&mdash; Ecclesiastes 4:12</cite>
-
-          <div class="ornate-divider">
-            <img src="assets/images/floral-divider.svg" alt="" aria-hidden="true">
-          </div>
-
-          <div class="quote-dedication-block">
-            <span class="dedication-lead">With Love &amp; Warm Wishes,</span>
-            <div class="dedication-names gold-text">Mila Irene, Susmi &amp; Salas</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======================================================================
-           7. GUESTBOOK & WISHES SECTION (With AI Magic Wand ✨)
-           ====================================================================== -->
-      <section id="wishes" class="chungdoi-section">
-        <div class="section-card-box reveal">
-          <div class="header-flourish">
-            <span class="section-badge-tag">Love Notes</span>
-            <h2 class="section-heading-caps gold-text">GUESTBOOK</h2>
-            <p class="section-sub-phrase">Dear Evin Benny, share your warm wishes with Subin &amp; Rosmy</p>
-          </div>
-
-          <!-- Wish Form with Magic Wand Button -->
-          <form id="wishes-form" class="standard-guestbook-form">
-            <div class="form-group">
-              <label for="wish-name">Enter your name*</label>
-              <input type="text" id="wish-name" class="form-control" value="Evin Benny" required>
-            </div>
-
-            <div class="form-group">
-              <label for="wish-relation">Relationship / Location</label>
-              <input type="text" id="wish-relation" class="form-control" placeholder="e.g. Friend, Kannur">
-            </div>
-
-            <div class="form-group" style="position:relative;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                <label for="wish-message">Enter your wishes*</label>
-                <button type="button" id="btn-magic-wish" class="btn-magic-wand" title="Click for an automatic wedding blessing!">
-                  <span>🪄 Auto-Generate Blessing</span>
-                </button>
-              </div>
-              <textarea id="wish-message" class="form-control" placeholder="Wishing Subin & Rosmy a lifetime of divine love, peace and endless happiness..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn-send-wishes-primary">
-              SEND WISHES
-            </button>
-          </form>
-
-          <!-- Wishes Feed -->
-          <div class="guestbook-feed-container">
-            <h3 class="feed-section-title">Messages from Family &amp; Friends</h3>
-            <div class="wishes-feed-list" id="wishes-feed">
-              <!-- Populated dynamically -->
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <!-- ==========================================================================
-       RSVP MODAL
-       ========================================================================== -->
-  <div id="rsvp-modal" role="dialog" aria-modal="true" aria-label="RSVP Form Modal">
-    <div class="rsvp-modal-card">
-      <button class="rsvp-modal-close" id="rsvp-modal-close" aria-label="Close RSVP form">&times;</button>
-      
-      <div style="text-align:center; margin-bottom:1.5rem;">
-        <h3 class="gold-text" style="font-size:1.8rem;">Confirm Attendance</h3>
-        <p style="font-size:0.85rem; color:var(--gold-champagne); letter-spacing:0.1em; text-transform:uppercase;">
-          Subin &amp; Rosmy's Wedding
+      <!-- Ceremony Venue & Time -->
+      <div class="mt-6 space-y-2.5 px-2">
+        <p class="font-cinzel text-xs sm:text-[13px] tracking-[0.14em] uppercase text-goldIvory leading-relaxed">
+          WEDDING CEREMONY AT ST.<br />
+          SEBASTIAN&apos;S CHURCH, RAYAROME,<br />
+          ALAKODE, KANNUR, KERALA
+        </p>
+        <p class="font-cinzel text-xs tracking-[0.2em] uppercase text-goldChampagne pt-1">
+          AT 11:30 AM &nbsp;&nbsp;&nbsp; SUNDAY
         </p>
       </div>
 
-      <form id="rsvp-form">
-        <div class="form-group">
-          <label for="rsvp-name">Your Full Name</label>
-          <input type="text" id="rsvp-name" class="form-control" value="Evin Benny" required>
-        </div>
+      <!-- Ornate Gold Date Lockup: 17 | JANUARY 2027 -->
+      <div class="mt-5 flex items-center justify-center gap-3 sm:gap-4">
+        <!-- Left Gold Rococo Bracket -->
+        <svg class="w-8 h-12 text-goldChampagne" viewBox="0 0 36 54" fill="none" aria-hidden="true">
+          <path d="M30 4 C14 6, 14 22, 4 27 C14 32, 14 48, 30 50" stroke="#e8d3a9" stroke-width="1.6" fill="none" />
+          <circle cx="18" cy="14" r="2.2" fill="#c5a059" />
+          <circle cx="18" cy="40" r="2.2" fill="#c5a059" />
+        </svg>
 
-        <div class="form-group">
-          <label style="margin-bottom:0.8rem;">Will you be attending?</label>
-          <div style="display:flex; gap:1.2rem;">
-            <label style="font-family:var(--font-sans); text-transform:none; font-size:0.9rem; color:var(--ivory); display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
-              <input type="radio" name="attendance" value="attending" checked style="accent-color:var(--gold-primary);">
-              Joyfully Attending
-            </label>
-            <label style="font-family:var(--font-sans); text-transform:none; font-size:0.9rem; color:var(--ivory); display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
-              <input type="radio" name="attendance" value="declined" style="accent-color:var(--gold-primary);">
-              Regretfully Unable
-            </label>
+        <div class="flex items-center gap-3.5">
+          <span class="font-cinzel text-4xl sm:text-[42px] font-semibold gold-foil-text leading-none">
+            17
+          </span>
+          <span class="h-10 w-[1.5px] bg-goldChampagne/65"></span>
+          <div class="text-left leading-snug">
+            <div class="font-cinzel text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-goldIvory">
+              JANUARY
+            </div>
+            <div class="font-cinzel text-xs sm:text-sm tracking-[0.2em] text-goldChampagne">
+              2027
+            </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="rsvp-guests">Number of Guests</label>
-          <select id="rsvp-guests" class="form-control">
-            <option value="1">1 Guest</option>
-            <option value="2">2 Guests</option>
-            <option value="3">3 Guests</option>
-            <option value="4+">4 or More</option>
-          </select>
+        <!-- Right Gold Rococo Bracket -->
+        <svg class="w-8 h-12 text-goldChampagne scale-x-[-1]" viewBox="0 0 36 54" fill="none" aria-hidden="true">
+          <path d="M30 4 C14 6, 14 22, 4 27 C14 32, 14 48, 30 50" stroke="#e8d3a9" stroke-width="1.6" fill="none" />
+          <circle cx="18" cy="14" r="2.2" fill="#c5a059" />
+          <circle cx="18" cy="40" r="2.2" fill="#c5a059" />
+        </svg>
+      </div>
+
+      <!-- Horizontal Baroque Gold & Navy Floral Divider -->
+      <div class="mt-8 flex items-center justify-center" aria-hidden="true">
+        <svg class="w-72 sm:w-80 h-12" viewBox="0 0 340 50" fill="none">
+          <path d="M18 25 C75 24, 112 10, 148 25 C118 35, 80 28, 18 25 Z" fill="#e8d3a9" opacity="0.88" />
+          <path d="M322 25 C265 24, 228 10, 192 25 C222 35, 260 28, 322 25 Z" fill="#e8d3a9" opacity="0.88" />
+          <circle cx="170" cy="25" r="14" fill="#0b224a" stroke="#e8d3a9" stroke-width="1.6" />
+          <circle cx="170" cy="25" r="4" fill="#e8d3a9" />
+          <circle cx="148" cy="25" r="5" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+          <circle cx="192" cy="25" r="5" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. PHOTO GALLERY 3D COVERFLOW CAROUSEL
+         ========================================================= -->
+    <section id="gallery" class="py-6 text-center">
+      <h2 class="font-cinzel text-lg sm:text-xl font-semibold tracking-[0.22em] uppercase text-goldIvory mb-6">
+        PHOTO GALLERY
+      </h2>
+
+      <!-- 3D Coverflow / Stacked Card Stage -->
+      <div
+        id="coverflowStage"
+        class="relative mx-auto w-[235px] sm:w-[265px] h-[310px] sm:h-[345px] select-none touch-pan-y"
+        aria-label="Couple Photo Gallery Carousel"
+      >
+        <!-- Cards injected via JavaScript -->
+      </div>
+
+      <!-- Pagination Dots matching video -->
+      <div id="coverflowDots" class="mt-5 flex items-center justify-center gap-2" role="tablist" aria-label="Gallery slides"></div>
+
+      <!-- Horizontal Baroque Gold & Navy Floral Divider -->
+      <div class="mt-8 flex items-center justify-center" aria-hidden="true">
+        <svg class="w-72 sm:w-80 h-12" viewBox="0 0 340 50" fill="none">
+          <path d="M18 25 C75 24, 112 10, 148 25 C118 35, 80 28, 18 25 Z" fill="#e8d3a9" opacity="0.88" />
+          <path d="M322 25 C265 24, 228 10, 192 25 C222 35, 260 28, 322 25 Z" fill="#e8d3a9" opacity="0.88" />
+          <circle cx="170" cy="25" r="14" fill="#0b224a" stroke="#e8d3a9" stroke-width="1.6" />
+          <circle cx="170" cy="25" r="4" fill="#e8d3a9" />
+          <circle cx="148" cy="25" r="5" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+          <circle cx="192" cy="25" r="5" fill="#f5e6c8" stroke="#8c6928" stroke-width="1" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. RECEPTION, LIVE COUNTDOWN & JANUARY 2027 HEART CALENDAR
+         ========================================================= -->
+    <section id="reception" class="py-5 text-center">
+      <p class="font-cinzel text-xs sm:text-[13px] tracking-[0.18em] uppercase text-goldIvory">
+        THE RECEPTION WILL TAKE PLACE AT:
+      </p>
+
+      <p class="font-cinzel text-xs tracking-[0.22em] uppercase text-goldChampagne mt-3">
+        1:00 PM &nbsp;&nbsp;&nbsp; SUNDAY
+      </p>
+
+      <!-- Ornate Gold Date Lockup: 17 | JANUARY 2027 -->
+      <div class="mt-4 flex items-center justify-center gap-3 sm:gap-4">
+        <svg class="w-8 h-12 text-goldChampagne" viewBox="0 0 36 54" fill="none" aria-hidden="true">
+          <path d="M30 4 C14 6, 14 22, 4 27 C14 32, 14 48, 30 50" stroke="#e8d3a9" stroke-width="1.6" fill="none" />
+          <circle cx="18" cy="14" r="2.2" fill="#c5a059" />
+          <circle cx="18" cy="40" r="2.2" fill="#c5a059" />
+        </svg>
+
+        <div class="flex items-center gap-3.5">
+          <span class="font-cinzel text-4xl sm:text-[42px] font-semibold gold-foil-text leading-none">
+            17
+          </span>
+          <span class="h-10 w-[1.5px] bg-goldChampagne/65"></span>
+          <div class="text-left leading-snug">
+            <div class="font-cinzel text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-goldIvory">
+              JANUARY
+            </div>
+            <div class="font-cinzel text-xs sm:text-sm tracking-[0.2em] text-goldChampagne">
+              2027
+            </div>
+          </div>
         </div>
 
-        <button type="submit" class="btn-send-wishes-primary" style="margin-top:1rem; width:100%;">
-          CONFIRM RSVP
-        </button>
+        <svg class="w-8 h-12 text-goldChampagne scale-x-[-1]" viewBox="0 0 36 54" fill="none" aria-hidden="true">
+          <path d="M30 4 C14 6, 14 22, 4 27 C14 32, 14 48, 30 50" stroke="#e8d3a9" stroke-width="1.6" fill="none" />
+          <circle cx="18" cy="14" r="2.2" fill="#c5a059" />
+          <circle cx="18" cy="40" r="2.2" fill="#c5a059" />
+        </svg>
+      </div>
+
+      <!-- Live Ticking Countdown -->
+      <div class="mt-8">
+        <h3 class="font-cinzel text-sm sm:text-base font-semibold tracking-[0.22em] uppercase text-goldIvory mb-2">
+          COUNTDOWN
+        </h3>
+        <p
+          id="inlineCountdownText"
+          class="font-cormorant text-xl sm:text-2xl font-semibold text-goldIvory tracking-wide"
+        >
+          56 days 14 hours 38 min 22 sec
+        </p>
+      </div>
+
+      <!-- January 2027 Calendar with Heart Around 17 & Gold Baroque Corner Flourishes -->
+      <div class="relative mt-8 pt-2 pb-4 px-2">
+        <h4 class="font-cormorant text-xl sm:text-2xl font-semibold text-goldIvory mb-4">
+          January 2027
+        </h4>
+
+        <div class="grid grid-cols-7 gap-1 text-center font-cormorant text-sm text-goldChampagne/85 pb-2.5 border-b border-goldChampagne/25">
+          <div>Mo</div>
+          <div>Tu</div>
+          <div>We</div>
+          <div>Th</div>
+          <div>Fr</div>
+          <div>Sa</div>
+          <div>Su</div>
+        </div>
+
+        <div id="calendarDaysGrid" class="grid grid-cols-7 gap-y-2.5 gap-x-1 pt-3 text-center font-cormorant text-base sm:text-lg">
+          <!-- Populated via JS -->
+        </div>
+
+        <!-- Add to Calendar Action -->
+        <div class="mt-6 flex flex-col items-center gap-2">
+          <button
+            id="downloadIcsBtn"
+            type="button"
+            class="font-cormorant text-lg sm:text-xl text-goldIvory underline underline-offset-4 decoration-goldChampagne/70 hover:text-goldChampagne transition cursor-pointer"
+          >
+            Add to Calendar
+          </button>
+          <a
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Subin+Sojan+%26+Rosmy+Davis&dates=20270117T060000Z/20270117T113000Z&details=Wedding+Ceremony+at+11:30+AM+at+St.+Sebastian%27s+Church,+Rayarome,+Alakode,+Kannur+followed+by+Reception+at+1:00+PM.&location=St.+Sebastian%27s+Church,+Rayarome,+Alakode,+Kannur,+Kerala"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-montserrat text-[11px] text-goldChampagne/75 hover:text-goldIvory transition"
+          >
+            or open in Google Calendar ↗
+          </a>
+        </div>
+
+        <!-- Bottom Left & Right Gold Baroque Corner Flourishes -->
+        <svg
+          class="pointer-events-none absolute -bottom-2 -left-4 w-24 h-24 opacity-90"
+          viewBox="0 0 100 100"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle cx="24" cy="76" r="18" fill="#0b224a" stroke="#e8d3a9" stroke-width="1.4" />
+          <circle cx="24" cy="76" r="7" fill="#c5a059" />
+          <ellipse cx="48" cy="84" rx="14" ry="5" transform="rotate(-15 48 84)" fill="#e8d3a9" />
+          <ellipse cx="16" cy="50" rx="14" ry="5" transform="rotate(-75 16 50)" fill="#e8d3a9" />
+        </svg>
+
+        <svg
+          class="pointer-events-none absolute -bottom-2 -right-4 w-24 h-24 opacity-90 scale-x-[-1]"
+          viewBox="0 0 100 100"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle cx="24" cy="76" r="18" fill="#0b224a" stroke="#e8d3a9" stroke-width="1.4" />
+          <circle cx="24" cy="76" r="7" fill="#c5a059" />
+          <ellipse cx="48" cy="84" rx="14" ry="5" transform="rotate(-15 48 84)" fill="#e8d3a9" />
+          <ellipse cx="16" cy="50" rx="14" ry="5" transform="rotate(-75 16 50)" fill="#e8d3a9" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. GLASSMORPHIC RSVP SECTION ('Confirm your attendance')
+         ========================================================= -->
+    <section id="rsvp" class="py-6">
+      <div class="rsvp-glass-card rounded-2xl p-5 sm:p-6">
+        <h3 class="font-cormorant text-2xl sm:text-[26px] font-bold text-white leading-tight">
+          Confirm your attendance
+        </h3>
+        <p class="font-montserrat text-xs text-white/80 mt-1.5 leading-relaxed">
+          Your presence would be an honor. Please RSVP so we can prepare the warmest welcome for you.
+        </p>
+
+        <form id="rsvpForm" class="mt-5 space-y-4">
+          <div>
+            <label for="rsvpGuestName" class="block font-montserrat text-xs font-medium text-white/95 mb-1.5">
+              Your name
+            </label>
+            <input
+              id="rsvpGuestName"
+              type="text"
+              required
+              placeholder="Enter your name"
+              class="w-full rounded-xl bg-white/95 text-slate-900 placeholder:text-slate-400 px-4 py-3 text-sm font-montserrat focus:outline-none focus:ring-2 focus:ring-goldChampagne"
+            />
+          </div>
+
+          <div>
+            <span class="block font-montserrat text-xs font-medium text-white/95 mb-2">
+              Will you attend?
+            </span>
+            <div class="space-y-2.5">
+              <button
+                type="button"
+                id="rsvpOptionYes"
+                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-white/50 bg-white/25 text-white font-montserrat text-sm text-left transition cursor-pointer"
+              >
+                <span
+                  id="rsvpIconYes"
+                  class="w-5 h-5 rounded-full bg-white/85 text-navyDeep flex items-center justify-center text-xs font-bold shrink-0"
+                >
+                  ✓
+                </span>
+                <span>I will attend</span>
+              </button>
+
+              <button
+                type="button"
+                id="rsvpOptionNo"
+                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-white/25 bg-white/10 text-white/85 font-montserrat text-sm text-left transition cursor-pointer hover:bg-white/15"
+              >
+                <span
+                  id="rsvpIconNo"
+                  class="w-5 h-5 rounded-full bg-white/25 text-white flex items-center justify-center text-xs shrink-0"
+                >
+                  ✕
+                </span>
+                <span>Sorry, I can&apos;t make it</span>
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3.5 rounded-xl bg-[#b8a992] hover:bg-goldChampagne text-navyDeep font-montserrat font-semibold text-sm tracking-wide transition shadow-md cursor-pointer"
+          >
+            Confirm
+          </button>
+        </form>
+
+        <div
+          id="rsvpSavedBanner"
+          class="hidden mt-4 p-3 rounded-xl bg-navyDeep/65 border border-goldChampagne/45 text-xs font-montserrat text-goldIvory"
+        ></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. WEDDING RECEPTION VENUE & EMBEDDED MAP
+         ========================================================= -->
+    <section id="venue" class="py-7 text-center">
+      <h3 class="font-cinzel text-base sm:text-lg font-semibold tracking-[0.2em] uppercase text-goldIvory">
+        WEDDING RECEPTION VENUE
+      </h3>
+      <p class="font-cormorant text-lg text-goldChampagne/90 mt-1">
+        Church Auditorium
+      </p>
+
+      <!-- Embedded Map Card -->
+      <div class="mt-4 relative rounded-2xl overflow-hidden border border-goldChampagne/35 shadow-2xl bg-navyMid">
+        <!-- Floating 'Open in Maps' Button inside Top-Left of Map -->
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=St.+Sebastian%27s+Church+Rayarome+Kannur"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white text-[#1a73e8] font-montserrat text-xs font-medium shadow-md hover:bg-slate-50 transition"
+        >
+          <span>Open in Maps</span>
+          <span>↗</span>
+        </a>
+
+        <div class="w-full h-60 sm:h-64">
+          <iframe
+            title="St. Sebastian's Church, Rayarome Map"
+            src="https://maps.google.com/maps?q=St.%20Sebastian%27s%20Church%20Rayarome%20Alakode%20Kannur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            class="w-full h-full border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- 'Get directions' Link below Map -->
+      <div class="mt-4">
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=St.+Sebastian%27s+Church+Rayarome+Kannur"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 font-montserrat text-sm font-medium text-goldIvory hover:text-goldChampagne transition"
+        >
+          <span>➤</span>
+          <span>Get directions</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. GUESTBOOK SECTION
+         ========================================================= -->
+    <section id="guestbook" class="py-6">
+      <h3 class="font-cinzel text-lg sm:text-xl font-semibold tracking-[0.22em] uppercase text-goldIvory text-center mb-5">
+        GUESTBOOK
+      </h3>
+
+      <form id="guestbookForm" class="space-y-3.5">
+        <input
+          id="guestNameField"
+          type="text"
+          required
+          placeholder="Enter your name*"
+          class="w-full rounded-xl bg-[#050f22]/90 border border-goldChampagne/45 focus:border-goldChampagne focus:outline-none px-4 py-3.5 text-sm font-montserrat text-goldIvory placeholder:text-goldChampagne/55"
+        />
+
+        <textarea
+          id="guestWishesField"
+          rows="4"
+          required
+          placeholder="Enter your wishes*"
+          class="w-full rounded-xl bg-[#050f22]/90 border border-goldChampagne/45 focus:border-goldChampagne focus:outline-none px-4 py-3.5 text-sm font-montserrat text-goldIvory placeholder:text-goldChampagne/55 resize-none"
+        ></textarea>
+
+        <!-- Magic Wand Auto-Blessing Button + Gold SEND WISHES Button -->
+        <div class="flex items-center justify-center gap-3 pt-1">
+          <button
+            id="magicWandBtn"
+            type="button"
+            title="Generate wedding blessing"
+            aria-label="Auto-generate wedding blessing"
+            class="w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20 border border-goldChampagne/35 text-goldIvory flex items-center justify-center text-base transition cursor-pointer"
+          >
+            🪄
+          </button>
+
+          <button
+            type="submit"
+            class="px-7 py-3 rounded-full bg-goldChampagne hover:bg-goldIvory text-navyDeep font-cinzel font-bold text-xs tracking-[0.14em] uppercase shadow-lg transition cursor-pointer"
+          >
+            SEND WISHES
+          </button>
+        </div>
       </form>
+
+      <!-- Guestbook Submitted Wishes List -->
+      <div id="guestbookEntries" class="mt-6 space-y-3">
+        <!-- Populated via JavaScript -->
+      </div>
+    </section>
+
+    <!-- =========================================================
+         8. FOOTER & BOTTOM BAROQUE GOLD & NAVY FLORAL CLUSTER
+         ========================================================= -->
+    <footer class="pt-6 pb-8 text-center relative">
+      <p class="font-cormorant text-base sm:text-lg text-goldChampagne/90">
+        Your presence would be the greatest gift we could receive!
+      </p>
+      <p class="font-montserrat text-[11px] text-goldChampagne/55 mt-2 tracking-wider">
+        Subin Sojan &amp; Rosmy Davis &bull; 17 January 2027
+      </p>
+
+      <!-- Bottom Ornate Baroque Floral Cluster matching end of video -->
+      <div class="mt-6 flex justify-center pointer-events-none" aria-hidden="true">
+        <svg class="w-80 sm:w-96 h-24" viewBox="0 0 380 100" fill="none">
+          <!-- Gold Acanthus Scrolls -->
+          <path d="M20 88 C65 62, 115 62, 155 82" stroke="#e8d3a9" stroke-width="2.2" fill="none" />
+          <path d="M360 88 C315 62, 265 62, 225 82" stroke="#e8d3a9" stroke-width="2.2" fill="none" />
+          <ellipse cx="75" cy="70" rx="18" ry="6" transform="rotate(-20 75 70)" fill="#e8d3a9" />
+          <ellipse cx="305" cy="70" rx="18" ry="6" transform="rotate(20 305 70)" fill="#e8d3a9" />
+
+          <!-- Center Large Royal Navy Rose -->
+          <circle cx="190" cy="68" r="26" fill="#0b224a" stroke="#e8d3a9" stroke-width="1.8" />
+          <circle cx="190" cy="68" r="16" fill="none" stroke="#c5a059" stroke-width="1.2" stroke-dasharray="5 3" />
+          <circle cx="190" cy="68" r="7" fill="#1d448a" stroke="#e8d3a9" stroke-width="1" />
+
+          <!-- Left & Right Ivory Roses -->
+          <circle cx="144" cy="76" r="18" fill="#f5e6c8" stroke="#8c6928" stroke-width="1.3" />
+          <circle cx="144" cy="76" r="9" fill="none" stroke="#c5a059" stroke-width="1" />
+          <circle cx="236" cy="76" r="18" fill="#f5e6c8" stroke="#8c6928" stroke-width="1.3" />
+          <circle cx="236" cy="76" r="9" fill="none" stroke="#c5a059" stroke-width="1" />
+        </svg>
+      </div>
+    </footer>
+  </main>
+
+  <!-- =========================================================
+       FLOATING BOTTOM-RIGHT CIRCULAR GOLD AUDIO TOGGLE BUTTON
+       ========================================================= -->
+  <button
+    id="audioToggleBtn"
+    type="button"
+    aria-label="Toggle ambient wedding music"
+    title="Toggle Wedding Music (Long-press or double-click to set custom MP3)"
+    class="fixed bottom-5 right-5 z-40 w-12 h-12 rounded-full bg-goldChampagne hover:bg-goldIvory text-navyDeep shadow-[0_8px_24px_rgba(0,0,0,0.55)] border border-white/50 flex items-center justify-center transition transform hover:scale-105 active:scale-95 cursor-pointer audio-paused"
+  >
+    <span class="flex items-end justify-center gap-[3px] h-5">
+      <span class="eq-bar eq-bar-1"></span>
+      <span class="eq-bar eq-bar-2"></span>
+      <span class="eq-bar eq-bar-3"></span>
+    </span>
+  </button>
+
+  <audio id="customBgAudio" loop preload="auto" src="assets/audio/wedding-melody.m4a"></audio>
+
+  <!-- =========================================================
+       FULLSCREEN GALLERY LIGHTBOX MODAL
+       ========================================================= -->
+  <div
+    id="lightboxModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md p-4"
+    role="dialog"
+    aria-modal="true"
+  >
+    <button
+      id="closeLightboxBtn"
+      type="button"
+      aria-label="Close photo preview"
+      class="absolute top-5 right-5 w-10 h-10 rounded-full bg-navyMid/90 border border-goldChampagne/50 text-goldIvory flex items-center justify-center text-lg cursor-pointer"
+    >
+      ✕
+    </button>
+    <div class="max-w-md w-full text-center">
+      <img
+        id="lightboxImage"
+        src=""
+        alt="Subin & Rosmy"
+        class="max-h-[78vh] w-auto mx-auto rounded-2xl border-2 border-goldChampagne/60 shadow-2xl object-contain"
+      />
     </div>
   </div>
 
-  <!-- ==========================================================================
-       FOOTER
-       ========================================================================== -->
-  <footer>
-    <div class="container">
-      <div class="footer-couple-names gold-text">Subin Sojan &amp; Rosmy Davis</div>
-      <p class="footer-tagline">Sunday, January 17, 2027 • St. Sebastian's Church, Rayarome</p>
-      <p style="font-size:0.75rem; color:var(--ivory-dark); margin-top:1rem; letter-spacing:0.05em;">
-        With Love, Faith &amp; Family &bull; All Rights Reserved
-      </p>
-    </div>
-  </footer>
+  <!-- =========================================================
+       INTERACTIVE JAVASCRIPT LOGIC
+       ========================================================= -->
+  <script>
+    (function () {
+      'use strict';
 
-  <!-- Floating Back to Top Button -->
-  <button class="btn-back-to-top" id="btn-back-to-top" title="Back to Top" aria-label="Scroll back to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
+      // Toast helper (never uses alert())
+      let toastTimeout = null;
+      function showToast(message) {
+        const banner = document.getElementById('toastBanner');
+        const text = document.getElementById('toastText');
+        if (!banner || !text) return;
+        text.textContent = message;
+        banner.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
+        banner.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          banner.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
+          banner.classList.remove('opacity-100', 'translate-y-0');
+        }, 2600);
+      }
 
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <!-- Custom JavaScript -->
-  <script src="js/script.js"></script>
+      // ---------------------------------------------------------
+      // 1. DRIFTING GOLD & WHITE SNOWFLAKE / FLORAL PARTICLES
+      // ---------------------------------------------------------
+      function createDriftingParticles() {
+        const layer = document.getElementById('particlesLayer');
+        if (!layer) return;
+        const symbols = ['❄', '✽', '✦', '✧', '❋'];
+        const total = window.innerWidth < 640 ? 24 : 36;
+
+        for (let i = 0; i < total; i++) {
+          const span = document.createElement('span');
+          span.className = 'drifting-particle';
+          span.textContent = symbols[i % symbols.length];
+
+          const leftPct = Math.random() * 100;
+          const durationSec = 12 + Math.random() * 15;
+          const delaySec = -Math.random() * durationSec;
+          const sizePx = 9 + Math.random() * 10;
+          const isChampagne = i % 2 === 0;
+
+          span.style.left = `${leftPct}%`;
+          span.style.fontSize = `${sizePx}px`;
+          span.style.color = isChampagne
+            ? 'rgba(232, 211, 169, 0.58)'
+            : 'rgba(255, 255, 255, 0.36)';
+          span.style.animationDuration = `${durationSec}s`;
+          span.style.animationDelay = `${delaySec}s`;
+          layer.appendChild(span);
+        }
+      }
+
+      // ---------------------------------------------------------
+      // 2. PHOTO GALLERY 3D COVERFLOW CAROUSEL
+      // ---------------------------------------------------------
+      const GALLERY_ITEMS = [
+        {
+          src: 'images/gallery1.jpg',
+          fallback:
+            'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=85',
+          alt: 'Subin & Rosmy Nuptial Elegance',
+        },
+        {
+          src: 'images/gallery3.jpg',
+          fallback:
+            'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=85',
+          alt: 'Subin & Rosmy Radiant Smiles',
+        },
+        {
+          src: 'images/gallery2.jpg',
+          fallback:
+            'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=85',
+          alt: 'Subin & Rosmy Together in Love',
+        },
+      ];
+
+      let activeSlide = 1;
+
+      function renderCoverflow() {
+        const stage = document.getElementById('coverflowStage');
+        const dots = document.getElementById('coverflowDots');
+        if (!stage || !dots) return;
+
+        stage.innerHTML = '';
+        dots.innerHTML = '';
+
+        const len = GALLERY_ITEMS.length;
+
+        GALLERY_ITEMS.forEach((item, idx) => {
+          // Circular relative offset (-1, 0, +1, etc.)
+          let rel = idx - activeSlide;
+          if (rel > Math.floor(len / 2)) rel -= len;
+          if (rel < -Math.floor(len / 2)) rel += len;
+
+          const card = document.createElement('div');
+          card.className =
+            'coverflow-card absolute inset-0 rounded-2xl overflow-hidden bg-white cursor-pointer';
+
+          if (rel === 0) {
+            card.style.transform = 'translateX(0%) scale(1)';
+            card.style.opacity = '1';
+            card.style.zIndex = '30';
+            card.style.boxShadow = '0 18px 42px rgba(0, 0, 0, 0.65)';
+          } else if (rel === -1) {
+            card.style.transform = 'translateX(-36%) scale(0.84)';
+            card.style.opacity = '0.72';
+            card.style.zIndex = '20';
+            card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.5)';
+          } else if (rel === 1) {
+            card.style.transform = 'translateX(36%) scale(0.84)';
+            card.style.opacity = '0.72';
+            card.style.zIndex = '20';
+            card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.5)';
+          } else {
+            card.style.transform = `translateX(${rel > 0 ? '48%' : '-48%'}) scale(0.72)`;
+            card.style.opacity = '0';
+            card.style.zIndex = '10';
+          }
+
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.alt;
+          img.onerror = function () {
+            this.onerror = null;
+            this.src = item.fallback;
+          };
+          img.className = 'w-full h-full object-cover';
+
+          // Soft white watercolor vignette border overlay matching video
+          const vignette = document.createElement('div');
+          vignette.className =
+            'watercolor-vignette pointer-events-none absolute inset-0 rounded-2xl';
+
+          card.appendChild(img);
+          card.appendChild(vignette);
+
+          card.addEventListener('click', () => {
+            if (idx === activeSlide) {
+              openLightbox(img.src);
+            } else {
+              activeSlide = idx;
+              renderCoverflow();
+            }
+          });
+
+          stage.appendChild(card);
+
+          // Pagination dot
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.setAttribute('aria-label', `Photo ${idx + 1}`);
+          dot.className =
+            idx === activeSlide
+              ? 'w-5 h-1.5 rounded-full bg-goldIvory transition-all cursor-pointer'
+              : 'w-1.5 h-1.5 rounded-full bg-white/35 hover:bg-white/60 transition-all cursor-pointer';
+          dot.addEventListener('click', () => {
+            activeSlide = idx;
+            renderCoverflow();
+          });
+          dots.appendChild(dot);
+        });
+      }
+
+      // Swipe gesture support on carousel
+      let startX = 0;
+      const stageEl = document.getElementById('coverflowStage');
+      if (stageEl) {
+        stageEl.addEventListener(
+          'touchstart',
+          (e) => {
+            startX = e.changedTouches[0].clientX;
+          },
+          { passive: true }
+        );
+        stageEl.addEventListener(
+          'touchend',
+          (e) => {
+            const dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 35) {
+              activeSlide =
+                dx < 0
+                  ? (activeSlide + 1) % GALLERY_ITEMS.length
+                  : (activeSlide - 1 + GALLERY_ITEMS.length) % GALLERY_ITEMS.length;
+              renderCoverflow();
+            }
+          },
+          { passive: true }
+        );
+      }
+
+      // Lightbox zoom
+      function openLightbox(src) {
+        const modal = document.getElementById('lightboxModal');
+        const img = document.getElementById('lightboxImage');
+        if (!modal || !img) return;
+        img.src = src;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      document.getElementById('closeLightboxBtn')?.addEventListener('click', () => {
+        const modal = document.getElementById('lightboxModal');
+        modal?.classList.add('hidden');
+        modal?.classList.remove('flex');
+      });
+
+      document.getElementById('lightboxModal')?.addEventListener('click', (e) => {
+        if (e.target.id === 'lightboxModal') {
+          e.currentTarget.classList.add('hidden');
+          e.currentTarget.classList.remove('flex');
+        }
+      });
+
+      // ---------------------------------------------------------
+      // 3. LIVE COUNTDOWN TO JANUARY 17, 2027 11:30 AM IST
+      // ---------------------------------------------------------
+      const TARGET_TIMESTAMP = new Date('2027-01-17T11:30:00+05:30').getTime();
+
+      function tickCountdown() {
+        const el = document.getElementById('inlineCountdownText');
+        if (!el) return;
+
+        let remaining = TARGET_TIMESTAMP - Date.now();
+        if (remaining < 0) remaining = 0;
+
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((remaining / (1000 * 60)) % 60);
+        const secs = Math.floor((remaining / 1000) % 60);
+
+        el.textContent = `${days} days ${hours} hours ${String(mins).padStart(2, '0')} min ${String(secs).padStart(2, '0')} sec`;
+      }
+
+      // ---------------------------------------------------------
+      // 4. JANUARY 2027 CALENDAR WITH GOLD HEART AROUND 17
+      // ---------------------------------------------------------
+      function renderJanuary2027Calendar() {
+        const grid = document.getElementById('calendarDaysGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        // Jan 1, 2027 is a Friday -> 4 leading empty slots for Mo, Tu, We, Th
+        for (let i = 0; i < 4; i++) {
+          const empty = document.createElement('div');
+          grid.appendChild(empty);
+        }
+
+        for (let day = 1; day <= 31; day++) {
+          const cell = document.createElement('div');
+          cell.className = 'flex items-center justify-center py-1';
+
+          if (day === 17) {
+            cell.innerHTML = `
+              <span class="relative inline-flex items-center justify-center w-9 h-9 text-goldIvory font-bold">
+                <svg class="absolute inset-0 w-full h-full text-goldChampagne" viewBox="0 0 40 38" fill="none" aria-hidden="true">
+                  <path
+                    d="M20 34.5 C20 34.5 4 24.2 4 12.8 C4 7.4 8.2 3.5 13.3 3.5 C16.5 3.5 19.1 5.2 20 7.4 C20.9 5.2 23.5 3.5 26.7 3.5 C31.8 3.5 36 7.4 36 12.8 C36 24.2 20 34.5 20 34.5 Z"
+                    stroke="#e8d3a9"
+                    stroke-width="1.8"
+                    fill="rgba(232, 211, 169, 0.14)"
+                  />
+                </svg>
+                <span class="relative z-10 text-sm">17</span>
+              </span>
+            `;
+            cell.title = 'Wedding Day — Sunday, January 17, 2027';
+          } else {
+            cell.textContent = String(day);
+            cell.className += ' text-goldIvory/90';
+          }
+
+          grid.appendChild(cell);
+        }
+      }
+
+      // Download .ics calendar file
+      document.getElementById('downloadIcsBtn')?.addEventListener('click', () => {
+        const ics = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//Subin & Rosmy Wedding//EN',
+          'BEGIN:VEVENT',
+          'UID:subin-rosmy-20270117@wedding',
+          'DTSTAMP:20261124T050000Z',
+          'DTSTART:20270117T060000Z',
+          'DTEND:20270117T113000Z',
+          'SUMMARY:Wedding of Subin Sojan & Rosmy Davis',
+          "DESCRIPTION:Wedding Ceremony at 11:30 AM at St. Sebastian's Church, Rayarome, Alakode, Kannur followed by Reception at 1:00 PM at Church Auditorium.",
+          "LOCATION:St. Sebastian's Church, Rayarome, Alakode, Kannur, Kerala",
+          'END:VEVENT',
+          'END:VCALENDAR',
+        ].join('\r\n');
+
+        const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Subin-Rosmy-Wedding-Jan-17-2027.ics';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('Wedding event saved to your calendar (.ics)');
+      });
+
+      // ---------------------------------------------------------
+      // 5. RSVP FORM WITH LOCALSTORAGE PERSISTENCE
+      // ---------------------------------------------------------
+      const RSVP_KEY = 'subin_rosmy_rsvp_record_v2';
+      let rsvpChoice = 'yes';
+
+      const optYes = document.getElementById('rsvpOptionYes');
+      const optNo = document.getElementById('rsvpOptionNo');
+      const iconYes = document.getElementById('rsvpIconYes');
+      const iconNo = document.getElementById('rsvpIconNo');
+
+      function updateRsvpChoice(choice) {
+        rsvpChoice = choice;
+        if (choice === 'yes') {
+          optYes.className =
+            'w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-white/55 bg-white/25 text-white font-montserrat text-sm text-left transition cursor-pointer';
+          iconYes.className =
+            'w-5 h-5 rounded-full bg-white/90 text-navyDeep flex items-center justify-center text-xs font-bold shrink-0';
+
+          optNo.className =
+            'w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-white/25 bg-white/10 text-white/85 font-montserrat text-sm text-left transition cursor-pointer hover:bg-white/15';
+          iconNo.className =
+            'w-5 h-5 rounded-full bg-white/25 text-white flex items-center justify-center text-xs shrink-0';
+        } else {
+          optNo.className =
+            'w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-white/55 bg-white/25 text-white font-montserrat text-sm text-left transition cursor-pointer';
+          iconNo.className =
+            'w-5 h-5 rounded-full bg-white/90 text-navyDeep flex items-center justify-center text-xs font-bold shrink-0';
+
+          optYes.className =
+            'w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-white/25 bg-white/10 text-white/85 font-montserrat text-sm text-left transition cursor-pointer hover:bg-white/15';
+          iconYes.className =
+            'w-5 h-5 rounded-full bg-white/25 text-white flex items-center justify-center text-xs shrink-0';
+        }
+      }
+
+      optYes?.addEventListener('click', () => updateRsvpChoice('yes'));
+      optNo?.addEventListener('click', () => updateRsvpChoice('no'));
+
+      function showRsvpConfirmation(data) {
+        const banner = document.getElementById('rsvpSavedBanner');
+        if (!banner || !data) return;
+        banner.classList.remove('hidden');
+        banner.textContent = data.attending
+          ? `Thank you, ${data.name}! Your attendance for January 17, 2027 is confirmed.`
+          : `Thank you, ${data.name}. We appreciate your warm wishes!`;
+      }
+
+      document.getElementById('rsvpForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('rsvpGuestName');
+        const name = input?.value.trim();
+        if (!name) return;
+
+        const payload = { name, attending: rsvpChoice === 'yes' };
+        try {
+          localStorage.setItem(RSVP_KEY, JSON.stringify(payload));
+        } catch (err) {}
+
+        showRsvpConfirmation(payload);
+        showToast('RSVP confirmed!');
+      });
+
+      // Restore previous RSVP
+      try {
+        const saved = JSON.parse(localStorage.getItem(RSVP_KEY) || 'null');
+        if (saved && saved.name) {
+          const input = document.getElementById('rsvpGuestName');
+          if (input) input.value = saved.name;
+          updateRsvpChoice(saved.attending ? 'yes' : 'no');
+          showRsvpConfirmation(saved);
+        }
+      } catch (err) {}
+
+      // ---------------------------------------------------------
+      // 6. GUESTBOOK WITH MAGIC WAND BLESSINGS & LOCALSTORAGE
+      // ---------------------------------------------------------
+      const WISHES_KEY = 'subin_rosmy_guestbook_v2';
+      const SAMPLE_WISHES = [
+        {
+          name: 'Evin Benny',
+          wish: 'May you build a warm home filled with laughter and joy.',
+          time: '11/21/2026, 11:29:19 AM',
+        },
+      ];
+
+      const BLESSINGS = [
+        'May you build a warm home filled with laughter, faith, and endless joy!',
+        'Heartfelt wedding wishes to Subin & Rosmy! Wishing you a lifetime of love together.',
+        'നിങ്ങളുടെ വിവാഹ ജീവിതത്തിൽ എന്നും സന്തോഷവും സ്നേഹവും സമാധാനവും നിറയട്ടെ! ആശംസകൾ!',
+        'May God bless your union abundantly today and always. Congratulations Subin & Rosmy!',
+      ];
+      let blessingCursor = 0;
+
+      function loadWishes() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(WISHES_KEY) || 'null');
+          return Array.isArray(parsed) && parsed.length ? parsed : [...SAMPLE_WISHES];
+        } catch (err) {
+          return [...SAMPLE_WISHES];
+        }
+      }
+
+      let guestWishes = loadWishes();
+
+      function escapeText(str) {
+        const d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+      }
+
+      function renderGuestbook() {
+        const container = document.getElementById('guestbookEntries');
+        if (!container) return;
+        container.innerHTML = '';
+
+        guestWishes.forEach((entry) => {
+          const card = document.createElement('div');
+          card.className =
+            'rounded-xl bg-[#050f22]/90 border border-goldChampagne/40 p-4 text-left shadow-md';
+          card.innerHTML = `
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-cormorant font-bold text-base sm:text-lg text-goldIvory">${escapeText(entry.name)}</span>
+              <span class="font-montserrat text-[10px] text-goldChampagne/70 shrink-0">${escapeText(entry.time)}</span>
+            </div>
+            <p class="mt-1.5 font-cormorant text-base sm:text-[17px] text-white/95 leading-snug">
+              ${escapeText(entry.wish)}
+            </p>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      document.getElementById('magicWandBtn')?.addEventListener('click', () => {
+        const box = document.getElementById('guestWishesField');
+        if (!box) return;
+        box.value = BLESSINGS[blessingCursor % BLESSINGS.length];
+        blessingCursor++;
+      });
+
+      document.getElementById('guestbookForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameEl = document.getElementById('guestNameField');
+        const wishEl = document.getElementById('guestWishesField');
+        const name = nameEl?.value.trim();
+        const wish = wishEl?.value.trim();
+        if (!name || !wish) return;
+
+        guestWishes.unshift({
+          name,
+          wish,
+          time: new Date().toLocaleString(),
+        });
+
+        try {
+          localStorage.setItem(WISHES_KEY, JSON.stringify(guestWishes));
+        } catch (err) {}
+
+        renderGuestbook();
+        if (nameEl) nameEl.value = '';
+        if (wishEl) wishEl.value = '';
+        showToast('Thank you! Your wishes have been posted.');
+      });
+
+      // ---------------------------------------------------------
+      // 7. AMBIENT WEDDING CHIME AUDIO TOGGLE (WEB AUDIO API)
+      // ---------------------------------------------------------
+      let audioPlaying = false;
+      let audioCtx = null;
+      let melodyTimer = null;
+
+      function triggerWeddingChime() {
+        try {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return;
+          if (!audioCtx) audioCtx = new Ctx();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+
+          // Soft harp/celesta arpeggio notes (C major 9)
+          const freqs = [261.63, 329.63, 392.0, 493.88, 587.33, 659.25];
+          const now = audioCtx.currentTime;
+
+          freqs.forEach((f, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(f, now + idx * 0.16);
+
+            gain.gain.setValueAtTime(0.0001, now + idx * 0.16);
+            gain.gain.exponentialRampToValueAtTime(0.022, now + idx * 0.16 + 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.16 + 2.6);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.16);
+            osc.stop(now + idx * 0.16 + 2.7);
+          });
+        } catch (err) {}
+      }
+
+      document.getElementById('audioToggleBtn')?.addEventListener('click', () => {
+        const btn = document.getElementById('audioToggleBtn');
+        audioPlaying = !audioPlaying;
+
+        if (btn) {
+          btn.classList.toggle('audio-active', audioPlaying);
+          btn.classList.toggle('audio-paused', !audioPlaying);
+        }
+
+        const bgAudio = document.getElementById('customBgAudio');
+        if (audioPlaying) {
+          if (bgAudio) {
+            bgAudio.play().then(() => {
+              showToast('Wedding melody playing');
+            }).catch(() => {
+              triggerWeddingChime();
+              melodyTimer = setInterval(triggerWeddingChime, 3600);
+              showToast('Ambient wedding chime playing');
+            });
+          } else {
+            triggerWeddingChime();
+            melodyTimer = setInterval(triggerWeddingChime, 3600);
+            showToast('Ambient wedding chime playing');
+          }
+        } else {
+          if (bgAudio) {
+            try { bgAudio.pause(); } catch(e){}
+          }
+          if (melodyTimer) {
+            clearInterval(melodyTimer);
+            melodyTimer = null;
+          }
+          showToast('Music paused');
+        }
+      });
+
+      
+      // ---------------------------------------------------------
+      // 8. LUXURY SMOOTH AUTO-SCROLL ENGINE
+      // ---------------------------------------------------------
+      let autoScrollTimer = null;
+      let autoScrollRafId = null;
+      let isAutoScrolling = false;
+      let autoScrollCurrentY = 0;
+      let lastTimestamp = null;
+      const AUTO_SCROLL_SPEED = 38; // gentle luxury reading pace (px/sec)
+
+      const interactionEvents = ['wheel', 'touchstart', 'touchmove', 'pointerdown', 'mousedown', 'keydown'];
+
+      function onUserInteraction() {
+        stopAutoScroll();
+      }
+
+      function stopAutoScroll() {
+        if (autoScrollTimer) {
+          clearTimeout(autoScrollTimer);
+          autoScrollTimer = null;
+        }
+        if (autoScrollRafId) {
+          cancelAnimationFrame(autoScrollRafId);
+          autoScrollRafId = null;
+        }
+        isAutoScrolling = false;
+        interactionEvents.forEach(evt => window.removeEventListener(evt, onUserInteraction, { capture: true }));
+      }
+
+      function autoScrollLoop(timestamp) {
+        if (!isAutoScrolling) return;
+        if (!lastTimestamp) lastTimestamp = timestamp;
+        const delta = (timestamp - lastTimestamp) / 1000;
+        lastTimestamp = timestamp;
+
+        autoScrollCurrentY += AUTO_SCROLL_SPEED * delta;
+        window.scrollTo(0, autoScrollCurrentY);
+
+        const maxScroll = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) - window.innerHeight;
+        if (autoScrollCurrentY >= maxScroll - 6) {
+          stopAutoScroll();
+          return;
+        }
+        autoScrollRafId = requestAnimationFrame(autoScrollLoop);
+      }
+
+      function initAutoScroll(delayMs = 2000) {
+        stopAutoScroll();
+        setTimeout(() => {
+          interactionEvents.forEach(evt => window.addEventListener(evt, onUserInteraction, { capture: true, passive: true }));
+        }, 500);
+
+        autoScrollTimer = setTimeout(() => {
+          isAutoScrolling = true;
+          autoScrollCurrentY = window.scrollY || window.pageYOffset || 0;
+          lastTimestamp = null;
+          autoScrollRafId = requestAnimationFrame(autoScrollLoop);
+        }, delayMs);
+      }
+
+      // ---------------------------------------------------------
+      // BOOTSTRAP ON DOM READY
+      // ---------------------------------------------------------
+      window.addEventListener('DOMContentLoaded', () => {
+        createDriftingParticles();
+        renderCoverflow();
+        tickCountdown();
+        setInterval(tickCountdown, 1000);
+        renderJanuary2027Calendar();
+        renderGuestbook();
+        initAutoScroll(2000);
+      });
+    })();
+  </script>
 </body>
 </html>
