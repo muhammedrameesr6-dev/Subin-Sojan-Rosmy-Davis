@@ -41,52 +41,6 @@
   </audio>
 
   <!-- ==========================================================================
-       OPENING INVITATION SCREEN (COVER / ENVELOPE)
-       ========================================================================== -->
-  <aside id="invitation-cover" aria-label="Wedding Invitation Envelope Cover">
-    <div class="cover-curtain-left"></div>
-    <div class="cover-curtain-right"></div>
-
-    <div class="cover-top-jasmine" aria-hidden="true">
-      <img src="assets/images/jasmine-flower.svg" alt="" width="56" height="56">
-    </div>
-
-    <div class="cover-card">
-      <img src="assets/images/baroque-blue-corner.svg" alt="" class="corner-baroque top-left" aria-hidden="true">
-      <img src="assets/images/baroque-blue-corner.svg" alt="" class="corner-baroque bottom-right" aria-hidden="true">
-
-      <div class="cover-heart-badge">
-        <svg class="heart-icon" viewBox="0 0 24 24" width="28" height="28" fill="#52131C">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-      </div>
-
-      <h1 class="cover-couple-names">
-        Subin
-        <span class="cover-ampersand">&amp;</span>
-        Rosmy
-      </h1>
-
-      <div class="cover-heart-divider">
-        <img src="assets/images/heart-divider.svg" alt="" width="160" height="20" aria-hidden="true">
-      </div>
-
-      <p class="cover-date">January 17, 2027</p>
-      <p class="cover-invitation-text">Cordially Invites</p>
-
-      <div class="cover-guest-name-card">
-        <h2 class="cover-guest-name">Evin Benny</h2>
-      </div>
-
-      <p class="cover-subtext">to celebrate with our family</p>
-
-      <button class="btn-open-invitation" id="btn-open-invite" aria-label="Open wedding invitation and enter website">
-        <span>Open</span>
-      </button>
-    </div>
-  </aside>
-
-  <!-- ==========================================================================
        FLOATING AUDIO EQUALIZER BUTTON (Bottom Right - Exactly Like Reference)
        ========================================================================== -->
   <aside class="floating-music-wrapper" aria-label="Audio Controls">
@@ -100,15 +54,18 @@
   </aside>
 
   <!-- ==========================================================================
-       MAIN CONTENT CONTAINER (Exact Chungdoi Model Reference)
+       MAIN CONTENT CONTAINER (Exact Chungdoi Model - Matching Video Sequence)
        ========================================================================== -->
   <main class="main-page-wrapper">
     <div class="standard-wedding-container">
 
       <!-- ======================================================================
-           1. HERO SECTION (Baroque Carved Oval Mirror Frame & Names)
+           1. HERO SECTION (SAVE THE DATE & OVAL BAROQUE CARVED MIRROR FRAME)
            ====================================================================== -->
       <section id="hero" class="chungdoi-section hero-section-chungdoi">
+        <!-- SAVE THE DATE Title -->
+        <span class="save-the-date-lead reveal">SAVE THE DATE</span>
+
         <!-- The Vintage Carved Oval Frame with Navy & Ivory Roses & Watercolor Couple -->
         <div class="hero-baroque-oval-frame reveal">
           <img 
@@ -130,61 +87,177 @@
         <div class="baroque-divider-wrap reveal">
           <img src="assets/images/baroque-gold-rose-divider.png" alt="" class="baroque-divider-img" aria-hidden="true">
         </div>
+      </section>
 
-        <!-- CEREMONY Title -->
-        <h2 class="section-heading-chungdoi gold-text reveal">CEREMONY</h2>
+      <!-- ======================================================================
+           2. PHOTO GALLERY (3D Coverflow Carousel - Directly after Hero)
+           ====================================================================== -->
+      <section id="gallery" class="chungdoi-section gallery-section-chungdoi">
+        <div class="reveal">
+          <h2 class="section-heading-chungdoi gold-text">PHOTO GALLERY</h2>
 
-        <!-- Parents Two-Column Layout with Vertical Gold Divider -->
-        <div class="chungdoi-parents-grid reveal">
-          <!-- Groom's Parents -->
-          <div class="parents-col">
-            <span class="parents-salutation">Mr. &amp; Mrs.</span>
-            <h3 class="parents-name">Sojan John</h3>
-            <h3 class="parents-name">Sophy Sojan</h3>
-            <p class="parents-house">Mylakkattu House</p>
-            <p class="parents-address">Rayarome, Alakode, Kannur, Kerala</p>
+          <!-- 3D Coverflow Container -->
+          <div class="coverflow-container" id="coverflow-gallery">
+            <div class="coverflow-track">
+              <!-- Card 0: Close-up Radiant Smile (Orange dress) - Active in Video -->
+              <div class="coverflow-card active" data-index="0" title="Click to view full photo">
+                <img src="images/gallery3.jpg" alt="Subin &amp; Rosmy" class="coverflow-img">
+              </div>
+              <!-- Card 1: Candid Bouquet -->
+              <div class="coverflow-card next" data-index="1" title="Click to view full photo">
+                <img src="images/gallery1.jpg" alt="Cherished Smiles" class="coverflow-img">
+              </div>
+              <!-- Card 2: Traditional Elegance -->
+              <div class="coverflow-card" data-index="2" title="Click to view full photo">
+                <img src="images/gallery4.jpg" alt="Endless Grace" class="coverflow-img">
+              </div>
+              <!-- Card 3: Radiant Together in Cream -->
+              <div class="coverflow-card prev" data-index="3" title="Click to view full photo">
+                <img src="images/gallery2.jpg" alt="Together in Love" class="coverflow-img">
+              </div>
+            </div>
+
+            <!-- Dot Indicators (matching video) -->
+            <div class="carousel-dots-wrap" id="carousel-dots">
+              <span class="carousel-dot active" data-index="0"></span>
+              <span class="carousel-dot" data-index="1"></span>
+              <span class="carousel-dot" data-index="2"></span>
+              <span class="carousel-dot" data-index="3"></span>
+            </div>
+
+            <!-- Scrubber Track underneath Carousel -->
+            <div class="gallery-scrubber-bar">
+              <span class="scrubber-time" id="scrubber-time-label">00:31</span>
+              <div class="scrubber-track" id="gallery-scrubber-track">
+                <div class="scrubber-progress" id="gallery-scrubber-progress" style="width: 25%;"></div>
+                <div class="scrubber-thumb" id="gallery-scrubber-thumb" style="left: 25%;"></div>
+              </div>
+            </div>
+
+            <!-- Thumbnail Strip -->
+            <div class="gallery-thumbnails-strip" id="gallery-thumbnails">
+              <button class="thumb-btn active" data-index="0" aria-label="View photo 1">
+                <img src="images/gallery3.jpg" alt="Thumbnail 1">
+              </button>
+              <button class="thumb-btn" data-index="1" aria-label="View photo 2">
+                <img src="images/gallery1.jpg" alt="Thumbnail 2">
+              </button>
+              <button class="thumb-btn" data-index="2" aria-label="View photo 3">
+                <img src="images/gallery4.jpg" alt="Thumbnail 3">
+              </button>
+              <button class="thumb-btn" data-index="3" aria-label="View photo 4">
+                <img src="images/gallery2.jpg" alt="Thumbnail 4">
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIGHTBOX MODAL FOR GALLERY -->
+      <div id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
+        <button class="lightbox-btn-close" id="lightbox-close" aria-label="Close photo view">&times;</button>
+        <button class="lightbox-nav-btn prev" id="lightbox-prev" aria-label="Previous photo">&#10094;</button>
+        <button class="lightbox-nav-btn next" id="lightbox-next" aria-label="Next photo">&#10095;</button>
+
+        <div class="lightbox-content-box">
+          <img src="" alt="" id="lightbox-img" class="lightbox-main-img">
+          <div class="lightbox-caption-bar">
+            <h3 id="lightbox-title" class="lightbox-title"></h3>
+            <p id="lightbox-counter" class="lightbox-counter"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================================
+           3. THE RECEPTION & COUNTDOWN (Directly after Gallery)
+           ====================================================================== -->
+      <section id="reception-timing" class="chungdoi-section reception-section-chungdoi">
+        <img src="assets/images/rococo-corner-tl.png" alt="" class="corner-flourish tl" aria-hidden="true">
+        <img src="assets/images/rococo-corner-tr.png" alt="" class="corner-flourish tr" aria-hidden="true">
+
+        <div class="reveal">
+          <div class="delicate-gold-line">─ &nbsp; ✤ &nbsp; ─</div>
+
+          <p class="reception-lead-text">THE RECEPTION WILL TAKE PLACE AT:</p>
+          <p class="reception-time-text">1:00 PM &nbsp;&nbsp;&nbsp;&nbsp; SUNDAY</p>
+
+          <!-- Date Badge with Rococo Laurel Brackets -->
+          <div class="chungdoi-date-badge">
+            <img src="assets/images/rococo-date-bracket-left.png" alt="" class="date-bracket left" aria-hidden="true">
+            <div class="date-badge-inner">
+              <span class="date-day-num">17</span>
+              <span class="date-vertical-bar"></span>
+              <div class="date-month-year">
+                <span class="date-month-name">JANUARY</span>
+                <span class="date-year-num">2027</span>
+              </div>
+            </div>
+            <img src="assets/images/rococo-date-bracket-right.png" alt="" class="date-bracket right" aria-hidden="true">
           </div>
 
-          <!-- Center Vertical Divider -->
-          <div class="parents-divider-line" aria-hidden="true">
-            <span class="p-vert-line"></span>
-            <span class="p-fleur">✤</span>
-            <span class="p-vert-line"></span>
-          </div>
-
-          <!-- Bride's Parents -->
-          <div class="parents-col">
-            <span class="parents-salutation">Mr. &amp; Mrs.</span>
-            <h3 class="parents-name">Davis P. V.</h3>
-            <h3 class="parents-name">Sindhu Davis</h3>
-            <p class="parents-house">Payyappilly House</p>
-            <p class="parents-address">Kallur, Annamanada, Thrissur, Kerala</p>
+          <!-- COUNTDOWN HEADER & INLINE SERIF TIMER -->
+          <div class="chungdoi-countdown-block">
+            <h3 class="chungdoi-sub-heading gold-text">COUNTDOWN</h3>
+            <p class="countdown-inline-display" id="countdown-inline">
+              <span id="cd-days">--</span> days 
+              <span id="cd-hours">--</span> hours 
+              <span id="cd-min">--</span> min 
+              <span id="cd-sec">--</span> sec
+            </p>
           </div>
         </div>
       </section>
 
       <!-- ======================================================================
-           2. CEREMONY DETAILS & DATE BADGE (Church Ceremony)
+           4. CEREMONY & PARENTS & CHURCH VENUE MAP
            ====================================================================== -->
-      <section id="ceremony-details" class="chungdoi-section ceremony-details-chungdoi">
-        <!-- Corner Rococo Flourishes -->
-        <img src="assets/images/rococo-corner-tl.png" alt="" class="corner-flourish tl" aria-hidden="true">
-        <img src="assets/images/rococo-corner-tr.png" alt="" class="corner-flourish tr" aria-hidden="true">
-
+      <section id="ceremony-info" class="chungdoi-section ceremony-details-chungdoi">
         <div class="reveal">
-          <p class="announce-lead">WE JOYFULLY ANNOUNCE</p>
+          <!-- CEREMONY Title -->
+          <h2 class="section-heading-chungdoi gold-text">CEREMONY</h2>
+
+          <!-- Parents Two-Column Layout with Vertical Gold Divider -->
+          <div class="chungdoi-parents-grid">
+            <!-- Groom's Parents -->
+            <div class="parents-col">
+              <span class="parents-salutation">Mr. &amp; Mrs.</span>
+              <h3 class="parents-name">Sojan John</h3>
+              <h3 class="parents-name">Sophy Sojan</h3>
+              <p class="parents-house">Mylakkattu</p>
+            </div>
+
+            <!-- Center Vertical Divider -->
+            <div class="parents-divider-line" aria-hidden="true">
+              <span class="p-vert-line"></span>
+              <span class="p-fleur">✤</span>
+              <span class="p-vert-line"></span>
+            </div>
+
+            <!-- Bride's Parents -->
+            <div class="parents-col">
+              <span class="parents-salutation">Mr. &amp; Mrs.</span>
+              <h3 class="parents-name">Davis P. V.</h3>
+              <h3 class="parents-name">Sindhu Davis</h3>
+              <p class="parents-house">Payyappilly</p>
+            </div>
+          </div>
+
+          <!-- Announcement Callout -->
+          <p class="announce-lead" style="margin-top: 2rem;">WE JOYFULLY ANNOUNCE</p>
           <h3 class="announce-sub">THE WEDDING OF OUR CHILDREN</h3>
 
-          <!-- Groom & Bride Presentation -->
-          <div class="couple-presentation-row">
-            <div class="couple-col">
-              <h2 class="person-name gold-text">Subin Sojan</h2>
-              <span class="person-badge">GROOM</span>
+          <!-- Groom & Bride Vertical Stacking (matching Video Panel 3) -->
+          <div class="couple-vertical-stack">
+            <div class="person-block">
+              <h2 class="person-name-large gold-text">Subin Sojan</h2>
+              <span class="person-badge-pill">GROOM</span>
             </div>
-            <div class="couple-amp">&amp;</div>
-            <div class="couple-col">
-              <h2 class="person-name gold-text">Rosmy Davis</h2>
-              <span class="person-badge">BRIDE</span>
+
+            <div class="couple-amp-script">&amp;</div>
+
+            <div class="person-block">
+              <h2 class="person-name-large gold-text">Rosmy Davis</h2>
+              <span class="person-badge-pill">BRIDE</span>
             </div>
           </div>
 
@@ -210,152 +283,42 @@
               <img src="assets/images/rococo-date-bracket-right.png" alt="" class="date-bracket right" aria-hidden="true">
             </div>
 
-            <!-- Get Directions Button -->
-            <div style="margin-top: 1rem;">
-              <a 
-                href="https://www.google.com/maps/search/?api=1&amp;query=St.+Sebastian%27s+Church+Rayarome+Kannur" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="btn-church-directions"
-              >
-                📍 Church Location &amp; Directions
-              </a>
-            </div>
-
             <!-- Baroque Rose & Gold Scroll Divider -->
-            <div class="baroque-divider-wrap" style="margin-top: 2rem;">
+            <div class="baroque-divider-wrap" style="margin: 1.5rem auto 1.8rem;">
               <img src="assets/images/baroque-gold-rose-divider.png" alt="" class="baroque-divider-img" aria-hidden="true">
             </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- ======================================================================
-           3. PHOTO GALLERY (3D Coverflow Carousel & Filmstrip)
-           ====================================================================== -->
-      <section id="gallery" class="chungdoi-section gallery-section-chungdoi">
-        <div class="reveal">
-          <h2 class="section-heading-chungdoi gold-text">PHOTO GALLERY</h2>
-
-          <!-- 3D Coverflow Container -->
-          <div class="coverflow-container" id="coverflow-gallery">
-            <div class="coverflow-track">
-              <!-- Card 0: Gallery 1 -->
-              <div class="coverflow-card active" data-index="0" title="Click to view full photo">
-                <img src="images/gallery1.jpg" alt="Subin &amp; Rosmy" class="coverflow-img">
-              </div>
-              <!-- Card 1: Gallery 2 -->
-              <div class="coverflow-card next" data-index="1" title="Click to view full photo">
-                <img src="images/gallery2.jpg" alt="Cherished Smiles" class="coverflow-img">
-              </div>
-              <!-- Card 2: Gallery 3 -->
-              <div class="coverflow-card" data-index="2" title="Click to view full photo">
-                <img src="images/gallery3.jpg" alt="Together in Love" class="coverflow-img">
-              </div>
-              <!-- Card 3: Gallery 4 -->
-              <div class="coverflow-card prev" data-index="3" title="Click to view full photo">
-                <img src="images/gallery4.jpg" alt="Endless Grace" class="coverflow-img">
-              </div>
-            </div>
-
-            <!-- Scrubber Track underneath Carousel -->
-            <div class="gallery-scrubber-bar">
-              <span class="scrubber-time" id="scrubber-time-label">00:31</span>
-              <div class="scrubber-track" id="gallery-scrubber-track">
-                <div class="scrubber-progress" id="gallery-scrubber-progress" style="width: 25%;"></div>
-                <div class="scrubber-thumb" id="gallery-scrubber-thumb" style="left: 25%;"></div>
-              </div>
-            </div>
-
-            <!-- Thumbnail Strip -->
-            <div class="gallery-thumbnails-strip" id="gallery-thumbnails">
-              <button class="thumb-btn active" data-index="0" aria-label="View photo 1">
-                <img src="images/gallery1.jpg" alt="Thumbnail 1">
-              </button>
-              <button class="thumb-btn" data-index="1" aria-label="View photo 2">
-                <img src="images/gallery2.jpg" alt="Thumbnail 2">
-              </button>
-              <button class="thumb-btn" data-index="2" aria-label="View photo 3">
-                <img src="images/gallery3.jpg" alt="Thumbnail 3">
-              </button>
-              <button class="thumb-btn" data-index="3" aria-label="View photo 4">
-                <img src="images/gallery4.jpg" alt="Thumbnail 4">
-              </button>
+            <!-- Interactive Google Map Embed for Church -->
+            <div class="google-map-wrapper">
+              <iframe 
+                src="https://maps.google.com/maps?q=St.+Sebastian%27s+Church+Rayarome+Kannur+Kerala&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                class="google-map-iframe"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="St. Sebastian's Church Map"
+              ></iframe>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&amp;query=St.+Sebastian%27s+Church+Rayarome+Alakode+Kannur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-get-directions"
+              >
+                📍 Get directions
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- LIGHTBOX MODAL FOR GALLERY -->
-      <div id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
-        <button class="lightbox-btn-close" id="lightbox-close" aria-label="Close photo view">&times;</button>
-        <button class="lightbox-nav-btn prev" id="lightbox-prev" aria-label="Previous photo">&#10094;</button>
-        <button class="lightbox-nav-btn next" id="lightbox-next" aria-label="Next photo">&#10095;</button>
-
-        <div class="lightbox-content-box">
-          <img src="" alt="" id="lightbox-img" class="lightbox-main-img">
-          <div class="lightbox-caption-bar">
-            <h3 id="lightbox-title" class="lightbox-title"></h3>
-            <p id="lightbox-counter" class="lightbox-counter"></p>
-          </div>
-        </div>
-      </div>
-
       <!-- ======================================================================
-           4. RECEPTION INFO & COUNTDOWN & JANUARY 2027 CALENDAR
+           5. JANUARY 2027 CALENDAR
            ====================================================================== -->
-      <section id="reception-info" class="chungdoi-section reception-section-chungdoi">
-        <!-- Corner Rococo Flourishes -->
+      <section id="calendar-section" class="chungdoi-section calendar-section-chungdoi">
         <img src="assets/images/rococo-corner-tl.png" alt="" class="corner-flourish tl" aria-hidden="true">
         <img src="assets/images/rococo-corner-tr.png" alt="" class="corner-flourish tr" aria-hidden="true">
 
         <div class="reveal">
-          <div class="delicate-gold-line">─ &nbsp; ✤ &nbsp; ─</div>
-
-          <p class="reception-lead-text">THE RECEPTION WILL TAKE PLACE AT:</p>
-          <h3 class="reception-venue-title gold-text">
-            ST. SEBASTIAN'S CHURCH PARISH HALL, RAYAROME
-          </h3>
-          <p class="reception-time-text">1:00 PM &nbsp;&nbsp;&nbsp;&nbsp; SUNDAY</p>
-
-          <!-- Date Badge with Rococo Laurel Brackets -->
-          <div class="chungdoi-date-badge">
-            <img src="assets/images/rococo-date-bracket-left.png" alt="" class="date-bracket left" aria-hidden="true">
-            <div class="date-badge-inner">
-              <span class="date-day-num">17</span>
-              <span class="date-vertical-bar"></span>
-              <div class="date-month-year">
-                <span class="date-month-name">JANUARY</span>
-                <span class="date-year-num">2027</span>
-              </div>
-            </div>
-            <img src="assets/images/rococo-date-bracket-right.png" alt="" class="date-bracket right" aria-hidden="true">
-          </div>
-
-          <!-- Get Hall Directions -->
-          <div style="margin: 1rem 0 2rem;">
-            <a 
-              href="https://www.google.com/maps/search/?api=1&amp;query=St.+Sebastian%27s+Parish+Hall+Rayarome+Kannur" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="btn-church-directions"
-            >
-              📍 Parish Hall Location &amp; Directions
-            </a>
-          </div>
-
-          <!-- COUNTDOWN HEADER & INLINE SERIF TIMER -->
-          <div class="chungdoi-countdown-block">
-            <h3 class="chungdoi-sub-heading gold-text">COUNTDOWN</h3>
-            <p class="countdown-inline-display" id="countdown-inline">
-              <span id="cd-days">--</span> days 
-              <span id="cd-hours">--</span> hours 
-              <span id="cd-min">--</span> min 
-              <span id="cd-sec">--</span> sec
-            </p>
-          </div>
-
-          <!-- JANUARY 2027 INTERACTIVE CALENDAR TABLE -->
           <div class="chungdoi-calendar-block">
             <h3 class="calendar-month-title gold-text">January 2027</h3>
 
@@ -436,42 +399,74 @@
           </div>
         </div>
 
-        <!-- Bottom Rococo Corner Flourishes -->
         <img src="assets/images/rococo-corner-bl.png" alt="" class="corner-flourish bl" aria-hidden="true">
         <img src="assets/images/rococo-corner-br.png" alt="" class="corner-flourish br" aria-hidden="true">
       </section>
 
       <!-- ======================================================================
-           5. SCRIPTURE QUOTE SECTION
+           6. CONFIRM YOUR ATTENDANCE (RSVP Bottom Sheet / Card)
            ====================================================================== -->
-      <section id="quote" class="chungdoi-section quote-section-chungdoi">
-        <div class="quote-card-box reveal">
-          <div class="quote-mark" aria-hidden="true">&ldquo;</div>
-          <blockquote class="scripture-verse-text">
-            &ldquo;A cord of three strands is not quickly broken.&rdquo;
-          </blockquote>
-          <cite class="scripture-reference">&mdash; Ecclesiastes 4:12</cite>
+      <section id="rsvp" class="chungdoi-section rsvp-section-chungdoi">
+        <div class="chungdoi-rsvp-card reveal">
+          <h3 class="rsvp-card-title">Confirm your attendance</h3>
+          <p class="rsvp-card-sub">Your presence would be an honor. Please RSVP so we can prepare the warmest welcome for you.</p>
 
-          <div class="baroque-divider-wrap" style="margin: 1.5rem auto 1rem;">
-            <img src="assets/images/baroque-gold-rose-divider.png" alt="" class="baroque-divider-img" style="max-width:240px;" aria-hidden="true">
-          </div>
+          <form id="rsvp-attendance-form">
+            <div class="rsvp-field-group">
+              <label class="rsvp-label" for="rsvp-guest-name">Your name</label>
+              <input type="text" id="rsvp-guest-name" class="rsvp-input-box" value="Evin Benny" placeholder="Enter your name" required>
+            </div>
 
-          <div class="quote-dedication-block">
-            <span class="dedication-lead">With Love &amp; Warm Wishes,</span>
-            <div class="dedication-names gold-text">Mila Irene, Susmi &amp; Salas</div>
+            <div class="rsvp-field-group">
+              <label class="rsvp-label">Will you attend?</label>
+              <div class="rsvp-choice-buttons">
+                <button type="button" class="btn-rsvp-choice active" id="btn-attend-yes" data-value="attending">✓ I will attend</button>
+                <button type="button" class="btn-rsvp-choice" id="btn-attend-no" data-value="declined">✕ Sorry, I can't make it</button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-rsvp-submit-gold" id="btn-submit-rsvp">Confirm</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           7. WEDDING RECEPTION VENUE & RECEPTION MAP
+           ====================================================================== -->
+      <section id="reception-venue" class="chungdoi-section reception-venue-chungdoi">
+        <div class="reveal">
+          <p class="reception-label-gold">WEDDING RECEPTION VENUE</p>
+          <h3 class="reception-hall-title gold-text">Church Auditorium</h3>
+          <p class="reception-hall-sub">St. Sebastian's Parish Hall, Rayarome</p>
+
+          <!-- Interactive Google Map Embed for Reception -->
+          <div class="google-map-wrapper">
+            <iframe 
+              src="https://maps.google.com/maps?q=St.+Sebastian%27s+Parish+Hall+Rayarome+Kannur&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              class="google-map-iframe"
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Parish Hall Map"
+            ></iframe>
+            <a 
+              href="https://www.google.com/maps/search/?api=1&amp;query=St.+Sebastian%27s+Parish+Hall+Rayarome+Kannur" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-get-directions"
+            >
+              📍 Get directions
+            </a>
           </div>
         </div>
       </section>
 
       <!-- ======================================================================
-           6. GUESTBOOK & BLESSINGS
+           8. GUESTBOOK & BLESSINGS
            ====================================================================== -->
       <section id="wishes" class="chungdoi-section wishes-section-chungdoi">
         <div class="guestbook-card-box reveal">
-          <div class="header-flourish">
-            <h2 class="section-heading-chungdoi gold-text">GUESTBOOK</h2>
-            <p class="section-sub-phrase">Dear Evin Benny, share your warm wishes with Subin &amp; Rosmy</p>
-          </div>
+          <h2 class="section-heading-chungdoi gold-text" style="margin-top:0;">GUESTBOOK</h2>
 
           <form id="wishes-form" class="standard-guestbook-form">
             <div class="form-group">
@@ -479,30 +474,30 @@
               <input type="text" id="wish-name" class="form-control" value="Evin Benny" required>
             </div>
 
-            <div class="form-group">
-              <label for="wish-relation">Relationship / Location</label>
-              <input type="text" id="wish-relation" class="form-control" placeholder="e.g. Friend, Kannur">
-            </div>
-
             <div class="form-group" style="position:relative;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                <label for="wish-message">Enter your wishes*</label>
-                <button type="button" id="btn-magic-wish" class="btn-magic-wand" title="Click for an automatic wedding blessing!">
-                  <span>🪄 Auto-Generate Blessing</span>
-                </button>
-              </div>
+              <label for="wish-message">Enter your wishes*</label>
               <textarea id="wish-message" class="form-control" placeholder="Wishing Subin & Rosmy a lifetime of divine love, peace and endless happiness..." required></textarea>
             </div>
 
-            <button type="submit" class="btn-send-wishes-primary">
-              SEND WISHES
-            </button>
+            <div class="guestbook-btn-row">
+              <button type="button" id="btn-magic-wish" class="btn-magic-wand-inline" title="Click for an automatic wedding blessing!">
+                <span>🪄 Auto-Generate</span>
+              </button>
+              <button type="submit" class="btn-send-wishes-primary">
+                SEND WISHES
+              </button>
+            </div>
           </form>
 
           <div class="guestbook-feed-container">
-            <h3 class="feed-section-title">Messages from Family &amp; Friends</h3>
             <div class="wishes-feed-list" id="wishes-feed">
-              <!-- Populated dynamically -->
+              <div class="wish-item-card">
+                <div class="wish-header-line">
+                  <span class="wish-author-name">Evin Benny</span>
+                  <span class="wish-time-badge">11/21/2026, 11:29:19 AM</span>
+                </div>
+                <p class="wish-message-body">May you build a warm home filled with laughter and joy.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -516,6 +511,7 @@
        ========================================================================== -->
   <footer>
     <div class="container">
+      <p class="footer-closing-sentiment gold-text">Your presence would be the greatest gift we could receive!</p>
       <div class="footer-couple-names gold-text">Subin Sojan &amp; Rosmy Davis</div>
       <p class="footer-tagline">Sunday, January 17, 2027 • St. Sebastian's Church, Rayarome</p>
       <p style="font-size:0.75rem; color:var(--ivory-dark); margin-top:1rem; letter-spacing:0.05em;">

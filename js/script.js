@@ -557,6 +557,11 @@
       thumb.classList.toggle('active', i === currentCoverIndex);
     });
 
+    const carouselDots = Array.from(document.querySelectorAll('.carousel-dot'));
+    carouselDots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentCoverIndex);
+    });
+
     // Update Scrubber Progress
     const scrubberProgress = document.getElementById('gallery-scrubber-progress');
     const scrubberThumb = document.getElementById('gallery-scrubber-thumb');
@@ -587,6 +592,13 @@
 
     coverflowThumbs.forEach((btn, index) => {
       btn.addEventListener('click', () => {
+        updateCoverflow(index);
+      });
+    });
+
+    const carouselDots = Array.from(document.querySelectorAll('.carousel-dot'));
+    carouselDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
         updateCoverflow(index);
       });
     });
@@ -794,8 +806,37 @@
   }
 
   // ==========================================================================
-  // 9. RSVP MODAL
+  // 9. RSVP ATTENDANCE CARD
   // ==========================================================================
+  const rsvpAttendanceForm = document.getElementById('rsvp-attendance-form');
+  const btnAttendYes = document.getElementById('btn-attend-yes');
+  const btnAttendNo = document.getElementById('btn-attend-no');
+  let selectedAttendance = 'attending';
+
+  if (btnAttendYes && btnAttendNo) {
+    btnAttendYes.addEventListener('click', () => {
+      btnAttendYes.classList.add('active');
+      btnAttendNo.classList.remove('active');
+      selectedAttendance = 'attending';
+    });
+    btnAttendNo.addEventListener('click', () => {
+      btnAttendNo.classList.add('active');
+      btnAttendYes.classList.remove('active');
+      selectedAttendance = 'declined';
+    });
+  }
+
+  if (rsvpAttendanceForm) {
+    rsvpAttendanceForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const guestName = document.getElementById('rsvp-guest-name')?.value || 'Evin Benny';
+      const msg = selectedAttendance === 'attending'
+        ? `Dear ${guestName}, your attendance is joyfully confirmed! 🥂`
+        : `Dear ${guestName}, thank you for letting us know. You will be in our hearts! ✨`;
+      showNotification(msg);
+    });
+  }
+
   rsvpOpenBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -961,10 +1002,17 @@
     loadWishes();
     triggerScrollReveals();
 
-    // If invitation cover is already opened or dismissed, schedule auto-scroll after 2s
-    if (!invitationCover || invitationCover.style.display === 'none' || invitationCover.classList.contains('opened')) {
-      scheduleAutoScroll(2000);
-    }
+    // Schedule gentle auto-scroll after 2s
+    scheduleAutoScroll(2000);
+
+    // Audio autoplay on first click or touch
+    const startAudioOnFirstInteraction = () => {
+      startWeddingMusic();
+      document.removeEventListener('click', startAudioOnFirstInteraction);
+      document.removeEventListener('touchstart', startAudioOnFirstInteraction);
+    };
+    document.addEventListener('click', startAudioOnFirstInteraction, { passive: true });
+    document.addEventListener('touchstart', startAudioOnFirstInteraction, { passive: true });
   });
 
 })();
