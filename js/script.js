@@ -518,56 +518,233 @@
   }
 
   // ==========================================================================
-  // 7. PHOTO GALLERY & FULL-SCREEN LIGHTBOX
+  // 7. PHOTO GALLERY ("MOMENTS OF LOVE") - 3D COVERFLOW & AUTO-TRANSITION
   // ==========================================================================
-  function initGallery() {
-    galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
-    if (!galleryItems.length) return;
+  let coverflowIndex = 0;
+  let coverflowTimer = null;
+  let coverflowSlides = [];
 
-    galleryItems.forEach((item, index) => {
-      item.addEventListener('click', () => openLightbox(index));
+  function initCoverflowGallery() {
+    coverflowSlides = Array.from(document.querySelectorAll('.coverflow-slide'));
+    const coverflowContainer = document.getElementById('coverflowGallery');
+    const coverflowDotsContainer = document.getElementById('coverflowDots');
+    const coverflowPrevBtn = document.getElementById('coverflowPrev');
+    const coverflowNextBtn = document.getElementById('coverflowNext');
+
+    if (!coverflowSlides.length) return;
+
+    // Build pagination dots
+    if (coverflowDotsContainer) {
+      coverflowDotsContainer.innerHTML = '';
+      coverflowSlides.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.className = `coverflow-dot ${idx === 0 ? 'active' : ''}`;
+        dot.setAttribute('aria-label', `Slide ${idx + 1}`);
+        dot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          goToCoverflowSlide(idx);
+          resetCoverflowTimer();
+        });
+        coverflowDotsContainer.appendChild(dot);
+      });
+    }
+
+    // Attach click events on slides
+    coverflowSlides.forEach((slide, idx) => {
+      slide.addEventListener('click', () => {
+        const total = coverflowSlides.length;
+        const diff = (idx - coverflowIndex + total) % total;
+        if (diff === 0) {
+          // Click center slide: open lightbox
+          openLightbox(idx);
+        } else if (diff === 1 || diff === -(total - 1)) {
+          // Click right slide: advance
+          goToCoverflowSlide(idx);
+          resetCoverflowTimer();
+        } else if (diff === total - 1 || diff === -1) {
+          // Click left slide: retreat
+          goToCoverflowSlide(idx);
+          resetCoverflowTimer();
+        } else {
+          goToCoverflowSlide(idx);
+          resetCoverflowTimer();
+        }
+      });
     });
 
-    const filterTabs = document.querySelectorAll('.gallery-tab-btn');
-    filterTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        filterTabs.forEach((t) => t.classList.remove('active'));
-        tab.classList.add('active');
+    if (coverflowPrevBtn) {
+      coverflowPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prevCoverflowSlide();
+        resetCoverflowTimer();
+      });
+    }
 
-        const filter = tab.getAttribute('data-filter');
-        galleryItems.forEach((item) => {
-          const category = item.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            item.style.display = 'block';
+    if (coverflowNextBtn) {
+      coverflowNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextCoverflowSlide();
+        resetCoverflowTimer();
+      });
+    }
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (coverflowContainer) {
+      coverflowContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      coverflowContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+
+      // Pause on hover
+      coverflowContainer.addEventListener('mouseenter', stopCoverflowTimer);
+      coverflowContainer.addEventListener('mouseleave', startCoverflowTimer);
+    }
+
+    function handleSwipe() {
+      const threshold = 35;
+      if (touchEndX < touchStartX - threshold) {
+        // swipe left -> next
+        nextCoverflowSlide();
+        resetCoverflowTimer();
+      } else if (touchEndX > touchStartX + threshold) {
+        // swipe right -> prev
+        prevCoverflowSlide();
+        resetCoverflowTimer();
+      }
+    }
+
+    // IntersectionObserver to auto-play when user scrolls to it
+    if ('IntersectionObserver' in window && coverflowContainer) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            startCoverflowTimer();
           } else {
-            item.style.display = 'none';
+            stopCoverflowTimer();
           }
         });
-      });
+      }, { threshold: 0.2 });
+      obs.observe(coverflowContainer);
+    } else {
+      startCoverflowTimer();
+    }
+
+    // Initial positioning
+    updateCoverflow();
+  }
+
+  function updateCoverflow() {
+    const total = coverflowSlides.length;
+    if (!total) return;
+
+    coverflowSlides.forEach((slide, idx) => {
+      let offset = idx - coverflowIndex;
+      if (offset > total / 2) offset -= total;
+      if (offset < -total / 2) offset += total;
+
+      if (offset === 0) {
+        // Active center card
+        slide.style.transform = 'translateX(0%) scale(1) translateZ(0)';
+        slide.style.opacity = '1';
+        slide.style.zIndex = '10';
+        slide.style.filter = 'brightness(1)';
+        slide.style.pointerEvents = 'auto';
+        slide.classList.add('active');
+      } else if (offset === -1 || (coverflowIndex === 0 && idx === total - 1)) {
+        // Left adjacent card
+        slide.style.transform = 'translateX(-74%) scale(0.82) translateZ(-60px)';
+        slide.style.opacity = '0.65';
+        slide.style.zIndex = '5';
+        slide.style.filter = 'brightness(0.85)';
+        slide.style.pointerEvents = 'auto';
+        slide.classList.remove('active');
+      } else if (offset === 1 || (coverflowIndex === total - 1 && idx === 0)) {
+        // Right adjacent card
+        slide.style.transform = 'translateX(74%) scale(0.82) translateZ(-60px)';
+        slide.style.opacity = '0.65';
+        slide.style.zIndex = '5';
+        slide.style.filter = 'brightness(0.85)';
+        slide.style.pointerEvents = 'auto';
+        slide.classList.remove('active');
+      } else {
+        // Hidden outer cards
+        const dir = offset > 0 ? 1 : -1;
+        slide.style.transform = `translateX(${dir * 140}%) scale(0.65) translateZ(-120px)`;
+        slide.style.opacity = '0';
+        slide.style.zIndex = '1';
+        slide.style.pointerEvents = 'none';
+        slide.classList.remove('active');
+      }
+    });
+
+    // Update dots
+    const dots = document.querySelectorAll('.coverflow-dot');
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === coverflowIndex);
     });
   }
 
+  function goToCoverflowSlide(index) {
+    const total = coverflowSlides.length;
+    coverflowIndex = (index + total) % total;
+    updateCoverflow();
+  }
+
+  function nextCoverflowSlide() {
+    goToCoverflowSlide(coverflowIndex + 1);
+  }
+
+  function prevCoverflowSlide() {
+    goToCoverflowSlide(coverflowIndex - 1);
+  }
+
+  function startCoverflowTimer() {
+    stopCoverflowTimer();
+    coverflowTimer = setInterval(() => {
+      nextCoverflowSlide();
+    }, 2800);
+  }
+
+  function stopCoverflowTimer() {
+    if (coverflowTimer) {
+      clearInterval(coverflowTimer);
+      coverflowTimer = null;
+    }
+  }
+
+  function resetCoverflowTimer() {
+    startCoverflowTimer();
+  }
+
   function openLightbox(index) {
-    if (!galleryItems[index]) return;
+    if (!coverflowSlides[index]) return;
     currentGalleryIndex = index;
-    const item = galleryItems[index];
-    const img = item.querySelector('.gallery-img');
-    const title = item.querySelector('.gallery-caption-title');
+    const slide = coverflowSlides[index];
+    const img = slide.querySelector('img');
+    const title = slide.getAttribute('data-title') || 'Subin & Rosmy';
 
     if (lightboxImg && img) {
       lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt || 'Wedding Moment';
+      lightboxImg.alt = title;
     }
-    if (lightboxTitle && title) {
-      lightboxTitle.textContent = title.textContent;
+    if (lightboxTitle) {
+      lightboxTitle.textContent = title;
     }
     if (lightboxCounter) {
-      lightboxCounter.textContent = `${currentGalleryIndex + 1} of ${galleryItems.length}`;
+      lightboxCounter.textContent = `${currentGalleryIndex + 1} of ${coverflowSlides.length}`;
     }
 
     if (lightbox) {
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
+      stopCoverflowTimer();
     }
   }
 
@@ -575,16 +752,17 @@
     if (lightbox) {
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
+      startCoverflowTimer();
     }
   }
 
   function nextLightbox() {
-    currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+    currentGalleryIndex = (currentGalleryIndex + 1) % coverflowSlides.length;
     openLightbox(currentGalleryIndex);
   }
 
   function prevLightbox() {
-    currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+    currentGalleryIndex = (currentGalleryIndex - 1 + coverflowSlides.length) % coverflowSlides.length;
     openLightbox(currentGalleryIndex);
   }
 
@@ -889,7 +1067,7 @@
   // --- INITIALIZATION ---
   document.addEventListener('DOMContentLoaded', () => {
     initParticles();
-    initGallery();
+    initCoverflowGallery();
     loadWishes();
     triggerScrollReveals();
 
