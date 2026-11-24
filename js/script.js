@@ -447,16 +447,11 @@
     const now = new Date().getTime();
     const distance = WEDDING_DATE - now;
 
-    const cdDays = document.getElementById('cd-days');
-    const cdHours = document.getElementById('cd-hours');
-    const cdMin = document.getElementById('cd-min');
-    const cdSec = document.getElementById('cd-sec');
-
     if (distance <= 0) {
-      if (cdDays) cdDays.textContent = '0';
-      if (cdHours) cdHours.textContent = '0';
-      if (cdMin) cdMin.textContent = '0';
-      if (cdSec) cdSec.textContent = '0';
+      if (countDays) countDays.textContent = '00';
+      if (countHours) countHours.textContent = '00';
+      if (countMinutes) countMinutes.textContent = '00';
+      if (countSeconds) countSeconds.textContent = '00';
       return;
     }
 
@@ -465,36 +460,36 @@
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    if (cdDays) cdDays.textContent = String(days);
-    if (cdHours) cdHours.textContent = String(hours);
-    if (cdMin) cdMin.textContent = String(minutes);
-    if (cdSec) cdSec.textContent = String(seconds);
+    if (countDays) countDays.textContent = String(days).padStart(2, '0');
+    if (countHours) countHours.textContent = String(hours).padStart(2, '0');
+    if (countMinutes) countMinutes.textContent = String(minutes).padStart(2, '0');
+    if (countSeconds) countSeconds.textContent = String(seconds).padStart(2, '0');
   }
 
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
   // ==========================================================================
-  // 6. ADD TO CALENDAR (.ICS & GOOGLE CALENDAR)
+  // 6. ADD TO CALENDAR (.ICS DOWNLOAD & GOOGLE CALENDAR)
   // ==========================================================================
-  const btnAddCalendar = document.getElementById('btn-add-calendar');
+  const btnDownloadIcs = document.getElementById('btn-download-ics');
+  const btnGoogleCalendar = document.getElementById('btn-google-calendar');
 
-  if (btnAddCalendar) {
-    btnAddCalendar.addEventListener('click', (e) => {
+  if (btnDownloadIcs) {
+    btnDownloadIcs.addEventListener('click', (e) => {
       e.preventDefault();
       const icsData = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//Subin & Rosmy Wedding//EN',
+        'PRODID:-//Subin and Rosmy Wedding//EN',
         'CALSCALE:GREGORIAN',
         'METHOD:PUBLISH',
         'BEGIN:VEVENT',
-        'UID:subin-rosmy-wedding-20270117@rayarome',
-        'DTSTAMP:20261124T000000Z',
+        'UID:subin-rosmy-wedding-2027@rayarome',
         'DTSTART:20270117T060000Z',
         'DTEND:20270117T110000Z',
         'SUMMARY:Holy Matrimony of Subin Sojan & Rosmy Davis',
-        'DESCRIPTION:Join us for the Holy Matrimony of Subin Sojan & Rosmy Davis at St. Sebastian Church Rayarome Kannur followed by Reception at Parish Hall.',
+        'DESCRIPTION:Holy Matrimony at St. Sebastian\'s Church Rayarome, followed by wedding reception at Church Parish Hall.',
         'LOCATION:St. Sebastian\'s Church, Rayarome, Alakode, Kannur, Kerala',
         'STATUS:CONFIRMED',
         'END:VEVENT',
@@ -504,11 +499,10 @@
       const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
-      link.setAttribute('download', 'Subin_and_Rosmy_Wedding.ics');
+      link.setAttribute('download', 'Subin-and-Rosmy-Wedding.ics');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      showNotification('Wedding event saved to your calendar! 📅');
     });
   }
 
@@ -524,123 +518,51 @@
   }
 
   // ==========================================================================
-  // 7. 3D COVERFLOW GALLERY & LIGHTBOX (Exactly matching Image 2)
+  // 7. PHOTO GALLERY & FULL-SCREEN LIGHTBOX
   // ==========================================================================
-  let coverflowCards = [];
-  let coverflowThumbs = [];
-  let currentCoverIndex = 0;
-
-  const galleryImagesData = [
-    { src: 'images/gallery1.jpg', title: 'Subin & Rosmy • Nuptial Grace' },
-    { src: 'images/gallery2.jpg', title: 'Cherished Smiles • Watercolor Masterpiece' },
-    { src: 'images/gallery3.jpg', title: 'Together in Love • Radiant Smiles' },
-    { src: 'images/gallery4.jpg', title: 'Endless Grace • Traditional Elegance' }
-  ];
-
-  function updateCoverflow(index) {
-    if (!coverflowCards.length) return;
-    const total = coverflowCards.length;
-    currentCoverIndex = (index + total) % total;
-
-    coverflowCards.forEach((card, i) => {
-      card.classList.remove('active', 'prev', 'next');
-      if (i === currentCoverIndex) {
-        card.classList.add('active');
-      } else if (i === (currentCoverIndex - 1 + total) % total) {
-        card.classList.add('prev');
-      } else if (i === (currentCoverIndex + 1) % total) {
-        card.classList.add('next');
-      }
-    });
-
-    coverflowThumbs.forEach((thumb, i) => {
-      thumb.classList.toggle('active', i === currentCoverIndex);
-    });
-
-    const carouselDots = Array.from(document.querySelectorAll('.carousel-dot'));
-    carouselDots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentCoverIndex);
-    });
-
-    // Update Scrubber Progress
-    const scrubberProgress = document.getElementById('gallery-scrubber-progress');
-    const scrubberThumb = document.getElementById('gallery-scrubber-thumb');
-    const pct = ((currentCoverIndex + 1) / total) * 100;
-    if (scrubberProgress) scrubberProgress.style.width = `${pct}%`;
-    if (scrubberThumb) scrubberThumb.style.left = `${pct}%`;
-  }
-
   function initGallery() {
-    coverflowCards = Array.from(document.querySelectorAll('.coverflow-card'));
-    coverflowThumbs = Array.from(document.querySelectorAll('.thumb-btn'));
+    galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    if (!galleryItems.length) return;
 
-    if (!coverflowCards.length) return;
-
-    coverflowCards.forEach((card, index) => {
-      card.addEventListener('click', () => {
-        if (card.classList.contains('active')) {
-          openLightbox(index);
-        } else if (card.classList.contains('prev')) {
-          updateCoverflow(currentCoverIndex - 1);
-        } else if (card.classList.contains('next')) {
-          updateCoverflow(currentCoverIndex + 1);
-        } else {
-          updateCoverflow(index);
-        }
-      });
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => openLightbox(index));
     });
 
-    coverflowThumbs.forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-        updateCoverflow(index);
+    const filterTabs = document.querySelectorAll('.gallery-tab-btn');
+    filterTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const filter = tab.getAttribute('data-filter');
+        galleryItems.forEach((item) => {
+          const category = item.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
       });
     });
-
-    const carouselDots = Array.from(document.querySelectorAll('.carousel-dot'));
-    carouselDots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        updateCoverflow(index);
-      });
-    });
-
-    // Touch gesture swipe support
-    const track = document.querySelector('.coverflow-track');
-    if (track) {
-      let touchStartX = 0;
-      let touchEndX = 0;
-
-      track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      }, { passive: true });
-
-      track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const threshold = 40;
-        if (touchEndX < touchStartX - threshold) {
-          updateCoverflow(currentCoverIndex + 1);
-        } else if (touchEndX > touchStartX + threshold) {
-          updateCoverflow(currentCoverIndex - 1);
-        }
-      }, { passive: true });
-    }
-
-    updateCoverflow(0);
   }
 
   function openLightbox(index) {
-    if (!galleryImagesData[index]) return;
+    if (!galleryItems[index]) return;
     currentGalleryIndex = index;
-    const data = galleryImagesData[index];
+    const item = galleryItems[index];
+    const img = item.querySelector('.gallery-img');
+    const title = item.querySelector('.gallery-caption-title');
 
-    if (lightboxImg) {
-      lightboxImg.src = data.src;
-      lightboxImg.alt = data.title;
+    if (lightboxImg && img) {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || 'Wedding Moment';
     }
-    if (lightboxTitle) {
-      lightboxTitle.textContent = data.title;
+    if (lightboxTitle && title) {
+      lightboxTitle.textContent = title.textContent;
     }
     if (lightboxCounter) {
-      lightboxCounter.textContent = `${currentGalleryIndex + 1} of ${galleryImagesData.length}`;
+      lightboxCounter.textContent = `${currentGalleryIndex + 1} of ${galleryItems.length}`;
     }
 
     if (lightbox) {
@@ -657,15 +579,13 @@
   }
 
   function nextLightbox() {
-    currentGalleryIndex = (currentGalleryIndex + 1) % galleryImagesData.length;
+    currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
     openLightbox(currentGalleryIndex);
-    updateCoverflow(currentGalleryIndex);
   }
 
   function prevLightbox() {
-    currentGalleryIndex = (currentGalleryIndex - 1 + galleryImagesData.length) % galleryImagesData.length;
+    currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
     openLightbox(currentGalleryIndex);
-    updateCoverflow(currentGalleryIndex);
   }
 
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
@@ -806,37 +726,8 @@
   }
 
   // ==========================================================================
-  // 9. RSVP ATTENDANCE CARD
+  // 9. RSVP MODAL
   // ==========================================================================
-  const rsvpAttendanceForm = document.getElementById('rsvp-attendance-form');
-  const btnAttendYes = document.getElementById('btn-attend-yes');
-  const btnAttendNo = document.getElementById('btn-attend-no');
-  let selectedAttendance = 'attending';
-
-  if (btnAttendYes && btnAttendNo) {
-    btnAttendYes.addEventListener('click', () => {
-      btnAttendYes.classList.add('active');
-      btnAttendNo.classList.remove('active');
-      selectedAttendance = 'attending';
-    });
-    btnAttendNo.addEventListener('click', () => {
-      btnAttendNo.classList.add('active');
-      btnAttendYes.classList.remove('active');
-      selectedAttendance = 'declined';
-    });
-  }
-
-  if (rsvpAttendanceForm) {
-    rsvpAttendanceForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const guestName = document.getElementById('rsvp-guest-name')?.value || 'Evin Benny';
-      const msg = selectedAttendance === 'attending'
-        ? `Dear ${guestName}, your attendance is joyfully confirmed! 🥂`
-        : `Dear ${guestName}, thank you for letting us know. You will be in our hearts! ✨`;
-      showNotification(msg);
-    });
-  }
-
   rsvpOpenBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1002,17 +893,10 @@
     loadWishes();
     triggerScrollReveals();
 
-    // Schedule gentle auto-scroll after 2s
-    scheduleAutoScroll(2000);
-
-    // Audio autoplay on first click or touch
-    const startAudioOnFirstInteraction = () => {
-      startWeddingMusic();
-      document.removeEventListener('click', startAudioOnFirstInteraction);
-      document.removeEventListener('touchstart', startAudioOnFirstInteraction);
-    };
-    document.addEventListener('click', startAudioOnFirstInteraction, { passive: true });
-    document.addEventListener('touchstart', startAudioOnFirstInteraction, { passive: true });
+    // If invitation cover is already opened or dismissed, schedule auto-scroll after 2s
+    if (!invitationCover || invitationCover.style.display === 'none' || invitationCover.classList.contains('opened')) {
+      scheduleAutoScroll(2000);
+    }
   });
 
 })();
